@@ -1,0 +1,78 @@
+#tag Class
+Protected Class WTEC_DateTimeButton
+	#tag Method, Flags = &h0
+		Sub Constructor()
+		  // Initalisieren einens DateButtons
+		  Me.CalDate = New DateTime(DateTime.Now)
+		  Me.Area = New Rect(0,0,0,0)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0, Description = 446965204B6F6F7264696E6174656E20756E64204772C3B67373652064657320526563687465636B732066C3BC722064696573656E20427574746F6E
+		Area As Rect
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 44617320446174756D206461732064657220427574746F6E2072657072C3A473656E746965727420616C73204461746554696D65
+		CalDate As Datetime
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 44657220546578742C2064656E2064696573657220427574746F6E20616E7A65696774
+		Caption As string
+	#tag EndProperty
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Caption"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="string"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass
