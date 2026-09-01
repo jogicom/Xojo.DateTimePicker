@@ -40,6 +40,10 @@ Protected Class WTEC_PickerParameter
 		SetNewDate As WTEC_DateTimePicker.CallbackNewDate
 	#tag EndProperty
 
+	#tag Property, Flags = &h0, Description = 4D6F64757320646572204B616C656E646572616E7A656967652C206D6974206F646572206F686E65205568727A656974
+		ViewMode As WTEC_DateTimePicker.ViewModes = WTEC_DateTimePicker.ViewModes.DateOnly
+	#tag EndProperty
+
 	#tag Property, Flags = &h0, Description = 4465722076657274696B616C652041627374616E64207A7769736368656E2064656E2054616765736E756D6D65726E20696D204B616C656E646572
 		VMarginDayNumbers As Integer = 5
 	#tag EndProperty
@@ -163,6 +167,14 @@ Protected Class WTEC_PickerParameter
 			Group="Behavior"
 			InitialValue="false"
 			Type="boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ForceLocale"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="string"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

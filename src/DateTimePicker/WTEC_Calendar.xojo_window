@@ -9,7 +9,7 @@ Begin DesktopContainer WTEC_Calendar
    Composited      =   False
    Enabled         =   True
    HasBackgroundColor=   False
-   Height          =   300
+   Height          =   328
    Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
@@ -24,7 +24,7 @@ Begin DesktopContainer WTEC_Calendar
    Top             =   0
    Transparent     =   False
    Visible         =   True
-   Width           =   300
+   Width           =   307
    Begin DesktopButton PB_YearDown
       AllowAutoDeactivate=   True
       Bold            =   False
@@ -45,7 +45,7 @@ Begin DesktopContainer WTEC_Calendar
       LockRight       =   False
       LockTop         =   True
       MacButtonStyle  =   0
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -76,7 +76,7 @@ Begin DesktopContainer WTEC_Calendar
       LockRight       =   False
       LockTop         =   True
       MacButtonStyle  =   0
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
@@ -107,7 +107,7 @@ Begin DesktopContainer WTEC_Calendar
       LockRight       =   False
       LockTop         =   True
       MacButtonStyle  =   0
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
@@ -138,7 +138,7 @@ Begin DesktopContainer WTEC_Calendar
       LockRight       =   False
       LockTop         =   True
       MacButtonStyle  =   0
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
@@ -166,7 +166,7 @@ Begin DesktopContainer WTEC_Calendar
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   0
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   4
       TabPanelIndex   =   0
@@ -194,19 +194,19 @@ Begin DesktopContainer WTEC_Calendar
       Height          =   26
       Index           =   -2147483648
       Italic          =   False
-      Left            =   71
+      Left            =   83
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
       MacButtonStyle  =   0
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   254
+      Top             =   282
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -227,7 +227,7 @@ Begin DesktopContainer WTEC_Calendar
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
@@ -236,6 +236,146 @@ Begin DesktopContainer WTEC_Calendar
       Transparent     =   False
       Visible         =   True
       Width           =   276
+   End
+   Begin DesktopTextField TF_Hour
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   27
+      Hint            =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   71
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   2
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   247
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Visible         =   True
+      Width           =   80
+   End
+   Begin DesktopTextField TF_Minute
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   27
+      Hint            =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   173
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   247
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Visible         =   True
+      Width           =   80
+   End
+   Begin DesktopUpDownArrows UpDo_Minute
+      Active          =   False
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowTabStop    =   True
+      Enabled         =   True
+      Height          =   23
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   259
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      PanelIndex      =   0
+      Scope           =   2
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      Tooltip         =   ""
+      Top             =   248
+      Transparent     =   False
+      Visible         =   True
+      Width           =   14
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
+   End
+   Begin DesktopUpDownArrows UpDo_Hour
+      Active          =   False
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowTabStop    =   True
+      Enabled         =   True
+      Height          =   23
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   51
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      PanelIndex      =   0
+      Scope           =   2
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      Tooltip         =   ""
+      Top             =   247
+      Transparent     =   False
+      Visible         =   True
+      Width           =   14
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
 End
 #tag EndDesktopWindow
@@ -271,10 +411,17 @@ End
 		  // Berechnen der benötigten Breite für alle Elemente im Kalender
 		  Self.Width = p.Graphics.TextWidth(kMaxMonthYearString(loc.Identifier))    + 6 * param.HMargin_CalendarWindow + 4 * PB_MonthDown.Width 
 		  
-		  // Die Höhe muss 18 Textzeilen gross sein
-		  Self.Height = p.Graphics.TextHeight("MO DI MI DO FR SA SO SPACE", 500)  * 18
+		  If param.ViewMode = WTEC_DateTimePicker.ViewModes.DateAndTime Then
+		    // Die Höhe muss 19 Textzeilen gross sein
+		    Self.Height = p.Graphics.TextHeight("MO DI MI DO FR SA SO SPACE", 500)  * 19
+		  Else
+		    
+		    // Die Höhe muss 18 Textzeilen gross sein
+		    Self.Height = p.Graphics.TextHeight("MO DI MI DO FR SA SO SPACE", 500)  * 18
+		    
+		  End If
 		  
-		  SetControlPositions
+		  SetControlPositions(p.Graphics)
 		  
 		  // Prüfen ob der Kalender komplett sichtbar ist
 		  
@@ -308,8 +455,21 @@ End
 		  g.FillRectangle(0,0,g.Width, g.Height)
 		  
 		  // Kalender Rahmen zeichnen
-		  g.DrawingColor = AppColor.ControlFrame
+		  g.DrawingColor = AppColor.SelectedArea
 		  g.DrawRectangle(0,0,g.Width, g.Height)
+		  
+		  If param.ViewMode = WTEC_DateTimePicker.ViewModes.DateAndTime Then
+		    
+		    g.DrawingColor = AppColor.ControlFrame
+		    g.PenSize = 1
+		    g.DrawLine(_
+		    PB_SelectToday.Left, _
+		    TF_Hour.top - param.VMargin_CalendarWindow, _
+		    PB_SelectToday.Left + PB_SelectToday.Width, _
+		    TF_Hour.Top - param.VMargin_CalendarWindow)
+		    
+		    
+		  End If
 		End Sub
 	#tag EndEvent
 
@@ -328,6 +488,9 @@ End
 		  Else
 		    workingDate = New DateTime(DateTime.Now)
 		  End If
+		  
+		  lastValidHour = workingDate.Hour
+		  lastValidMinute = workingDate.Minute
 		  
 		  // locale bilden, wenn gesetzt
 		  #Pragma BreakOnExceptions False
@@ -472,7 +635,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21, Description = 5365747A742064696520506F736974696F6E20616C6C657220436F6E74726F6C7320756E64206175636820646572656E204772C3B6C39F652061756620646572204B616C656E64657220416E77656E64756E67
-		Private Sub SetControlPositions()
+		Private Sub SetControlPositions(g as graphics)
 		  // ==========================================================================
 		  //      Setzen der Positionen und Größen der einzelnen Controls im Kalender
 		  // ==========================================================================
@@ -508,9 +671,37 @@ End
 		  PB_SelectToday.Width =  Can_CalendarPicker.Width 
 		  PB_SelectToday.top = Self.Height - param.VMargin_CalendarWindow - PB_SelectToday.Height
 		  
+		  // Wenn im DateAndTime Modus, die Steuerelemente für Uhrzeit positionieren
+		  If param.ViewMode = WTEC_DateTimePicker.ViewModes.DateAndTime Then
+		    // Benötigte Breite für Stunde/ Minute berechnen, Posizion de : Labels zentrieren
+		    Var b As Integer = g.TextWidth("8888")
+		    TF_Hour.Width = b
+		    TF_Minute.Width = b
+		    TF_Hour.Left = (Can_CalendarPicker.Width / 2) + Can_CalendarPicker.Left - TF_Hour.Width
+		    TF_Minute.Left = TF_Hour.Left + TF_Hour.Width
+		    TF_Minute.Top = PB_SelectToday.top - param.VMargin_CalendarWindow - PB_SelectToday.Height
+		    TF_Hour.Top = TF_Minute.Top
+		    UpDo_Hour.Left = TF_Hour.Left - UpDo_Hour.Width
+		    UpDo_Hour.Top = TF_Hour.Top + (TF_Hour.Height - UpDo_Hour.Height) / 2
+		    
+		    UpDo_Minute.Left = TF_Minute.Left + TF_Minute.Height
+		    UpDo_Minute.top = UpDo_Hour.top
+		    
+		  Else
+		    // Steuerelemente für Uhrzeit ausblenden
+		    TF_Hour.Visible = False
+		    TF_Minute.Visible = False
+		    UpDo_Hour.Visible = False
+		    UpDo_Minute.Visible = False
+		  End If
+		  
 		  // Nun die Höhe des Kalender Canvas berechnen, INFO: Der Today Button ist immer unten angedockt, also kann dieser als Referenz herangezogen werden
 		  Can_CalendarPicker.Top = PB_YearDown.top + PB_YearDown.Height + param.VMargin_CalendarWindow
-		  Can_CalendarPicker.Height = PB_SelectToday.Top - Can_CalendarPicker.Top - param.VMargin_CalendarWindow
+		  If param.ViewMode = WTEC_DateTimePicker.ViewModes.DateOnly Then
+		    Can_CalendarPicker.Height = PB_SelectToday.Top - Can_CalendarPicker.Top - param.VMargin_CalendarWindow
+		  Else
+		    Can_CalendarPicker.Height = TF_Hour.Top - Can_CalendarPicker.Top - param.VMargin_CalendarWindow
+		  End If
 		  
 		  fReCalcControlPositions = False
 		  
@@ -521,7 +712,7 @@ End
 		Sub SetDate(d as dateTime)
 		  // Setzen des Arbeitsdatums von aussen
 		  
-		  workingDate = New DateTime(d.Year,d.Month,d.Day)
+		  workingDate = New DateTime(d.SecondsFrom1970)
 		  self.ForceCalendarUpdate = True
 		  Can_CalendarPicker.Refresh
 		  
@@ -576,6 +767,10 @@ End
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h21
+		Private AceptInput As boolean
+	#tag EndProperty
+
 	#tag Property, Flags = &h21, Description = 4461732041727261792064657220576F6368656E7461676520646965736573204B616C656E64657273
 		Private DayNameAreas() As WTEC_DayArea
 	#tag EndProperty
@@ -590,6 +785,14 @@ End
 
 	#tag Property, Flags = &h21, Description = 57656E6E20547275652C2077657264656E206265692065696E656D205061696E74204576656E74207A75657273742064696520436F6E74726F6C7320506F736974696F6E69657274
 		Private fReCalcControlPositions As boolean = TRUE
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 446965205A756C65747A2067C3BC6C74696765205374756E64652C2064696520766F6D205374756E64656E205465787466656C642065726661737374207775726465
+		Private lastValidHour As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 446965205A756C65747A2067C3BC6C74696765204D696E7574652C2064696520766F6D204D696E7574656E205465787466656C642065726661737374207775726465
+		Private lastValidMinute As Integer = 0
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h21, Description = 5365747A74202F204C696573742064656E20496E6465782077656C63686572204D6F6E617473746167206D61726B69657274206973742C206CC3B67374206265696D207365747A656E2064657320496E6465782065696E656E20526566726573682064657220626574726F6666656E656E204172656173206175732C20697374202D312077656E6E206B65696E20546167206D61726B6965727420697374
@@ -818,6 +1021,7 @@ End
 		  Me.Caption = kToday(loc.Identifier) + ": " + WTEC_DateTimePicker.dtToString(d, loc)
 		  
 		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -827,7 +1031,11 @@ End
 		  Var d As DateTime =  New DateTime(DateTime.Now)
 		  
 		  
-		  workingDate = New DateTime(DateTime.Now)
+		  workingDate = New DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.now.Hour, DateTime.now.Minute)
+		  
+		  TF_Hour.Text = workingDate.Hour.ToString("00")
+		  TF_Minute.Text = workingDate.Minute.ToString("00")
+		  
 		  
 		  If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d)
 		  
@@ -850,7 +1058,7 @@ End
 		  
 		  
 		  
-		  If fReCalcControlPositions Then SetControlPositions
+		  If fReCalcControlPositions Then SetControlPositions(g)
 		  
 		  If DayNameAreas.Count = 0 Or DayNumberAreas.Count = 0 Then
 		    
@@ -1008,9 +1216,9 @@ End
 		      b = DayNumberAreas(r)
 		      If b.Area.Contains(x,y) Then
 		        
-		        workingDate = New DateTime(b.CalDate.SecondsFrom1970)
+		        workingDate = New DateTime(b.CalDate.Year, b.CalDate.Month, b.CalDate.Day, workingDate.Hour, workingDate.Minute)
 		        
-		        Var d As New DateTime(b.CalDate.SecondsFrom1970)
+		        Var d As New DateTime(workingDate.SecondsFrom1970)
 		        param.SetNewDate.Invoke(d)
 		        
 		        If param.AutoCollapse Then
@@ -1041,6 +1249,339 @@ End
 		  #Pragma Unused selectedItem
 		  
 		  MessageBox(kText_CalendarAbout(loc.Identifier) + kVersion)
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events TF_Hour
+	#tag Event
+		Sub Opening()
+		  // Beim beschreiben des Textfeldes verhindern, dass Event TextChanged verarbeitet wird
+		  
+		  AceptInput = False
+		  Me.Text = workingDate.Hour.ToString("00")
+		  lastValidHour = workingDate.Hour
+		  AceptInput = True
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // Stunden Up/Down mit Wheel
+		  
+		  Var t As Integer
+		  #Pragma BreakOnExceptions False
+		  Try
+		    t  = Integer.FromString(Me.Text)
+		  Catch InvalidArgumentException
+		    t = 0
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  If deltay < 0 Then
+		    t = t +1
+		  ElseIf deltay > 0 Then
+		    t = t-1
+		  End If
+		  
+		  // Bereich prüfen
+		  If t>23 Then t= 0
+		  If t<0 Then  t = 23
+		  
+		  Me.Text = t.ToString
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChanged()
+		  // Die Eingabe nur verarbeiten, wenn keine Sperre gesetzt ist, beim Beschreiben des Textfeldes Sperre setzen
+		  
+		  If AceptInput Then
+		    Var t As Integer
+		    #Pragma BreakOnExceptions False
+		    Try
+		      t  = Integer.FromString(Me.Text)
+		    Catch InvalidArgumentException
+		      Return
+		    End Try
+		    #Pragma BreakOnExceptions True
+		    
+		    
+		    If t > 23 Then t = 23
+		    If t < 0 Then t = 0
+		    AceptInput = False
+		    Me.Text = t.ToString("00")
+		    AceptInput = True
+		    lastValidHour = t
+		    
+		    workingDate = New DateTime(workingDate.Year, workingDate.Month, workingDate.Day,lastValidHour, lastValidMinute)
+		    
+		  End If
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function KeyDown(key As String) As Boolean
+		  // 1. Erlaube System- und Steuerungstasten (Länge 0 fängt viele Sondertasten ab)
+		  If key.Length = 0 Then
+		    Return False
+		  End If
+		  
+		  // 2. Explizit wichtige Steuerungstasten erlauben (ASCII-Werte abfragen)
+		  Var asciiWert As Integer = key.Asc
+		  
+		  Select Case asciiWert
+		  Case 8, 127, 9 // Backspace, Delete, Tabulator
+		    Return False
+		  Case 28, 29, 30, 31 // Pfeiltasten (Links, Rechts, Oben, Unten)
+		    Return False
+		  Case 1, 4 // Pos1 (Home), Ende (End)
+		    Return False
+		  End Select
+		  
+		  // 3. Prüfen, ob das Zeichen eine Zahl zwischen 0 und 9 ist
+		  If key >= "0" And key <= "9" Then
+		    Return False // Gültige Zahl -> Erlauben
+		  End If
+		  
+		  // 4. Jedes andere Zeichen blockieren
+		  Return True
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events TF_Minute
+	#tag Event
+		Sub Opening()
+		  // Beim beschreiben des Textfeldes verhindern, dass Event TextChanged verarbeitet wird
+		  
+		  AceptInput = False
+		  Me.Text = workingDate.Minute.ToString("00")
+		  lastValidMinute = workingDate.Minute
+		  AceptInput = True
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // Minuten Up/Down mit Wheel
+		  
+		  Var t As Integer
+		  #Pragma BreakOnExceptions False
+		  Try
+		    t  = Integer.FromString(Me.Text)
+		  Catch InvalidArgumentException
+		    t = 0
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  If deltay < 0 Then
+		    t = t +1
+		  ElseIf deltay > 0 Then
+		    t = t-1
+		  End If
+		  
+		  // Bereich prüfen
+		  If t>59 Then t= 0
+		  If t<0 Then  t = 59
+		  Me.Text = t.ToString
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChanged()
+		  // Die Eingabe nur verarbeiten, wenn keine Sperre gesetzt ist, beim Beschreiben des Textfeldes Sperre setzen
+		  
+		  If AceptInput Then
+		    Var t As Integer
+		    #Pragma BreakOnExceptions False
+		    Try
+		      t  = Integer.FromString(Me.Text)
+		    Catch InvalidArgumentException
+		      Return
+		    End Try
+		    #Pragma BreakOnExceptions True
+		    
+		    If t > 59 Then t = 0
+		    If t < 0 Then T = 59
+		    AceptInput = False
+		    Me.Text = t.ToString("00")
+		    AceptInput = True
+		    lastValidMinute = t
+		    
+		    workingDate = New DateTime(workingDate.Year, workingDate.Month, workingDate.Day,lastValidHour, lastValidMinute)
+		  End If
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function KeyDown(key As String) As Boolean
+		  // 1. Erlaube System- und Steuerungstasten (Länge 0 fängt viele Sondertasten ab)
+		  If key.Length = 0 Then
+		    Return False
+		  End If
+		  
+		  // 2. Explizit wichtige Steuerungstasten erlauben (ASCII-Werte abfragen)
+		  Var asciiWert As Integer = key.Asc
+		  
+		  Select Case asciiWert
+		  Case 8, 127, 9 // Backspace, Delete, Tabulator
+		    Return False
+		  Case 28, 29, 30, 31 // Pfeiltasten (Links, Rechts, Oben, Unten)
+		    Return False
+		  Case 1, 4 // Pos1 (Home), Ende (End)
+		    Return False
+		  End Select
+		  
+		  // 3. Prüfen, ob das Zeichen eine Zahl zwischen 0 und 9 ist
+		  If key >= "0" And key <= "9" Then
+		    Return False // Gültige Zahl -> Erlauben
+		  End If
+		  
+		  // 4. Jedes andere Zeichen blockieren
+		  Return True
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events UpDo_Minute
+	#tag Event
+		Sub DownPressed()
+		  // Minuten runter durch pressed Event
+		  
+		  Var t As Integer
+		  
+		  #Pragma BreakOnExceptions False
+		  Try
+		    t  = Integer.FromString(TF_Minute.Text)
+		  Catch InvalidArgumentException
+		    // Textfeld leer
+		    Return
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  t = t - 1
+		  
+		  If t< 0 Then t = 59
+		  
+		  TF_Minute.Text = t.ToString
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub UpPressed()
+		  // Minuten hoch durch pressed Event
+		  
+		  Var t As Integer
+		  
+		  #Pragma BreakOnExceptions False
+		  Try
+		    t  = Integer.FromString(TF_Minute.Text)
+		  Catch InvalidArgumentException
+		    // Textfeld leer
+		    Return
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  t = t + 1
+		  
+		  If t>59 Then t = 0
+		  
+		  TF_Minute.Text = t.ToString
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // UpDown Button Minuten Bedienung mit Wheel
+		  
+		  Var t As Integer
+		  #Pragma BreakOnExceptions False
+		  Try
+		    t  = Integer.FromString(TF_Minute.Text)
+		  Catch InvalidArgumentException
+		    t = 0
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  If deltay < 0 Then
+		    t = t +1
+		  ElseIf deltay > 0 Then
+		    t = t-1
+		  End If
+		  
+		  // Bereich prüfen
+		  If t>59 Then t= 0
+		  If t<0 Then  t = 59
+		  TF_Minute.Text = t.ToString
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events UpDo_Hour
+	#tag Event
+		Sub UpPressed()
+		  // Stunden hoch durch pressed Event
+		  
+		  Var t As Integer
+		  
+		  #Pragma BreakOnExceptions False
+		  Try
+		    t  = Integer.FromString(TF_Hour.Text)
+		  Catch InvalidArgumentException
+		    // Textfeld leer
+		    Return
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  t = t + 1
+		  
+		  If t>23 Then t = 0
+		  
+		  TF_Hour.Text = t.ToString
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DownPressed()
+		  // Stunden runter durch pressed Event
+		  
+		  Var t As Integer
+		  
+		  #Pragma BreakOnExceptions False
+		  Try
+		    t  = Integer.FromString(TF_Hour.Text)
+		  Catch InvalidArgumentException
+		    // Textfeld leer
+		    Return
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  t = t - 1
+		  
+		  If t< 0 Then t = 23
+		  
+		  TF_Hour.Text = t.ToString
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // UpDown Button Stunden Bedienung mit Wheel
+		  
+		  Var t As Integer
+		  #Pragma BreakOnExceptions False
+		  Try
+		    t  = Integer.FromString(TF_Hour.Text)
+		  Catch InvalidArgumentException
+		    t = 0
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  If deltay < 0 Then
+		    t = t +1
+		  ElseIf deltay > 0 Then
+		    t = t-1
+		  End If
+		  
+		  // Bereich prüfen
+		  If t>23 Then t= 0
+		  If t<0 Then  t = 23
+		  
+		  TF_Hour.Text = t.ToString
+		  
 		End Function
 	#tag EndEvent
 #tag EndEvents

@@ -119,7 +119,7 @@ Begin DesktopWindow Window1
    Begin DesktopGroupBox GroupBox1
       AllowAutoDeactivate=   True
       Bold            =   False
-      Caption         =   "Kalender meldet Datum"
+      Caption         =   "Kalender meldet Datum/Uhrzeit"
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
@@ -138,7 +138,7 @@ Begin DesktopWindow Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   509
+      Top             =   507
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -178,7 +178,7 @@ Begin DesktopWindow Window1
          TextAlignment   =   0
          TextColor       =   &c000000
          Tooltip         =   ""
-         Top             =   537
+         Top             =   535
          Transparent     =   False
          Underline       =   False
          ValidationMask  =   ""
@@ -249,12 +249,12 @@ Begin DesktopWindow Window1
    Begin DesktopGroupBox GroupBox3
       AllowAutoDeactivate=   True
       Bold            =   False
-      Caption         =   "Colappsed with Textfield"
+      Caption         =   "Colappsed with Textfield DateOnly"
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   172
+      Height          =   75
       Index           =   -2147483648
       Italic          =   False
       Left            =   346
@@ -293,7 +293,7 @@ Begin DesktopWindow Window1
          Index           =   -2147483648
          InitialParent   =   "GroupBox3"
          IsExpanded      =   False
-         Left            =   395
+         Left            =   485
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -304,12 +304,80 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   0
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   162
+         Top             =   129
          Transparent     =   False
+         ViewMode        =   0
          Visible         =   True
          VMarginDayNumbers=   5
          VMargin_CalendarWindow=   5
          Width           =   120
+      End
+   End
+   Begin DesktopGroupBox GroupBox4
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "With Date and Time"
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   85
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   346
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   180
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   398
+      Begin WTEC_DateTimePicker WTEC_DateTimePicker2
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         AutoCollapse    =   True
+         AutoCollapseOnMouseExit=   True
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF
+         Composited      =   False
+         Enabled         =   True
+         FirstWeekday    =   2
+         ForceLocale     =   ""
+         HasBackgroundColor=   False
+         Height          =   27
+         HMarginDayNumbers=   5
+         HMargin_CalendarWindow=   5
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox4"
+         IsExpanded      =   False
+         Left            =   486
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   216
+         Transparent     =   False
+         ViewMode        =   2
+         Visible         =   True
+         VMarginDayNumbers=   5
+         VMargin_CalendarWindow=   5
+         Width           =   109
       End
    End
 End
@@ -333,7 +401,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub ReportsNewDate(d as datetime)
-		  MessageBox("Calendar send a new date: " + WTEC_DateTimePicker.dtToString(d, locale.Current))
+		  MessageBox("Calendar send a new date: " + WTEC_DateTimePicker.dtToString(d, locale.Current, true))
 		End Sub
 	#tag EndMethod
 
@@ -385,6 +453,14 @@ End
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C74
 		Sub DateChanged(value as Datetime)
 		  TF_CalDate.Text = WTEC_DateTimePicker.dtToString(value, locale.Current)
+		  System.Beep
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events WTEC_DateTimePicker2
+	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C74
+		Sub DateChanged(value as Datetime)
+		  TF_CalDate.Text = WTEC_DateTimePicker.dtToString(value, locale.Current,True)
 		  System.Beep
 		End Sub
 	#tag EndEvent

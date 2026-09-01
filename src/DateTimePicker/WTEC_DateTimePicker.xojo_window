@@ -135,11 +135,15 @@ End
 		    actualDate = New DateTime(DateTime.Now)
 		  End If
 		  
+		  // Uhrzeit getrennt aufbewahren
+		  actualHour = actualDate.Hour
+		  actualMinute = actualDate.minute
+		  
 		  // Das aktuelle Datum in das Eingabe Feld speichern und den Focus für sofortige Eingabe auf das Textfeld setzen
 		  TF_DateInput.Text = dtToString(actualDate, loc)
 		  TF_DateInput.SetFocus
 		  
-		  AceptInput = True          // Eingaben werden ab jetzt akzeptiert und verarbeitet
+		  AcceptInput = True          // Eingaben werden ab jetzt akzeptiert und verarbeitet
 		  
 		End Sub
 	#tag EndEvent
@@ -287,12 +291,17 @@ End
 		Delegate Sub CallbackNewDate(d as datetime)
 	#tag EndDelegateDeclaration
 
-	#tag Method, Flags = &h0, Description = 417573676162652065696E6573204461746554696D657320616C7320537472696E672C206469657365204D6574686F6465207374616E646172697369657274206461732041757367616265666F726D6174204B616C656E6465722057656974
-		Shared Function dtToString(d as DateTime, loc as Locale) As string
+	#tag Method, Flags = &h0, Description = 417573676162652065696E6573204461746554696D657320616C7320537472696E672C206469657365204D6574686F6465207374616E646172697369657274206461732041757367616265666F726D6174204B616C656E64657220576569742C2077656E6E20227769746854696D6522203D20545255452064616E6E2077697264206175636820646965205568727A65697420696D206C6F6B616C656D20466F726D6174206175736765676562656E
+		Shared Function dtToString(d as DateTime, loc as Locale, withTime as boolean = false) As string
 		  If d <> Nil Then
 		    
-		    Return d.ToString( loc, DateTime.FormatStyles.Short, DateTime.FormatStyles.None)
-		    
+		    If withTime Then
+		      // Ausgabe mit Uhrzeit
+		      Return d.ToString( loc, DateTime.FormatStyles.Short, DateTime.FormatStyles.Short)
+		    Else
+		      // Ausgabe ohne Uhrzeit
+		      Return d.ToString( loc, DateTime.FormatStyles.Short, DateTime.FormatStyles.None)
+		    End If
 		  End If
 		  
 		  Return ""    // Bei ungültiger DateTime
@@ -301,15 +310,18 @@ End
 
 	#tag Method, Flags = &h0, Description = 5365747A742064617320616B7475656C6C65204B616C656E646572646174756D
 		Sub SetDate(d as Datetime)
-		  // Setzen eines bestimmten Datums im Kalender
+		  // Setzen eines bestimmten Datums und Uhrzeit im Kalender, durch die Hauptanwendung
+		  
+		  actualDate = d
+		  actualHour = d.Hour
+		  actualMinute = d.Minute
 		  
 		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
 		  
 		  TF_DateInput.SetFocus
 		  
-		  actualDate = d
 		  
-		  // An den Kalender weiter melden, wenn geöffnet
+		  // An den Kalender Container weiter melden, wenn geöffnet
 		  
 		  If CalendarContainer <> Nil Then
 		    CalendarContainer.SetDate(d)
@@ -319,12 +331,27 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21, Description = 457320777572646520766F6D204B616C656E64657220436F6E7461696E65722065696E206E6575657320446174756D2067656D656C646574
-		Private Sub SetDateFromCalendar(d as DateTime)
-		  // Im Kalender wurde ein Datum ausgewählt ( Callback)
-		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
+	#tag Method, Flags = &h21, Description = 457320777572646520766F6D204B616C656E64657220436F6E7461696E6572206F64657220646972656B7420766F6D204B616C656E64657220506F7075702065696E206E6575657320446174756D2067656D656C646574
+		Private Sub SetDateFromContainer(d as DateTime)
+		  // Im Kalender Container wurde ein Datum ausgewählt ( Callback)
 		  
-		  actualDate = d
+		  actualDate = New DateTime(d.SecondsFrom1970)
+		  actualHour = d.Hour
+		  actualMinute = d.Minute
+		  
+		  // Unter Linux wird kein TextChanged Event ausgelöst, wenn hier das gleiche Datum gesetzt wird das sich schon im Textfeld befindet (evt. auch unter Windows?)
+		  // Deshalb wird hier generell der TextChanged Event blockiert und das Datum von hier aus weiter gemeldet
+		  AcceptInput = False
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
+		  AcceptInput = True
+		  
+		  Var dNew As New DateTime(d.SecondsFrom1970)
+		  
+		  // Das neue Datum an die Hauptanwendung melden
+		  RaiseEvent DateChanged(d)
+		  
+		  
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -340,11 +367,19 @@ End
 
 
 	#tag Property, Flags = &h21, Description = 536F6C616E67652064696573657320466C6167206175662046616C73652073746568742C2077657264656E206B65696E652045696E676162656E2076657261726265697465742C207769726420696D204F70656E204576656E74206E6163682062657374C3BC636B656E2064657220446174656E20667265696765676562656E
-		Private AceptInput As boolean = false
+		Private AcceptInput As boolean = false
 	#tag EndProperty
 
 	#tag Property, Flags = &h21, Description = 44617320616B7475656C6C20696D205465787466656C642065696E676574726167656E6520446174756D
 		Private actualDate As DateTime
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 48696572207769726420646965205374756E64652064657220616B7475656C6C2076657277656E646574656E205A6569742066657374676568616C74656E2C20657273746D616C696720696D204F70656E204576656E74
+		Private actualHour As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 48696572207769726420646965204D696E7574652064657220616B7475656C6C2076657277656E646574656E205A6569742066657374676568616C74656E2C20657273746D616C696720696D204F70656E204576656E74
+		Private actualMinute As Integer = 0
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 57656E6E20547275652C2077697264204B616C656E646572206E616368204175737761686C2065696E657320446174756D73206D696E696D69657274
@@ -403,13 +438,13 @@ End
 			        para.HMarginDayNumbers      = VMarginDayNumbers
 			        para.actualDate             = actualDate
 			        para.FirstWeekDay           = FirstWeekday
-			        para.SetNewDate             = WeakAddressOf SetDateFromCalendar   // Hierüber werden Änderungen des Kalenderdatums gemeldet
+			        para.SetNewDate             = WeakAddressOf SetDateFromContainer  // Hierüber werden Änderungen des Kalenderdatums gemeldet
 			        para.CalendarClose          = WeakAddressOf CalendarClose         // Meldung, wenn Kalender geschlossen wird zum aufräumen
 			        para.AutoCollapse           = AutoCollapse
 			        para.AutoCloseWhenMouseExit = AutoCollapseOnMouseExit
 			        para.MainControlWidth       = TF_DateInput.Width                  // Damit kann der Kalender seine Position variieren
 			        para.ForceLocale            = ForceLocale
-			        
+			        para.ViewMode               = ViewMode                            // Kalender Mode
 			        CalendarContainer =  New WTEC_Calendar(para)
 			        
 			        // 2. In das Ziel-Control (z.B. eine GroupBox1) einbetten
@@ -460,6 +495,10 @@ End
 		Private MouseOverShowCalendar As boolean
 	#tag EndComputedProperty
 
+	#tag Property, Flags = &h0, Description = 566965774D6F646520646573204B616C656E646572732C20446174654F6E6C79206F6465722044617465416E6454696D65
+		ViewMode As WTEC_DateTimePicker.ViewModes = WTEC_DateTimePicker.ViewModes.DateOnly
+	#tag EndProperty
+
 	#tag Property, Flags = &h0, Description = 4465722076657274696B616C652041627374616E64207A7769736368656E2064656E2054616765736E756D6D65726E20696D204B616C656E646572
 		VMarginDayNumbers As Integer = 5
 	#tag EndProperty
@@ -493,6 +532,11 @@ End
 		LastIndex
 	#tag EndEnum
 
+	#tag Enum, Name = ViewModes, Type = Integer, Flags = &h0, Description = 446566696E696572742064696520416E7A6569676520617566206E757220446174756D206F64657220446174756D206D6974205568727A656974
+		DateOnly
+		DateAndTime
+	#tag EndEnum
+
 
 #tag EndWindowCode
 
@@ -500,13 +544,13 @@ End
 	#tag Event
 		Sub TextChanged()
 		  // Im Datumsfeld wurde etwas geändert, Datum prüfen
-		  If AceptInput Then
+		  If AcceptInput Then
 		    Var d As DateTime
 		    
 		    #Pragma BreakOnExceptions False
 		    Try
 		      
-		      d = DateTime.FromString(Me.Text, loc)
+		      d = DateTime.FromString(Me.Text, loc)  // Datetime aus reinem Datum bilden, ohne gültige Uhrzeit
 		    Catch InvalidArgumentException
 		      // Leerer String = kein gültiges Datum
 		      Me.TextColor = AppColor.TextError
@@ -516,6 +560,9 @@ End
 		      Me.TextColor = AppColor.TextError
 		      Return
 		    End Try
+		    
+		    // Nun neue Datetime mit Uhrzeit generieren
+		    d = New DateTime(d.Year, d.Month, d.Day, actualHour, actualMinute)
 		    
 		    Me.TextColor = AppColor.Text
 		    #Pragma BreakOnExceptions True
@@ -850,6 +897,18 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="ViewMode"
+		Visible=true
+		Group="Calendar Behavor"
+		InitialValue="0"
+		Type="WTEC_DateTimePicker.ViewModes"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - DateOnly"
+			"1 - DateAndTime"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="ForceLocale"
 		Visible=true
 		Group="Calendar Behavor"
@@ -893,7 +952,7 @@ End
 		Name="FirstWeekday"
 		Visible=true
 		Group="Calendar Behavor"
-		InitialValue="WTEC_DateTimePicker.FirstWeekDays.Monday"
+		InitialValue="2"
 		Type="WTEC_DateTimePicker.FirstWeekDays"
 		EditorType="Enum"
 		#tag EnumValues
