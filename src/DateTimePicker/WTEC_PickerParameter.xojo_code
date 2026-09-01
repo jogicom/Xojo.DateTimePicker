@@ -52,6 +52,10 @@ Protected Class WTEC_PickerParameter
 		SetNewDate As WTEC_DateTimePicker.CallbackNewDate
 	#tag EndProperty
 
+	#tag Property, Flags = &h0, Description = C39C6265722064696573656E2043616C6C6261636B206D656C64657420646572204B616C656E6465722C2077656E6E207369636820646965205568727A656974206765C3A46E6465727420686174
+		SetNewTime As WTEC_DateTimePicker.CallbackNewTime
+	#tag EndProperty
+
 	#tag Property, Flags = &h0, Description = 4D6F64757320646572204B616C656E646572616E7A656967652C206D6974206F646572206F686E65205568727A656974
 		ViewMode As WTEC_DateTimePicker.ViewModes = WTEC_DateTimePicker.ViewModes.DateOnly
 	#tag EndProperty
@@ -195,7 +199,42 @@ Protected Class WTEC_PickerParameter
 			Group="Behavior"
 			InitialValue="WTEC_DateTimePicker.ViewModes.DateOnly"
 			Type="WTEC_DateTimePicker.ViewModes"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - DateOnly"
+				"1 - DateAndTime"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Fontname"
+			Visible=false
+			Group="Behavior"
+			InitialValue="System"
+			Type="string"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontSize"
+			Visible=false
+			Group="Behavior"
+			InitialValue="0"
+			Type="Single"
 			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontUnit"
+			Visible=false
+			Group="Behavior"
+			InitialValue="FontUnits.Default"
+			Type="FontUnits"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - Pixel"
+				"2 - Point"
+				"3 - Inches"
+				"4 - Millimeter"
+			#tag EndEnumValues
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

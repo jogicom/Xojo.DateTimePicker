@@ -398,7 +398,7 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub ReportsClosed()
+		Sub ReportsClosed(d as datetime, IsChanged as boolean)
 		  MessageBox("Caldendar reports: Is Closed")
 		  
 		  CalendarContainer = Nil
@@ -408,6 +408,12 @@ End
 	#tag Method, Flags = &h0
 		Sub ReportsNewDate(d as datetime)
 		  MessageBox("Calendar send a new date: " + WTEC_DateTimePicker.dtToString(d, locale.Current, true))
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ReportsNewTime(hour as integer, minute as integer)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -443,6 +449,7 @@ End
 		  para.FirstWeekDay           = WTEC_DateTimePicker.FirstWeekDays.Monday
 		  para.SetNewDate             = WeakAddressOf ReportsNewDate       // Method that receives the selected date
 		  para.CalendarClose          = WeakAddressOf ReportsClosed        // Method that is notified of the closing. `CalendarContainer` should be set to `nil` there.
+		  para.SetNewTime             = WeakAddressOf ReportsNewTime       // Method that is notified of time change 
 		  para.AutoCollapse           = True                               // If False, the calendar must be closed using the Close method (Not possible by PopUp mode!
 		  para.AutoCloseWhenMouseExit = False                              // If True, calendar is closed by MousExit
 		  

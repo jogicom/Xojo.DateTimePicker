@@ -237,7 +237,7 @@ Begin DesktopContainer WTEC_Calendar
       Visible         =   True
       Width           =   276
    End
-   Begin DesktopTextField TF_Hour
+   Begin WTEC_TimeTextField TF_Minute
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -250,11 +250,11 @@ Begin DesktopContainer WTEC_Calendar
       FontUnit        =   0
       Format          =   ""
       HasBorder       =   True
-      Height          =   27
+      Height          =   26
       Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   71
+      Left            =   167
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -264,48 +264,7 @@ Begin DesktopContainer WTEC_Calendar
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   7
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextAlignment   =   2
-      TextColor       =   &c000000
-      Tooltip         =   ""
-      Top             =   247
-      Transparent     =   False
-      Underline       =   False
-      ValidationMask  =   ""
-      Visible         =   True
-      Width           =   80
-   End
-   Begin DesktopTextField TF_Minute
-      AllowAutoDeactivate=   True
-      AllowFocusRing  =   True
-      AllowSpellChecking=   False
-      AllowTabs       =   False
-      BackgroundColor =   &cFFFFFF
-      Bold            =   False
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Format          =   ""
-      HasBorder       =   True
-      Height          =   27
-      Hint            =   ""
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   173
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      MaximumCharactersAllowed=   0
-      Password        =   False
-      ReadOnly        =   False
-      Scope           =   2
-      TabIndex        =   8
+      TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -319,37 +278,48 @@ Begin DesktopContainer WTEC_Calendar
       Visible         =   True
       Width           =   80
    End
-   Begin DesktopUpDownArrows UpDo_Minute
-      Active          =   False
+   Begin WTEC_TimeTextField TF_Hour
       AllowAutoDeactivate=   True
-      AllowFocus      =   False
-      AllowTabStop    =   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
       Enabled         =   True
-      Height          =   23
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   26
+      Hint            =   ""
       Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   259
+      Italic          =   False
+      Left            =   71
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      PanelIndex      =   0
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   9
+      TabIndex        =   12
       TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   0
+      TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   248
+      Top             =   247
       Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
       Visible         =   True
-      Width           =   14
-      _mIndex         =   0
-      _mInitialParent =   ""
-      _mName          =   ""
-      _mPanelIndex    =   0
+      Width           =   80
    End
-   Begin DesktopUpDownArrows UpDo_Hour
-      Active          =   False
+   Begin WTEC_UpDownButton UpDo_Hour
       AllowAutoDeactivate=   True
       AllowFocus      =   False
       AllowTabStop    =   True
@@ -363,19 +333,37 @@ Begin DesktopContainer WTEC_Calendar
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      PanelIndex      =   0
       Scope           =   2
-      TabIndex        =   10
+      TabIndex        =   13
       TabPanelIndex   =   0
       Tooltip         =   ""
-      Top             =   247
+      Top             =   248
       Transparent     =   False
       Visible         =   True
       Width           =   14
-      _mIndex         =   0
-      _mInitialParent =   ""
-      _mName          =   ""
-      _mPanelIndex    =   0
+   End
+   Begin WTEC_UpDownButton UpDo_Minute
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowTabStop    =   True
+      Enabled         =   True
+      Height          =   23
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   252
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      Tooltip         =   ""
+      Top             =   248
+      Transparent     =   False
+      Visible         =   True
+      Width           =   14
    End
 End
 #tag EndDesktopWindow
@@ -385,7 +373,9 @@ End
 		Sub Closing()
 		  // Kalender wird geschlossen, Nachricht über callback senden
 		  
-		  If param.CalendarClose <> Nil Then param.CalendarClose.Invoke()
+		  Var d As New DateTime(workingDate.Year, workingDate.Month, workingDate.Day, lastValidHour,lastValidMinute)
+		  
+		  If param.CalendarClose <> Nil Then param.CalendarClose.Invoke(d, IsDateDifferent(d,startDateTime))
 		  
 		  param = Nil
 		  
@@ -497,12 +487,16 @@ End
 		    param.FirstWeekDay = WTEC_DateTimePicker.FirstWeekDays.Monday
 		  End If
 		  
+		  
+		  
 		  // Arbeisdatum erstellen
 		  If param.actualDate <> Nil Then
 		    workingDate = New DateTime(param.actualDate.SecondsFrom1970)
 		  Else
 		    workingDate = New DateTime(DateTime.Now)
 		  End If
+		  
+		  startDateTime = new DateTime(workingDate.SecondsFrom1970)
 		  
 		  lastValidHour = workingDate.Hour
 		  lastValidMinute = workingDate.Minute
@@ -579,6 +573,30 @@ End
 		    
 		  Next
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, Description = C39C6265727072C3BC6674206175662042617369732064657320566965774D6F6465732C206F62206469652062656964656E204461746554696D657320756E7465727363686965646C6963682073696E6420285452554529
+		Private Function IsDateDifferent(d1 as Datetime, d2 as Datetime) As boolean
+		  If param.ViewMode = WTEC_DateTimePicker.ViewModes.DateOnly Then
+		    // Datum überprüfen
+		    If d1.Year    <> d2.Year _
+		    Or d1.Month <> d2.Month _
+		    Or d1.Day   <> d2.Day Then Return True
+		    
+		  ElseIf param.ViewMode = WTEC_DateTimePicker.ViewModes.DateAndTime Then
+		    // Datum und Uhrzeit überprüfen
+		    If d1.Year <> d2.Year _
+		    Or d1.Month  <> d2.Month _
+		    Or d1.Day    <> d2.Day _
+		    Or d1.Hour   <> d2.Hour _
+		    Or d1.Minute <> d2.Minute Then Return True
+		    
+		  Else
+		    System.DebugLog("Unknown View Type (" + Integer(param.ViewMode).ToString + ") in Method " + CurrentMethodName)
+		  End If
+		  
+		  Return False
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21, Description = C39C6265727072C3BC66742064617320446174756D206F622065732064656D206D6F6D656E74616E2073656C65637469657274656D20446174756D20656E747370726963687420285452554529
@@ -916,6 +934,10 @@ End
 		Private param As WTEC_PickerParameter
 	#tag EndProperty
 
+	#tag Property, Flags = &h21, Description = 48696572207769726420696D20436F6E7374727563746F722064617320446174756D20756E6420646965205568727A656974206765736963686572742C20736F6D6974206B616E6E206A656465727A656974206665737467657374656C6C742077657264656E2C206F62207369636820616E20646572205A656974206F6465722064656D20446174756D206574776173206765C3A46E6465727420686174
+		Private startDateTime As dateTime
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private workingDate As DateTime
 	#tag EndProperty
@@ -1110,7 +1132,8 @@ End
 		  
 		  If param.AutoCollapse Then
 		    // Automatisches Schliessen des Kalenders nach Auswahl
-		    If param.CalendarClose <> Nil Then param.CalendarClose.Invoke()
+		    
+		    If param.CalendarClose <> Nil Then param.CalendarClose.Invoke(d, IsDateDifferent(workingDate, startDateTime))
 		    Self.Close
 		  End If
 		  
@@ -1324,6 +1347,50 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
+#tag Events TF_Minute
+	#tag Event
+		Sub Opening()
+		  // Beim beschreiben des Textfeldes verhindern, dass Event TextChanged verarbeitet wird
+		  
+		  AceptInput = False
+		  Me.Text = workingDate.Minute.ToString("00")
+		  lastValidMinute = workingDate.Minute
+		  AceptInput = True
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub TextChanged()
+		  // Die Eingabe nur verarbeiten, wenn keine Sperre gesetzt ist, beim Beschreiben des Textfeldes Sperre setzen
+		  
+		  If AceptInput Then
+		    Var t As Integer
+		    #Pragma BreakOnExceptions False
+		    Try
+		      t  = Integer.FromString(Me.Text)
+		    Catch InvalidArgumentException
+		      Return
+		    End Try
+		    #Pragma BreakOnExceptions True
+		    
+		    If t > 59 Then t = 0
+		    If t < 0 Then T = 59
+		    AceptInput = False
+		    Me.Text = t.ToString("00")
+		    AceptInput = True
+		    lastValidMinute = t
+		    
+		    workingDate = New DateTime(workingDate.Year, workingDate.Month, workingDate.Day,lastValidHour, lastValidMinute)
+		    
+		    If param.SetNewTime <> Nil Then param.SetNewTime.invoke(lastValidHour, lastValidMinute)
+		  End If
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 5365747A656E206465732042657472696562736D6F647573
+		Function GetMode() As WTEC_TimeTextField.Modes
+		  Return WTEC_TimeTextField.Modes.Minute
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events TF_Hour
 	#tag Event
 		Sub Opening()
@@ -1336,31 +1403,9 @@ End
 		  
 		End Sub
 	#tag EndEvent
-	#tag Event
-		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
-		  // Stunden Up/Down mit Wheel
-		  
-		  Var t As Integer
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(Me.Text)
-		  Catch InvalidArgumentException
-		    t = 0
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  If deltay < 0 Then
-		    t = t +1
-		  ElseIf deltay > 0 Then
-		    t = t-1
-		  End If
-		  
-		  // Bereich prüfen
-		  If t>23 Then t= 0
-		  If t<0 Then  t = 23
-		  
-		  Me.Text = t.ToString
-		  
+	#tag Event , Description = 5365747A656E206465732042657472696562736D6F647573
+		Function GetMode() As WTEC_TimeTextField.Modes
+		  Return WTEC_TimeTextField.Modes.Hour
 		End Function
 	#tag EndEvent
 	#tag Event
@@ -1387,273 +1432,33 @@ End
 		    
 		    workingDate = New DateTime(workingDate.Year, workingDate.Month, workingDate.Day,lastValidHour, lastValidMinute)
 		    
+		    if param.SetNewTime <> nil Then param.SetNewTime.invoke(lastValidHour, lastValidMinute)
+		    
 		  End If
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Function KeyDown(key As String) As Boolean
-		  // 1. Erlaube System- und Steuerungstasten (Länge 0 fängt viele Sondertasten ab)
-		  If key.Length = 0 Then
-		    Return False
-		  End If
-		  
-		  // 2. Explizit wichtige Steuerungstasten erlauben (ASCII-Werte abfragen)
-		  Var asciiWert As Integer = key.Asc
-		  
-		  Select Case asciiWert
-		  Case 8, 127, 9 // Backspace, Delete, Tabulator
-		    Return False
-		  Case 28, 29, 30, 31 // Pfeiltasten (Links, Rechts, Oben, Unten)
-		    Return False
-		  Case 1, 4 // Pos1 (Home), Ende (End)
-		    Return False
-		  End Select
-		  
-		  // 3. Prüfen, ob das Zeichen eine Zahl zwischen 0 und 9 ist
-		  If key >= "0" And key <= "9" Then
-		    Return False // Gültige Zahl -> Erlauben
-		  End If
-		  
-		  // 4. Jedes andere Zeichen blockieren
-		  Return True
-		  
-		End Function
 	#tag EndEvent
 #tag EndEvents
-#tag Events TF_Minute
-	#tag Event
-		Sub Opening()
-		  // Beim beschreiben des Textfeldes verhindern, dass Event TextChanged verarbeitet wird
-		  
-		  AceptInput = False
-		  Me.Text = workingDate.Minute.ToString("00")
-		  lastValidMinute = workingDate.Minute
-		  AceptInput = True
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
-		  // Minuten Up/Down mit Wheel
-		  
-		  Var t As Integer
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(Me.Text)
-		  Catch InvalidArgumentException
-		    t = 0
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  If deltay < 0 Then
-		    t = t +1
-		  ElseIf deltay > 0 Then
-		    t = t-1
-		  End If
-		  
-		  // Bereich prüfen
-		  If t>59 Then t= 0
-		  If t<0 Then  t = 59
-		  Me.Text = t.ToString
-		  
+#tag Events UpDo_Hour
+	#tag Event , Description = 5A756D20466573746C6567656E20646573204265747269656273204D6F647573
+		Function GetMode() As WTEC_UpDownButton.Modes
+		  Return WTEC_UpDownButton.Modes.Hour
 		End Function
 	#tag EndEvent
-	#tag Event
-		Sub TextChanged()
-		  // Die Eingabe nur verarbeiten, wenn keine Sperre gesetzt ist, beim Beschreiben des Textfeldes Sperre setzen
-		  
-		  If AceptInput Then
-		    Var t As Integer
-		    #Pragma BreakOnExceptions False
-		    Try
-		      t  = Integer.FromString(Me.Text)
-		    Catch InvalidArgumentException
-		      Return
-		    End Try
-		    #Pragma BreakOnExceptions True
-		    
-		    If t > 59 Then t = 0
-		    If t < 0 Then T = 59
-		    AceptInput = False
-		    Me.Text = t.ToString("00")
-		    AceptInput = True
-		    lastValidMinute = t
-		    
-		    workingDate = New DateTime(workingDate.Year, workingDate.Month, workingDate.Day,lastValidHour, lastValidMinute)
-		  End If
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function KeyDown(key As String) As Boolean
-		  // 1. Erlaube System- und Steuerungstasten (Länge 0 fängt viele Sondertasten ab)
-		  If key.Length = 0 Then
-		    Return False
-		  End If
-		  
-		  // 2. Explizit wichtige Steuerungstasten erlauben (ASCII-Werte abfragen)
-		  Var asciiWert As Integer = key.Asc
-		  
-		  Select Case asciiWert
-		  Case 8, 127, 9 // Backspace, Delete, Tabulator
-		    Return False
-		  Case 28, 29, 30, 31 // Pfeiltasten (Links, Rechts, Oben, Unten)
-		    Return False
-		  Case 1, 4 // Pos1 (Home), Ende (End)
-		    Return False
-		  End Select
-		  
-		  // 3. Prüfen, ob das Zeichen eine Zahl zwischen 0 und 9 ist
-		  If key >= "0" And key <= "9" Then
-		    Return False // Gültige Zahl -> Erlauben
-		  End If
-		  
-		  // 4. Jedes andere Zeichen blockieren
-		  Return True
-		  
+	#tag Event , Description = 57656C63686573205465787466656C6420736F6C6C2062656469656E742077657264656E
+		Function GetTextfield() As WTEC_TimeTextField
+		  Return TF_Hour
 		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events UpDo_Minute
-	#tag Event
-		Sub DownPressed()
-		  // Minuten runter durch pressed Event
-		  
-		  Var t As Integer
-		  
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(TF_Minute.Text)
-		  Catch InvalidArgumentException
-		    // Textfeld leer
-		    Return
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  t = t - 1
-		  
-		  If t< 0 Then t = 59
-		  
-		  TF_Minute.Text = t.ToString
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub UpPressed()
-		  // Minuten hoch durch pressed Event
-		  
-		  Var t As Integer
-		  
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(TF_Minute.Text)
-		  Catch InvalidArgumentException
-		    // Textfeld leer
-		    Return
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  t = t + 1
-		  
-		  If t>59 Then t = 0
-		  
-		  TF_Minute.Text = t.ToString
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
-		  // UpDown Button Minuten Bedienung mit Wheel
-		  
-		  Var t As Integer
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(TF_Minute.Text)
-		  Catch InvalidArgumentException
-		    t = 0
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  If deltay < 0 Then
-		    t = t +1
-		  ElseIf deltay > 0 Then
-		    t = t-1
-		  End If
-		  
-		  // Bereich prüfen
-		  If t>59 Then t= 0
-		  If t<0 Then  t = 59
-		  TF_Minute.Text = t.ToString
-		  
+	#tag Event , Description = 5A756D20466573746C6567656E20646573204265747269656273204D6F647573
+		Function GetMode() As WTEC_UpDownButton.Modes
+		  Return WTEC_UpDownButton.Modes.Minute
 		End Function
 	#tag EndEvent
-#tag EndEvents
-#tag Events UpDo_Hour
-	#tag Event
-		Sub UpPressed()
-		  // Stunden hoch durch pressed Event
-		  
-		  Var t As Integer
-		  
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(TF_Hour.Text)
-		  Catch InvalidArgumentException
-		    // Textfeld leer
-		    Return
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  t = t + 1
-		  
-		  If t>23 Then t = 0
-		  
-		  TF_Hour.Text = t.ToString
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub DownPressed()
-		  // Stunden runter durch pressed Event
-		  
-		  Var t As Integer
-		  
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(TF_Hour.Text)
-		  Catch InvalidArgumentException
-		    // Textfeld leer
-		    Return
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  t = t - 1
-		  
-		  If t< 0 Then t = 23
-		  
-		  TF_Hour.Text = t.ToString
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
-		  // UpDown Button Stunden Bedienung mit Wheel
-		  
-		  Var t As Integer
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(TF_Hour.Text)
-		  Catch InvalidArgumentException
-		    t = 0
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  If deltay < 0 Then
-		    t = t +1
-		  ElseIf deltay > 0 Then
-		    t = t-1
-		  End If
-		  
-		  // Bereich prüfen
-		  If t>23 Then t= 0
-		  If t<0 Then  t = 23
-		  
-		  TF_Hour.Text = t.ToString
-		  
+	#tag Event , Description = 57656C63686573205465787466656C6420736F6C6C2062656469656E742077657264656E
+		Function GetTextfield() As WTEC_TimeTextField
+		  Return TF_Minute
 		End Function
 	#tag EndEvent
 #tag EndEvents
