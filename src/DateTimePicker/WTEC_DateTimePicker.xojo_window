@@ -97,6 +97,9 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Opening()
+		  // Temporäre Graphics für Fontberechnungen
+		  //Var p As New Picture(100,100)
+		  
 		  // Locale übernehmen, falls vorhanden
 		  #Pragma BreakOnExceptions False
 		  Try
@@ -109,6 +112,11 @@ End
 		    loc = locale.Current
 		  End Try
 		  #Pragma BreakOnExceptions True
+		  
+		  // Die Fontparameter des Textfeldes setzen
+		  TF_DateInput.FontName = Fontname
+		  TF_DateInput.FontSize = FontSize
+		  TF_DateInput.FontUnit = FontUnit
 		  
 		  // Die Elemente Positionieren
 		  
@@ -136,7 +144,7 @@ End
 		  End If
 		  
 		  // Uhrzeit getrennt aufbewahren
-		  actualHour = actualDate.Hour
+		  actualHour   = actualDate.Hour
 		  actualMinute = actualDate.minute
 		  
 		  // Das aktuelle Datum in das Eingabe Feld speichern und den Focus für sofortige Eingabe auf das Textfeld setzen
@@ -398,6 +406,18 @@ End
 		FirstWeekday As WTEC_DateTimePicker.FirstWeekDays = WTEC_DateTimePicker.FirstWeekDays.Monday
 	#tag EndProperty
 
+	#tag Property, Flags = &h0, Description = 466F6E742064657220696D204B616C656E6465722076657277656E6465742077657264656E20736F6C6C2C2044656661756C74203D2053797374656D
+		Fontname As string = "System"
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E746772C3B67373652064696520696D204B616C656E6465722076657277656E64657420776972642C2077656E6E203020776972642053797374656D666F6E74204772C3B67373652076657277656E646574
+		FontSize As Single = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E74556E69742064696520696D204B616C656E6465722076657277656E6465742077657264656E20736F6C6C
+		FontUnit As FontUnits = FontUnits.Default
+	#tag EndProperty
+
 	#tag Property, Flags = &h0, Description = 486965726D6974206B616E6E2067657A69656C7420696E2065696E6520616E64657265205370726163686520C3BC6265727365747A742077657264656E2C206C656572206C617373656E2077656E6E205370726163686520617566206175746F6D6174697363682067657374656C6C7420776572646520736F6C6C2E20426569737069656C3A202028656E2D555329
 		ForceLocale As string
 	#tag EndProperty
@@ -445,6 +465,11 @@ End
 			        para.MainControlWidth       = TF_DateInput.Width                  // Damit kann der Kalender seine Position variieren
 			        para.ForceLocale            = ForceLocale
 			        para.ViewMode               = ViewMode                            // Kalender Mode
+			        // Fontparameter
+			        para.Fontname               = Fontname
+			        para.FontUnit               = FontUnit
+			        para.FontSize               = FontSize
+			        
 			        CalendarContainer =  New WTEC_Calendar(para)
 			        
 			        // 2. In das Ziel-Control (z.B. eine GroupBox1) einbetten
@@ -981,6 +1006,37 @@ End
 		Group="Calendar Behavor"
 		InitialValue="false"
 		Type="boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Fontname"
+		Visible=true
+		Group="Font Settings"
+		InitialValue="System"
+		Type="string"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FontUnit"
+		Visible=true
+		Group="Font Settings"
+		InitialValue="0"
+		Type="FontUnits"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Default"
+			"1 - Pixel"
+			"2 - Point"
+			"3 - Inches"
+			"4 - Millimeter"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FontSize"
+		Visible=true
+		Group="Font Settings"
+		InitialValue="0"
+		Type="Single"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty

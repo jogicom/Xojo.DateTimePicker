@@ -406,18 +406,22 @@ End
 		  
 		  Var p As New Picture(100,100)
 		  
+		  // Fontparameter setzen 
 		  p.Graphics.Bold = True
+		  p.Graphics.FontName = param.Fontname
+		  p.Graphics.FontUnit = param.FontUnit
+		  p.Graphics.FontSize = param.FontSize
 		  
 		  // Berechnen der benötigten Breite für alle Elemente im Kalender
 		  Self.Width = p.Graphics.TextWidth(kMaxMonthYearString(loc.Identifier))    + 6 * param.HMargin_CalendarWindow + 4 * PB_MonthDown.Width 
 		  
 		  If param.ViewMode = WTEC_DateTimePicker.ViewModes.DateAndTime Then
 		    // Die Höhe muss 19 Textzeilen gross sein
-		    Self.Height = p.Graphics.TextHeight("MO DI MI DO FR SA SO SPACE", 500)  * 19
+		    Self.Height = p.Graphics.TextHeight("MO DI MI DO FR SA SO SPACE", 500)  * 18
 		  Else
 		    
 		    // Die Höhe muss 18 Textzeilen gross sein
-		    Self.Height = p.Graphics.TextHeight("MO DI MI DO FR SA SO SPACE", 500)  * 18
+		    Self.Height = p.Graphics.TextHeight("MO DI MI DO FR SA SO SPACE", 500)  * 17
 		    
 		  End If
 		  
@@ -482,6 +486,17 @@ End
 		  // Parameter wie Sprungsziele und Einstellungen laden, die Liste wird beim close Event zerstört (NIL)
 		  param = p
 		  
+		  // Parameter Kontrolle
+		  If param.ViewMode > WTEC_DateTimePicker.ViewModes.DateAndTime Then
+		    System.DebugLog("[Warning] Invalid ViewMode (" + Integer(param.ViewMode).toString + ") in " +CurrentMethodName + ". Reset to DateAndTime mode." )
+		    param.ViewMode = WTEC_DateTimePicker.ViewModes.DateAndTime
+		  End If
+		  
+		  If param.FirstWeekDay > WTEC_DateTimePicker.FirstWeekDays.Saturday Or param.FirstWeekDay = WTEC_DateTimePicker.FirstWeekDays.Invalid Then
+		    System.DebugLog("[Warning] Invalid First Weekday (" + Integer(param.FirstWeekDay).toString + ") in " +CurrentMethodName + ". Reset to Monday." )
+		    param.FirstWeekDay = WTEC_DateTimePicker.FirstWeekDays.Monday
+		  End If
+		  
 		  // Arbeisdatum erstellen
 		  If param.actualDate <> Nil Then
 		    workingDate = New DateTime(param.actualDate.SecondsFrom1970)
@@ -513,10 +528,6 @@ End
 		  //        Initalisieren aller benötigten Calender Arrays
 		  // ==========================================================
 		  
-		  // First Weekday prüfen, wenn nicht gesetzt dann auf Standard setzen
-		  If param.FirstWeekday <  WTEC_DateTimePicker.FirstWeekDays.Sunday Or  param.FirstWeekday >= WTEC_DateTimePicker.FirstWeekDays.LastIndex Then
-		    param.FirstWeekday = WTEC_DateTimePicker.FirstWeekDays.Monday
-		  End If
 		  
 		  // Horizontal besitzt eine Reihe 7 Nummer Felder und 8 Abstände dazwischen
 		  Var rectWitdth As Integer = (Can_CalendarPicker.Width -8 * param.HMarginDayNumbers) / 7
@@ -640,6 +651,39 @@ End
 		  //      Setzen der Positionen und Größen der einzelnen Controls im Kalender
 		  // ==========================================================================
 		  
+		  // Zuerst die Höhe der Text Controls & Fontparameter setzen, dazu Graphic anpassen an die Fontparameter
+		  
+		  g.FontName = param.Fontname
+		  g.FontUnit = param.FontUnit
+		  g.FontSize = param.FontSize
+		  Var fh As Integer = g.TextHeight("88", 100)
+		  Var fw As Integer
+		  SetFont( PB_YearDown, fh)
+		  SetFont( PB_YearUp,   fh)
+		  SetFont( PB_MonthDown,fh)
+		  SetFont( PB_MonthUp,  fh)
+		  SetFont( LBL_ActualMonthAndYear, fh)
+		  SetFont( PB_SelectToday, fh)
+		  
+		  SetFont(TF_Hour, fh)
+		  SetFont(TF_Minute, fh)
+		  
+		  //UpDo_Hour.Height   = TF_Hour.Height
+		  //UpDo_Minute.Height = TF_Minute.Height
+		  
+		  // Die Breite der Buttons anpassen
+		  fw = g.TextWidth ( PB_YearDown.Caption )+ 16
+		  PB_YearDown.Width = fw
+		  PB_YearUp.Width   = fw
+		  PB_MonthDown.Width = fw
+		  PB_MonthUp.Width = fw
+		  
+		  // Die Breite der Uhrzeit Textfelder anpassen
+		  TF_Hour.Width = g.TextWidth("00") + 8
+		  TF_Minute.Width = TF_Hour.Width
+		  
+		  
+		  
 		  // Die breite und linke Position des Kalender Canvas anpassen
 		  Can_CalendarPicker.Left = param.HMargin_CalendarWindow
 		  Can_CalendarPicker.Width = self.Width - 2 * param.HMargin_CalendarWindow
@@ -684,7 +728,7 @@ End
 		    UpDo_Hour.Left = TF_Hour.Left - UpDo_Hour.Width
 		    UpDo_Hour.Top = TF_Hour.Top + (TF_Hour.Height - UpDo_Hour.Height) / 2
 		    
-		    UpDo_Minute.Left = TF_Minute.Left + TF_Minute.Height
+		    UpDo_Minute.Left = TF_Minute.Left + TF_Minute.Width
 		    UpDo_Minute.top = UpDo_Hour.top
 		    
 		  Else
@@ -719,16 +763,41 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21, Description = 5365747A7420696E2065696E656D20436F6E74726F6C2064696520466F6E7420506172616D6574657220756E64206469652048C3B668652064657320436F6E74726F6C73
+		Private Sub SetFont(o as variant, height as integer)
+		  
+		  If o IsA DesktopButton Then
+		    Var t As DesktopButton = o
+		    t.FontName = param.Fontname
+		    t.FontUnit = param.FontUnit
+		    t.FontSize = param.fontsize
+		    t.Height   = height + 8
+		    
+		  ElseIf o IsA DesktopLabel Then
+		    Var t As DesktopLabel = o
+		    t.FontName = param.Fontname
+		    t.FontUnit = param.FontUnit
+		    t.FontSize = param.fontsize
+		    t.Height   = height + 8
+		    
+		  ElseIf o Isa DesktopTextField Then
+		    Var t As DesktopTextField = o
+		    t.FontName = param.Fontname
+		    t.FontUnit = param.FontUnit
+		    t.FontSize = param.fontsize
+		    t.Height   = height + 8
+		  Else
+		    System.DebugLog(" Unknown Datatype in " + CurrentMethodName + " ignore Settings!")
+		    Break
+		  End If
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21, Description = 44656E204B616C656E646572206D697420446174656E20626566C3BC6C6C656E20616E68616E642064657320616B7475656C6C656D20446174756D73
 		Private Sub UpdateCalendar()
 		  // ==========================================================
 		  //    Den Kalender mit aktuellen Daten des Monats befüllen
 		  // ==========================================================
-		  
-		  // First Weekday prüfen, wenn nicht gesetzt dann auf Standard setzen
-		  If param.FirstWeekday <  WTEC_DateTimePicker.FirstWeekDays.Sunday Or  param.FirstWeekday >= WTEC_DateTimePicker.FirstWeekDays.LastIndex Then
-		    param.FirstWeekday = WTEC_DateTimePicker.FirstWeekDays.Monday
-		  End If
 		  
 		  Var oneDay As New DateInterval
 		  oneday.Days = 1 ' 1 Tages intervall
@@ -743,7 +812,7 @@ End
 		  adate =  New DateTime(adate.Year, adate.Month, 1, adate.Hour, adate.Minute, adate.Second, adate.Nanosecond, adate.TimeZone)
 		  
 		  // Datum zurück drehen bis Wochenbeginn erreicht
-		  // FirstWeekday muss geprüft sein, sonst Endlos Schleife!!!!!!
+		  // FirstWeekday ist im Constructor geprüft, sonst Endlos Schleife!!!!!!
 		  While adate.DayOfWeek <> Integer (param.FirstWeekday)
 		    adate = adate - oneDay
 		  Wend
@@ -1059,6 +1128,9 @@ End
 		  
 		  
 		  If fReCalcControlPositions Then SetControlPositions(g)
+		  g.FontName = param.Fontname
+		  g.FontUnit = param.FontUnit
+		  g.FontSize = param.FontSize
 		  
 		  If DayNameAreas.Count = 0 Or DayNumberAreas.Count = 0 Then
 		    

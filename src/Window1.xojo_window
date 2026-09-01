@@ -285,9 +285,12 @@ Begin DesktopWindow Window1
          Composited      =   False
          Enabled         =   True
          FirstWeekday    =   2
+         Fontname        =   "TimesNewRoman"
+         FontSize        =   20.0
+         FontUnit        =   0
          ForceLocale     =   ""
          HasBackgroundColor=   False
-         Height          =   27
+         Height          =   36
          HMarginDayNumbers=   5
          HMargin_CalendarWindow=   5
          Index           =   -2147483648
@@ -304,9 +307,9 @@ Begin DesktopWindow Window1
          TabPanelIndex   =   0
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   129
+         Top             =   120
          Transparent     =   False
-         ViewMode        =   0
+         ViewMode        =   1
          Visible         =   True
          VMarginDayNumbers=   5
          VMargin_CalendarWindow=   5
@@ -352,6 +355,9 @@ Begin DesktopWindow Window1
          Composited      =   False
          Enabled         =   True
          FirstWeekday    =   2
+         Fontname        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          ForceLocale     =   ""
          HasBackgroundColor=   False
          Height          =   27
@@ -373,7 +379,7 @@ Begin DesktopWindow Window1
          Tooltip         =   ""
          Top             =   216
          Transparent     =   False
-         ViewMode        =   2
+         ViewMode        =   0
          Visible         =   True
          VMarginDayNumbers=   5
          VMargin_CalendarWindow=   5

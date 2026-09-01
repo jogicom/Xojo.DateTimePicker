@@ -20,6 +20,18 @@ Protected Class WTEC_PickerParameter
 		FirstWeekDay As WTEC_DateTimePicker.FirstWeekDays
 	#tag EndProperty
 
+	#tag Property, Flags = &h0, Description = 466F6E74206D69742064656D2064657220496E68616C7420646573204B616C656E646572732064617267657374656C6C742077657264656E20736F6C6C
+		Fontname As string = "System"
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E74204772C3B67373652C2064696520696D204B616C656E6465722076657277656E6465742077697264
+		FontSize As Single = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E74556E6974732C2064696520696D204B616C656E6465722076657277656E6465742077657264656E
+		FontUnit As FontUnits = FontUnits.Default
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		ForceLocale As string
 	#tag EndProperty
@@ -175,6 +187,14 @@ Protected Class WTEC_PickerParameter
 			Group="Behavior"
 			InitialValue=""
 			Type="string"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ViewMode"
+			Visible=false
+			Group="Behavior"
+			InitialValue="WTEC_DateTimePicker.ViewModes.DateOnly"
+			Type="WTEC_DateTimePicker.ViewModes"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
