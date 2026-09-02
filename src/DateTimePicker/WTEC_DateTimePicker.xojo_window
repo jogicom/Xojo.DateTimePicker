@@ -13,9 +13,9 @@ Begin DesktopContainer WTEC_DateTimePicker
    Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
-   LockBottom      =   False
+   LockBottom      =   True
    LockLeft        =   True
-   LockRight       =   False
+   LockRight       =   True
    LockTop         =   True
    TabIndex        =   0
    TabPanelIndex   =   0
@@ -24,7 +24,7 @@ Begin DesktopContainer WTEC_DateTimePicker
    Top             =   0
    Transparent     =   False
    Visible         =   True
-   Width           =   157
+   Width           =   160
    Begin DesktopTextField TF_DateInput
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
@@ -43,10 +43,10 @@ Begin DesktopContainer WTEC_DateTimePicker
       Index           =   -2147483648
       Italic          =   False
       Left            =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       MaximumCharactersAllowed=   0
       Password        =   False
@@ -64,7 +64,7 @@ Begin DesktopContainer WTEC_DateTimePicker
       Underline       =   False
       ValidationMask  =   ""
       Visible         =   True
-      Width           =   123
+      Width           =   160
    End
    Begin DesktopCanvas Can_ShowCalendar
       AllowAutoDeactivate=   True
@@ -285,6 +285,8 @@ End
 		Private Sub CalendarClose(date as Datetime, IsChanged as boolean)
 		  // Kalender meldet closed (callback)
 		  
+		  RaiseEvent CalendarClosed(date, IsChanged)
+		  
 		  CalendarContainer = Nil
 		  IsExpanded = False
 		  Can_ShowCalendar.Refresh
@@ -300,7 +302,7 @@ End
 	#tag EndDelegateDeclaration
 
 	#tag DelegateDeclaration, Flags = &h0, Description = 43616C6C6261636B207A756D206D656C64656E2065696E6572205568727A656974206175732064656D204B616C656E646572207A756D204461746554696D655069636B6572
-		Delegate Sub CallbackNewTime(hour as integer, minute as integer)
+		Delegate Sub CallbackNewTime(hour as integer, minute as integer, seconds as integer)
 	#tag EndDelegateDeclaration
 
 	#tag Method, Flags = &h0, Description = 417573676162652065696E6573204461746554696D657320616C7320537472696E672C206469657365204D6574686F6465207374616E646172697369657274206461732041757367616265666F726D6174204B616C656E64657220576569742C2077656E6E20227769746854696D6522203D20545255452064616E6E2077697264206175636820646965205568727A65697420696D206C6F6B616C656D20466F726D6174206175736765676562656E
@@ -369,11 +371,15 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub SetTimeFromContainer(hour as integer, minute as integer)
+		Private Sub SetTimeFromContainer(hour as integer, minute as integer, second as integer)
 		  
 		End Sub
 	#tag EndMethod
 
+
+	#tag Hook, Flags = &h0, Description = 57656E6E207369636820646572204B616C656E6465722067657363686C6F7373656E206861742C207769726420C3BC6265722064696573656E204576656E7420696E666F726D696572742E2064617465203D205568727A6569742F446174756D2C2049734368616E67656420545255452077656E6E20446174656E206765C3A46E6465727420777572646520736569742064656D204F70656E
+		Event CalendarClosed(date as DateTime, IsChanged as boolean)
+	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C742C20646965204D656C64756E672069737420696E636C7573697665205A656974
 		Event DateChanged(value as Datetime)
@@ -384,7 +390,7 @@ End
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 496D204B616C656E646572207775726420646569205568727A656974206765C3A46E646572742C20446174756D20697374206175662064656D206C65747A74656E205374616E64
-		Event TimeChanged(hour as integer, minute as integer)
+		Event TimeChanged(hour as integer, minute as integer, seconds as integer)
 	#tag EndHook
 
 
@@ -472,10 +478,10 @@ End
 			        para.HMarginDayNumbers      = VMarginDayNumbers
 			        para.actualDate             = actualDate
 			        para.FirstWeekDay           = FirstWeekday
-			        para.SetNewDate             = WeakAddressOf SetDateFromContainer  // Hierüber werden Änderungen des Kalenderdatums gemeldet
-			        para.CalendarClose          = WeakAddressOf CalendarClose         // Meldung, wenn Kalender geschlossen wird zum aufräumen
+			        para.SetNewDate             = WeakAddressOf Self.SetDateFromContainer  // Hierüber werden Änderungen des Kalenderdatums gemeldet
+			        para.CalendarClose          = WeakAddressOf Self.CalendarClose         // Meldung, wenn Kalender geschlossen wird zum aufräumen
 			        para.AutoCollapse           = AutoCollapse
-			        para.SetNewTime             = WeakAddressOf SetTimeFromContainer  // Meldung wenn Uhrzeit im Kalender geändert wurde
+			        para.SetNewTime             = WeakAddressOf Self.SetTimeFromContainer  // Meldung wenn Uhrzeit im Kalender geändert wurde
 			        para.AutoCloseWhenMouseExit = AutoCollapseOnMouseExit
 			        para.MainControlWidth       = TF_DateInput.Width                  // Damit kann der Kalender seine Position variieren
 			        para.ForceLocale            = ForceLocale
@@ -537,6 +543,10 @@ End
 
 	#tag Property, Flags = &h0, Description = 566965774D6F646520646573204B616C656E646572732C20446174654F6E6C79206F6465722044617465416E6454696D65
 		ViewMode As WTEC_DateTimePicker.ViewModes = WTEC_DateTimePicker.ViewModes.DateOnly
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 57656E6E204B616C656E64657220696D20566965774D6F64652044617465416E6454696D65206973742C2077657264656E20696D204B616C656E6465722061756368206469652053656B756E64656E20616E67657A656967742C2077656E6E20646965657220657274205472756520697374
+		ViewSeconds As boolean = false
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 4465722076657274696B616C652041627374616E64207A7769736368656E2064656E2054616765736E756D6D65726E20696D204B616C656E646572
@@ -947,6 +957,14 @@ End
 			"0 - DateOnly"
 			"1 - DateAndTime"
 		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ViewSeconds"
+		Visible=true
+		Group="Calendar Behavor"
+		InitialValue="False"
+		Type="boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="ForceLocale"

@@ -320,9 +320,9 @@ Begin DesktopContainer WTEC_Calendar
       Width           =   80
    End
    Begin WTEC_UpDownButton UpDo_Hour
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   False
-      AllowTabStop    =   True
       Enabled         =   True
       Height          =   23
       Index           =   -2147483648
@@ -333,19 +333,25 @@ Begin DesktopContainer WTEC_Calendar
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   13
       TabPanelIndex   =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   248
       Transparent     =   False
       Visible         =   True
       Width           =   14
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
    Begin WTEC_UpDownButton UpDo_Minute
+      Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   False
-      AllowTabStop    =   True
       Enabled         =   True
       Height          =   23
       Index           =   -2147483648
@@ -356,14 +362,20 @@ Begin DesktopContainer WTEC_Calendar
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   14
       TabPanelIndex   =   0
+      TabStop         =   True
       Tooltip         =   ""
       Top             =   248
       Transparent     =   False
       Visible         =   True
       Width           =   14
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
 End
 #tag EndDesktopWindow
@@ -500,6 +512,7 @@ End
 		  
 		  lastValidHour = workingDate.Hour
 		  lastValidMinute = workingDate.Minute
+		  lastValidSecond = workingDate.Second
 		  
 		  // locale bilden, wenn gesetzt
 		  #Pragma BreakOnExceptions False
@@ -880,6 +893,10 @@ End
 
 	#tag Property, Flags = &h21, Description = 446965205A756C65747A2067C3BC6C74696765204D696E7574652C2064696520766F6D204D696E7574656E205465787466656C642065726661737374207775726465
 		Private lastValidMinute As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 446965205A756C65747A2067C3BC6C7469676520536563756E64652C2064696520766F6D2053656B756E64656E205465787466656C642065726661737374207775726465
+		Private lastValidSecond As Integer = 0
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h21, Description = 5365747A74202F204C696573742064656E20496E6465782077656C63686572204D6F6E617473746167206D61726B69657274206973742C206CC3B67374206265696D207365747A656E2064657320496E6465782065696E656E20526566726573682064657220626574726F6666656E656E204172656173206175732C20697374202D312077656E6E206B65696E20546167206D61726B6965727420697374
@@ -1381,7 +1398,7 @@ End
 		    
 		    workingDate = New DateTime(workingDate.Year, workingDate.Month, workingDate.Day,lastValidHour, lastValidMinute)
 		    
-		    If param.SetNewTime <> Nil Then param.SetNewTime.invoke(lastValidHour, lastValidMinute)
+		    If param.SetNewTime <> Nil Then param.SetNewTime.invoke(lastValidHour, lastValidMinute, lastValidSecond)
 		  End If
 		End Sub
 	#tag EndEvent
@@ -1432,7 +1449,7 @@ End
 		    
 		    workingDate = New DateTime(workingDate.Year, workingDate.Month, workingDate.Day,lastValidHour, lastValidMinute)
 		    
-		    if param.SetNewTime <> nil Then param.SetNewTime.invoke(lastValidHour, lastValidMinute)
+		    if param.SetNewTime <> nil Then param.SetNewTime.invoke(lastValidHour, lastValidMinute,lastValidSecond)
 		    
 		  End If
 		End Sub
