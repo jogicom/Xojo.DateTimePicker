@@ -645,6 +645,26 @@ End
 		  
 		End Function
 	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // Datum scrollen
+		  Var oneDay As New DateInterval
+		  oneday.Days = 1 ' 1 Tages intervall
+		  
+		  If deltay > 0 Then
+		    // Abwärts
+		    actualDate = actualDate - oneDay
+		    TF_DateInput.Text = dtToString(actualDate,loc)
+		    
+		  ElseIf deltay < 0 Then
+		    // Aufwärts
+		    actualDate = actualDate + oneDay
+		    TF_DateInput.Text = dtToString(actualDate,loc)
+		    
+		  End If
+		  
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag Events Can_ShowCalendar
 	#tag Event
