@@ -11,7 +11,7 @@ Inherits DesktopUpDownArrows
 		  
 		  #Pragma BreakOnExceptions False
 		  Try
-		    t  = Integer.FromString(myTextfield.Text)
+		    t  = myTextfield.TimeValue
 		  Catch InvalidArgumentException
 		    // Textfeld leer
 		    Return
@@ -24,14 +24,14 @@ Inherits DesktopUpDownArrows
 		    
 		  Case WTEC_UpDownButton.Modes.Hour
 		    If t< 0 Then t = 23
-		  Case WTEC_UpDownButton.Modes.Minute
+		  Case Modes.Minute, Modes.Second
 		    If t < 0 Then t = 59
 		  Else
 		    Return
 		  End Select
 		  
 		  
-		  myTextfield.Text = t.ToString
+		  myTextfield.TimeValue = t
 		End Sub
 	#tag EndEvent
 
@@ -44,7 +44,7 @@ Inherits DesktopUpDownArrows
 		  Var t As Integer
 		  #Pragma BreakOnExceptions False
 		  Try
-		    t  = Integer.FromString(myTextfield.Text)
+		    t  = myTextfield.TimeValue
 		  Catch InvalidArgumentException
 		    t = 0
 		  End Try
@@ -59,10 +59,10 @@ Inherits DesktopUpDownArrows
 		  
 		  Select Case myMode
 		    
-		  Case WTEC_UpDownButton.Modes.Hour
+		  Case Modes.Hour
 		    If t > 23 Then t = 0
 		    If t < 0 Then t = 23
-		  Case WTEC_UpDownButton.Modes.Minute
+		  Case Modes.Minute, Modes.Second
 		    If t < 0 Then t = 59
 		    If t > 59 Then t = 0
 		  Else
@@ -71,7 +71,7 @@ Inherits DesktopUpDownArrows
 		  
 		  
 		  
-		  myTextfield.Text = t.ToString
+		  myTextfield.TimeValue = t
 		  
 		  Return True
 		  
@@ -92,15 +92,9 @@ Inherits DesktopUpDownArrows
 		  Var t As Integer
 		  
 		  If myTextfield = Nil Then Return
-		   
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(myTextfield.Text)
-		  Catch InvalidArgumentException
-		    // Textfeld leer
-		    Return
-		  End Try
-		  #Pragma BreakOnExceptions True
+		  
+		  t  = myTextfield.TimeValue
+		  
 		  
 		  t = t + 1
 		  
@@ -113,7 +107,7 @@ Inherits DesktopUpDownArrows
 		    Return
 		  End Select
 		  
-		  myTextfield.Text = t.ToString
+		  myTextfield.TimeValue = t
 		End Sub
 	#tag EndEvent
 
@@ -155,8 +149,9 @@ Inherits DesktopUpDownArrows
 
 	#tag Enum, Name = Modes, Type = Integer, Flags = &h0, Description = 576F66C3BC7220646572205570446F776E20427574746F6E2076657277656E6465742077697264
 		Invalid
-		  Minute
-		Hour
+		  Second
+		  Hour
+		Minute
 	#tag EndEnum
 
 

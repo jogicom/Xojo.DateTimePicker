@@ -35,40 +35,14 @@ Inherits DesktopTextField
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
 		  // Stunden Up/Down mit Wheel
 		  
-		  Var t As Integer
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = Integer.FromString(Me.Text)
-		  Catch InvalidArgumentException
-		    t = 0
-		  End Try
-		  #Pragma BreakOnExceptions True
+		  //Die Prüfung auf gültige Werte erfolgt im setter! 
 		  
 		  If deltay < 0 Then
-		    t = t +1
+		    TimeValue = TimeValue +1
 		  ElseIf deltay > 0 Then
-		    t = t-1
+		    TimeValue = TimeValue -1
 		  End If
 		  
-		  Select Case myMode
-		  Case Modes.Hour
-		    // Bereich prüfen für Stunde
-		    If t>23 Then t= 0
-		    If t<0 Then  t = 23
-		    Me.Text = t.ToString
-		    Return True
-		    
-		  Case Modes.Minute 
-		    // Bereich prüfen für Minute
-		    If t>59 Then t= 0
-		    If t<0 Then  t = 59
-		    Me.Text = t.ToString
-		    Return True
-		    
-		  Else
-		    // Unbekannter Modus
-		    Return True
-		  End Select
 		  
 		  
 		End Function
@@ -79,6 +53,60 @@ Inherits DesktopTextField
 		  myMode = RaiseEvent GetMode
 		  
 		  RaiseEvent Opening
+		  
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub TextChanged()
+		  // Text wurde im Textfeld geändert, dann unformatierte Ausgabe
+		  
+		  
+		  If AcceptINput Then
+		    Var t As Integer
+		    Var update As Boolean = False
+		    
+		    Try
+		      t = Integer.FromString(Me.Text)
+		      
+		    Catch InvalidArgumentException
+		      Return
+		    End Try
+		    
+		    Select Case myMode
+		      
+		    Case Modes.Hour
+		      
+		      If t > 23 Then
+		        t = 0
+		        update = True
+		      ElseIf t< 0 Then 
+		        t = 23
+		        update = True
+		      End If
+		      
+		    Case Modes.Minute, Modes.Second
+		      
+		      If t > 59 Then
+		        t = 0
+		        update = True
+		      ElseIf t< 0 Then 
+		        t = 59
+		        update = True
+		      End If
+		      
+		    End Select
+		    
+		    AcceptInput = False
+		    Me.Text = t.ToString
+		    zTimeValue = t
+		    AcceptInput = True
+		    
+		    RaiseEvent TimeChanged(t)
+		    
+		    
+		  End If
 		End Sub
 	#tag EndEvent
 
@@ -89,6 +117,10 @@ Inherits DesktopTextField
 
 	#tag Hook, Flags = &h0
 		Event Opening()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
+		Event TimeChanged(value as integer)
 	#tag EndHook
 
 
@@ -108,15 +140,78 @@ Inherits DesktopTextField
 	#tag EndNote
 
 
+	#tag Property, Flags = &h0, Description = 57656E6E20747275652C207665727262656974657420646173205465787466656C642065696E676162656E2C2046616C7365203D206B65696E6520766572617262656974756E67206465722065696E6765676562656E656E20446174656E
+		AcceptInput As boolean = false
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return zTimeValue
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  // Trägt neue Zeit In das Textfeld ein, erzeugt dabei aber keinen TextChanged Event speziel zum initalisieren des Textfeldes
+			  Var oldState As Boolean = AcceptInput
+			  
+			  AcceptInput = False
+			  
+			  
+			  TimeValue = value
+			  Me.Text = TimeValue.ToString("00")
+			  
+			  AcceptInput = oldState
+			End Set
+		#tag EndSetter
+		ForceTime As Integer
+	#tag EndComputedProperty
+
 	#tag Property, Flags = &h21
 		Private myMode As WTEC_TimeTextField.modes = WTEC_TimeTextField.Modes.Invalid
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return zTimeValue
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  // Der Zeit wert, der im Textfeld angezeigt wird, prüfen ob gültig
+			  
+			  If zTimeValue <> value Then
+			    Select Case myMode
+			      
+			    Case Modes.Hour
+			      If value > 23 Then value = 0
+			      If value < 0 Then value = 23
+			      
+			    Case Modes.Minute, Modes.Second
+			      If value > 59 Then value = 0
+			      If value < 0 Then value = 59
+			    End Select
+			    
+			    zTimeValue = value
+			    If AcceptInput Then Me.Text = TimeValue.ToString("00")
+			  End If
+			  
+			End Set
+		#tag EndSetter
+		TimeValue As Integer
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private zTimeValue As Integer
 	#tag EndProperty
 
 
 	#tag Enum, Name = Modes, Flags = &h0, Description = 576F66C3BC7220646173205465787466656C642076657277656E6465742077697264
 		Invalid
-		  Minute
-		Hour
+		  Second
+		  Hour
+		Minute
 	#tag EndEnum
 
 
@@ -444,6 +539,30 @@ Inherits DesktopTextField
 			Group="Behavior"
 			InitialValue="False"
 			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AcceptInput"
+			Visible=false
+			Group="Behavior"
+			InitialValue="false"
+			Type="boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TimeValue"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ForceTime"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

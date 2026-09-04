@@ -203,6 +203,7 @@ Protected Class WTEC_PickerParameter
 			#tag EnumValues
 				"0 - DateOnly"
 				"1 - DateAndTime"
+				"2 - DateAndSeconds"
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty

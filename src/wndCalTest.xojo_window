@@ -305,8 +305,7 @@ Begin DesktopWindow wndCalTest
          Tooltip         =   ""
          Top             =   110
          Transparent     =   False
-         ViewMode        =   1
-         ViewSeconds     =   False
+         ViewMode        =   0
          Visible         =   True
          VMarginDayNumbers=   5
          VMargin_CalendarWindow=   5
@@ -379,7 +378,7 @@ Begin DesktopWindow wndCalTest
          AllowFocusRing  =   False
          AllowTabs       =   True
          AutoCollapse    =   True
-         AutoCollapseOnMouseExit=   True
+         AutoCollapseOnMouseExit=   False
          Backdrop        =   0
          BackgroundColor =   &cFFFFFF
          Composited      =   False
@@ -396,7 +395,7 @@ Begin DesktopWindow wndCalTest
          Index           =   -2147483648
          InitialParent   =   "GroupBox4"
          IsExpanded      =   False
-         Left            =   445
+         Left            =   373
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -407,20 +406,19 @@ Begin DesktopWindow wndCalTest
          TabPanelIndex   =   0
          TabStop         =   True
          Tooltip         =   ""
-         Top             =   294
+         Top             =   295
          Transparent     =   False
-         ViewMode        =   1
-         ViewSeconds     =   True
+         ViewMode        =   2
          Visible         =   True
          VMarginDayNumbers=   5
          VMargin_CalendarWindow=   5
-         Width           =   149
+         Width           =   240
       End
    End
    Begin DesktopGroupBox GroupBox5
       AllowAutoDeactivate=   True
       Bold            =   False
-      Caption         =   "Calendar Reports"
+      Caption         =   "Event Console"
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
@@ -458,7 +456,7 @@ Begin DesktopWindow wndCalTest
          DefaultRowHeight=   -1
          DropIndicatorVisible=   False
          Enabled         =   True
-         FontName        =   "System"
+         FontName        =   "Monospace"
          FontSize        =   0.0
          FontUnit        =   0
          GridLineStyle   =   3
@@ -591,11 +589,113 @@ Begin DesktopWindow wndCalTest
          Top             =   295
          Transparent     =   False
          ViewMode        =   0
-         ViewSeconds     =   False
          Visible         =   True
          VMarginDayNumbers=   5
          VMargin_CalendarWindow=   5
          Width           =   126
+      End
+   End
+   Begin DesktopGroupBox GroupBox1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Caption         =   "Demo 4"
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   154
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   655
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   93
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   287
+      Begin WTEC_DateTimePicker Demo4
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         AutoCollapse    =   True
+         AutoCollapseOnMouseExit=   False
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF
+         Composited      =   False
+         Enabled         =   True
+         FirstWeekday    =   1
+         Fontname        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         ForceLocale     =   ""
+         HasBackgroundColor=   False
+         Height          =   29
+         HMarginDayNumbers=   5
+         HMargin_CalendarWindow=   5
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         IsExpanded      =   False
+         Left            =   675
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   129
+         Transparent     =   False
+         ViewMode        =   1
+         Visible         =   True
+         VMarginDayNumbers=   5
+         VMargin_CalendarWindow=   5
+         Width           =   188
+      End
+      Begin DesktopLabel LBL_Demo4
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   67
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   665
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Multiline       =   True
+         Scope           =   2
+         Selectable      =   False
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "#kPopUpDemo4Description"
+         TextAlignment   =   2
+         TextColor       =   &c000000
+         Tooltip         =   ""
+         Top             =   170
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   258
       End
    End
 End
@@ -680,8 +780,13 @@ End
 	#tag EndConstant
 
 	#tag Constant, Name = kPopUpDemo3Description, Type = String, Dynamic = True, Default = \"", Scope = Private
-		#Tag Instance, Platform = Any, Language = Default, Definition  = \"With actice AutoColapse \x2C ViewMode\x3DDateAndTime\x2C Font \x3D Default\x2C ViewSeconds \x3D True"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateAndTime\x2C Only\x2C Font\x3D Default\x2C ViewSeconds \x3D True"
+		#Tag Instance, Platform = Any, Language = Default, Definition  = \"With actice AutoColapse \x2C ViewMode\x3DDateAndSeconds\x2C Font \x3D Default"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateAndSeconds\x2C Only\x2C Font\x3D Default"
+	#tag EndConstant
+
+	#tag Constant, Name = kPopUpDemo4Description, Type = String, Dynamic = True, Default = \"", Scope = Private
+		#Tag Instance, Platform = Any, Language = Default, Definition  = \"With actice AutoColapse \x2C ViewMode\x3DDateAndTime\x2C Font \x3D Default"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateAndTime\x2C Only\x2C Font\x3D Default"
 	#tag EndConstant
 
 	#tag Constant, Name = kPopUpDemoDescription, Type = String, Dynamic = True, Default = \"", Scope = Private
@@ -741,18 +846,19 @@ End
 #tag Events Demo2
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C74
 		Sub DateChanged(value as Datetime)
-		  LB_Report.AddRowAt(0), "[Demo2] reports a new Date via DateChenged-Event: " + WTEC_DateTimePicker.dtToString(value , locale.Current)
+		  LB_Report.AddRowAt(0), "[Demo2->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(value , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 57656E6E207369636820646572204B616C656E6465722067657363686C6F7373656E206861742C207769726420C3BC6265722064696573656E204576656E7420696E666F726D696572742E2064617465203D205568727A6569742F446174756D2C2049734368616E67656420545255452077656E6E20446174656E206765C3A46E6465727420777572646520736569742064656D204F70656E
 		Sub CalendarClosed(date as DateTime, IsChanged as boolean)
-		  LB_Report.AddRowAt(0, "[Demo2] Reports closed via CalenderClose-Event with Date: " + WTEC_DateTimePicker.dtToString(date, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
+		  LB_Report.AddRowAt(0, "[Demo2->Event CalendarClosed] Reports closed  with Date: " _
+		  + WTEC_DateTimePicker.dtToString(date, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 496D204B616C656E646572207775726420646569205568727A656974206765C3A46E646572742C20446174756D20697374206175662064656D206C65747A74656E205374616E64
 		Sub TimeChanged(hour as integer, minute as integer, seconds as integer)
-		  LB_Report.AddRowAt(0, "[Demo2] reports a new Time via TimeChanged-Event: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
+		  LB_Report.AddRowAt(0, "[Demo2->Event TimeChanged] reports a new Time : " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4D69742077656C6368656D20446174756D20736F6C6C20646572204B616C656E646572206265696D20537461727420696E6974616C6973696572742077657264656E
@@ -764,12 +870,12 @@ End
 #tag Events Demo3
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C74
 		Sub DateChanged(value as Datetime)
-		  LB_Report.AddRowAt(0), "[Demo3] reports a new Date via DateChenged-Event: " + WTEC_DateTimePicker.dtToString(value , locale.Current)
+		  LB_Report.AddRowAt(0),  LB_Report.RowCount.ToString("000") + ". " +"[Demo3-> Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(value , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 496D204B616C656E646572207775726420646569205568727A656974206765C3A46E646572742C20446174756D20697374206175662064656D206C65747A74656E205374616E64
 		Sub TimeChanged(hour as integer, minute as integer, seconds as integer)
-		  LB_Report.AddRowAt(0, "[Demo3] reports a new Time via TimeChanged-Event: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"[Demo3->Event TimeChanged] reports a new Time: " + hour.ToString("00") + ":" + minute.ToString("00") + "::" + seconds.ToString ("00"), 0)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4D69742077656C6368656D20446174756D20736F6C6C20646572204B616C656E646572206265696D20537461727420696E6974616C6973696572742077657264656E
@@ -779,7 +885,9 @@ End
 	#tag EndEvent
 	#tag Event , Description = 57656E6E207369636820646572204B616C656E6465722067657363686C6F7373656E206861742C207769726420C3BC6265722064696573656E204576656E7420696E666F726D696572742E2064617465203D205568727A6569742F446174756D2C2049734368616E67656420545255452077656E6E20446174656E206765C3A46E6465727420777572646520736569742064656D204F70656E
 		Sub CalendarClosed(date as DateTime, IsChanged as boolean)
-		  LB_Report.AddRowAt(0, "[Demo3] Reports closed via CalenderClose-Event with Date: " + WTEC_DateTimePicker.dtToString(date, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
+		  LB_Report.AddRowAt(0, LB_Report.RowCount.ToString("000") + ". " +"[Demo3-> EventCalendarClosed] Reports closed with Date: " _
+		  + WTEC_DateTimePicker.dtToString(date, locale.Current,True,True) _ 
+		  + " IsChanged=" + IsChanged.ToString, 0)
 		  
 		End Sub
 	#tag EndEvent
@@ -787,7 +895,7 @@ End
 #tag Events Demo1
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C742C20646965204D656C64756E672069737420696E636C7573697665205A656974
 		Sub DateChanged(value as Datetime)
-		  LB_Report.AddRowAt(0), "[Demo1] reports a new Date: " + WTEC_DateTimePicker.dtToString(value , locale.Current)
+		  LB_Report.AddRowAt(0), "[Demo1->Event DateChanged] reports a new Date: " + WTEC_DateTimePicker.dtToString(value , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4D69742077656C6368656D20446174756D20736F6C6C20646572204B616C656E646572206265696D20537461727420696E6974616C6973696572742077657264656E
@@ -797,14 +905,38 @@ End
 	#tag EndEvent
 	#tag Event , Description = 496D204B616C656E646572207775726420646569205568727A656974206765C3A46E646572742C20446174756D20697374206175662064656D206C65747A74656E205374616E64
 		Sub TimeChanged(hour as integer, minute as integer, seconds as integer)
-		  LB_Report.AddRowAt(0, "[Demo1] reports a new Time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
+		  LB_Report.AddRowAt(0, "[Demo1->EventTimeChanged] reports a new Time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 57656E6E207369636820646572204B616C656E6465722067657363686C6F7373656E206861742C207769726420C3BC6265722064696573656E204576656E7420696E666F726D696572742E2064617465203D205568727A6569742F446174756D2C2049734368616E67656420545255452077656E6E20446174656E206765C3A46E6465727420777572646520736569742064656D204F70656E
 		Sub CalendarClosed(date as DateTime, IsChanged as boolean)
-		  LB_Report.AddRowAt(0, "[Demo1] Closed with Date: " + WTEC_DateTimePicker.dtToString(date, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
+		  LB_Report.AddRowAt(0, "[Demo1->Event CalendarClosed] Closed with Date: " + WTEC_DateTimePicker.dtToString(date, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
 		  
 		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Demo4
+	#tag Event
+		Sub DateChanged(value as Datetime)
+		  LB_Report.AddRowAt(0), "[Demo4->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(value , locale.Current)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub CalendarClosed(date as DateTime, IsChanged as boolean)
+		  LB_Report.AddRowAt(0, "[Demo4->Event CalendarClosed] Reports closed  with Date: " _
+		  + WTEC_DateTimePicker.dtToString(date, locale.Current,true) + " IsChanged=" + IsChanged.ToString, 0)
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub TimeChanged(hour as integer, minute as integer, seconds as integer)
+		  LB_Report.AddRowAt(0, "[Demo4->Event TimeChanged] reports a new Time : " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function InitialDate() As Datetime
+		  
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
