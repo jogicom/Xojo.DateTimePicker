@@ -771,22 +771,22 @@ End
 
 	#tag Constant, Name = kPopUpDemo1Description, Type = String, Dynamic = True, Default = \"", Scope = Private
 		#Tag Instance, Platform = Any, Language = Default, Definition  = \"With actice AutoColapse \x2C ViewMode\x3DDateOnly\x2C Font \x3D System (Default)"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D Date Only\x2C Font\x3DSystem (Default)"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateOnly\x2C Font\x3DSystem (Default)"
 	#tag EndConstant
 
 	#tag Constant, Name = kPopUpDemo2Description, Type = String, Dynamic = True, Default = \"", Scope = Private
 		#Tag Instance, Platform = Any, Language = Default, Definition  = \"With actice AutoColapse \x2C ViewMode\x3DDateOnly\x2C Font \x3D System (Default)\x2C FontSize\x3D20"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D Date Only\x2C Font\x3DSystem (Default)\x2C GontSize\x3D20"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateOnly\x2C Font\x3DSystem (Default)\x2C GontSize\x3D20"
 	#tag EndConstant
 
 	#tag Constant, Name = kPopUpDemo3Description, Type = String, Dynamic = True, Default = \"", Scope = Private
 		#Tag Instance, Platform = Any, Language = Default, Definition  = \"With actice AutoColapse \x2C ViewMode\x3DDateAndSeconds\x2C Font \x3D Default"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateAndSeconds\x2C Only\x2C Font\x3D Default"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateAndSeconds\x2C Font\x3D Default"
 	#tag EndConstant
 
 	#tag Constant, Name = kPopUpDemo4Description, Type = String, Dynamic = True, Default = \"", Scope = Private
 		#Tag Instance, Platform = Any, Language = Default, Definition  = \"With actice AutoColapse \x2C ViewMode\x3DDateAndTime\x2C Font \x3D Default"
-		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateAndTime\x2C Only\x2C Font\x3D Default"
+		#Tag Instance, Platform = Any, Language = de, Definition  = \"Mit aktiviertem AutoColapse ViewMode\x3D DateAndTime\x2C Font\x3D Default"
 	#tag EndConstant
 
 	#tag Constant, Name = kPopUpDemoDescription, Type = String, Dynamic = True, Default = \"", Scope = Private
@@ -845,8 +845,9 @@ End
 #tag EndEvents
 #tag Events Demo2
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C74
-		Sub DateChanged(value as Datetime)
-		  LB_Report.AddRowAt(0), "[Demo2->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(value , locale.Current)
+		Sub DateChanged(year as integer, month as integer, day as integer)
+		  Var d As New DateTime(year,month,day)
+		  LB_Report.AddRowAt(0), "[Demo2->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 57656E6E207369636820646572204B616C656E6465722067657363686C6F7373656E206861742C207769726420C3BC6265722064696573656E204576656E7420696E666F726D696572742E2064617465203D205568727A6569742F446174756D2C2049734368616E67656420545255452077656E6E20446174656E206765C3A46E6465727420777572646520736569742064656D204F70656E
@@ -869,8 +870,9 @@ End
 #tag EndEvents
 #tag Events Demo3
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C74
-		Sub DateChanged(value as Datetime)
-		  LB_Report.AddRowAt(0),  LB_Report.RowCount.ToString("000") + ". " +"[Demo3-> Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(value , locale.Current)
+		Sub DateChanged(year as integer, month as integer, day as integer)
+		  Var d As New DateTime(year,month,day)
+		  LB_Report.AddRowAt(0),  LB_Report.RowCount.ToString("000") + ". " +"[Demo3-> Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 496D204B616C656E646572207775726420646569205568727A656974206765C3A46E646572742C20446174756D20697374206175662064656D206C65747A74656E205374616E64
@@ -894,8 +896,9 @@ End
 #tag EndEvents
 #tag Events Demo1
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C742C20646965204D656C64756E672069737420696E636C7573697665205A656974
-		Sub DateChanged(value as Datetime)
-		  LB_Report.AddRowAt(0), "[Demo1->Event DateChanged] reports a new Date: " + WTEC_DateTimePicker.dtToString(value , locale.Current)
+		Sub DateChanged(year as integer, month as integer, day as integer)
+		  Var d As New DateTime(year,month,day)
+		  LB_Report.AddRowAt(0), "[Demo1->Event DateChanged] reports a new Date: " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4D69742077656C6368656D20446174756D20736F6C6C20646572204B616C656E646572206265696D20537461727420696E6974616C6973696572742077657264656E
@@ -917,8 +920,9 @@ End
 #tag EndEvents
 #tag Events Demo4
 	#tag Event
-		Sub DateChanged(value as Datetime)
-		  LB_Report.AddRowAt(0), "[Demo4->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(value , locale.Current)
+		Sub DateChanged(year as integer, month as integer, day as integer)
+		  Var d As New DateTime(year,month,day)
+		  LB_Report.AddRowAt(0), "[Demo4->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event

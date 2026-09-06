@@ -562,7 +562,7 @@ End
 		  Var dNew As New DateTime(d.SecondsFrom1970)
 		  
 		  // Das neue Datum an die Hauptanwendung melden
-		  RaiseEvent DateChanged(d)
+		  RaiseEvent DateChanged(d.Year,d.Month,d.Day)
 		  
 		  
 		  
@@ -636,7 +636,7 @@ End
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C742C20646965204D656C64756E672069737420696E636C7573697665205A656974
-		Event DateChanged(value as Datetime)
+		Event DateChanged(year as integer, month as integer, day as integer)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4D69742077656C6368656D20446174756D20736F6C6C20646572204B616C656E646572206265696D20537461727420696E6974616C6973696572742077657264656E
@@ -889,14 +889,14 @@ End
 		    End Try
 		    
 		    // Nun neue Datetime mit Uhrzeit generieren
-		    d = New DateTime(d.Year, d.Month, d.Day, actualHour, actualMinute)
+		    d = New DateTime(d.Year, d.Month, d.Day, actualHour, actualMinute,actualSecond)
 		    
 		    Me.TextColor = AppColor.Text
 		    #Pragma BreakOnExceptions True
 		    
 		    
 		    // Das neue Datum an den Kalender Container, an die Hauptanwendung melden und das neue Datum merken
-		    RaiseEvent DateChanged(d)
+		    RaiseEvent DateChanged(d.Year,d.Month,d.Day)
 		    
 		    If Self.CalendarContainer <> Nil Then CalendarContainer.SetDate(d)   // Nur wenn expandiert
 		    

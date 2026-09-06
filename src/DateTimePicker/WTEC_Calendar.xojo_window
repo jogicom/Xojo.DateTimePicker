@@ -238,6 +238,7 @@ Begin DesktopContainer WTEC_Calendar
       Width           =   276
    End
    Begin WTEC_TimeTextField TF_Minute
+      AcceptInput     =   False
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -248,6 +249,7 @@ Begin DesktopContainer WTEC_Calendar
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
+      ForceTime       =   0
       Format          =   ""
       HasBorder       =   True
       Height          =   26
@@ -270,6 +272,7 @@ Begin DesktopContainer WTEC_Calendar
       Text            =   ""
       TextAlignment   =   0
       TextColor       =   &c000000
+      TimeValue       =   0
       Tooltip         =   ""
       Top             =   247
       Transparent     =   False
@@ -279,6 +282,7 @@ Begin DesktopContainer WTEC_Calendar
       Width           =   40
    End
    Begin WTEC_TimeTextField TF_Hour
+      AcceptInput     =   False
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -289,6 +293,7 @@ Begin DesktopContainer WTEC_Calendar
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
+      ForceTime       =   0
       Format          =   ""
       HasBorder       =   True
       Height          =   26
@@ -311,6 +316,7 @@ Begin DesktopContainer WTEC_Calendar
       Text            =   ""
       TextAlignment   =   0
       TextColor       =   &c000000
+      TimeValue       =   0
       Tooltip         =   ""
       Top             =   248
       Transparent     =   False
@@ -378,6 +384,7 @@ Begin DesktopContainer WTEC_Calendar
       _mPanelIndex    =   0
    End
    Begin WTEC_TimeTextField TF_Second
+      AcceptInput     =   False
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       AllowSpellChecking=   False
@@ -388,6 +395,7 @@ Begin DesktopContainer WTEC_Calendar
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
+      ForceTime       =   0
       Format          =   ""
       HasBorder       =   True
       Height          =   26
@@ -410,6 +418,7 @@ Begin DesktopContainer WTEC_Calendar
       Text            =   ""
       TextAlignment   =   0
       TextColor       =   &c000000
+      TimeValue       =   0
       Tooltip         =   ""
       Top             =   247
       Transparent     =   False
@@ -559,27 +568,28 @@ End
 		  param = p
 		  
 		  // Parameter Kontrolle
-		  If param.ViewMode > WTEC_DateTimePicker.ViewModes.DateAndSeconds Then
+		  If param.ViewMode > WTEC_DateTimePicker.ViewModes.DateAndSeconds Or Integer(param.ViewMode) < 0 Then
 		    System.DebugLog("[Warning] Invalid ViewMode (" + Integer(param.ViewMode).toString + ") in " +CurrentMethodName + ". Reset to DateAndTime mode." )
 		    param.ViewMode = WTEC_DateTimePicker.ViewModes.DateAndTime
 		  End If
 		  
-		  If param.FirstWeekDay > WTEC_DateTimePicker.FirstWeekDays.Saturday Or param.FirstWeekDay = WTEC_DateTimePicker.FirstWeekDays.Invalid Then
+		  If param.FirstWeekDay > WTEC_DateTimePicker.FirstWeekDays.Saturday Or param.FirstWeekDay = WTEC_DateTimePicker.FirstWeekDays.Invalid _
+		    Or Integer(param.FirstWeekDay) < 0  Then
 		    System.DebugLog("[Warning] Invalid First Weekday (" + Integer(param.FirstWeekDay).toString + ") in " +CurrentMethodName + ". Reset to Monday." )
 		    param.FirstWeekDay = WTEC_DateTimePicker.FirstWeekDays.Monday
 		  End If
 		  
 		  
-		  
 		  // Arbeisdatum erstellen
 		  If param.actualDate <> Nil Then
+		    // Übergebenes DateTime verwenden
 		    workingDate = New DateTime(param.actualDate.SecondsFrom1970)
 		  Else
+		    // Wenn kein DateTime übergeben wurde
 		    workingDate = New DateTime(DateTime.Now)
 		  End If
 		  
 		  startDateTime = new DateTime(workingDate.SecondsFrom1970)
-		  
 		  lastValidHour = workingDate.Hour
 		  lastValidMinute = workingDate.Minute
 		  lastValidSecond = workingDate.Second
@@ -892,7 +902,7 @@ End
 
 	#tag Method, Flags = &h0, Description = 496D204B616C656E6465722065696E206E6575657320446174756D207365747A656E2C2041434854554E47206E757220446174756D20776972642067657365747A742C206B65696E65205A656974
 		Sub SetDate(d as dateTime)
-		  // Setzen des Arbeitsdatums von aussen
+		  // Setzen des Arbeitsdatums von aussen aus der Hauptanwendung
 		  
 		  workingDate = New DateTime(d.Year,d.Month, d.day, lastValidHour, lastValidMinute, lastValidSecond)
 		  startDateTime = New DateTime(workingDate.SecondsFrom1970)
@@ -934,7 +944,7 @@ End
 
 	#tag Method, Flags = &h0, Description = 5365747A7420696D204B616C656E6465722065696E65204E657565205568727A6569742C204E5552205568727A6569742C206B65696E20446174756D
 		Sub SetTime(hour as integer, minute as integer, second as integer)
-		  // Setzen der Zeit von aussen
+		  // Setzen der Zeit von aussen aus der Hauptanwendung
 		  
 		  workingDate = New DateTime(workingDate.Year,workingDate.Month, workingDate.day, hour, minute, second)
 		  startDateTime = New DateTime(workingDate.SecondsFrom1970)
@@ -1271,6 +1281,20 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events LBL_ActualMonthAndYear
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  If x < Me.Width/2 Then
+		    // Monat scrollen
+		    break
+		  Else
+		    // Jahr scrollen
+		    Break
+		  End If
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events PB_SelectToday
 	#tag Event
 		Sub Opening()
@@ -1374,40 +1398,37 @@ End
 	#tag Event
 		Sub Paint(g As Graphics, areas() As Rect)
 		  
-		  
-		  
-		  If fReCalcControlPositions Then SetControlPositions(g)
+		  // Fontpatameter setzen
 		  g.FontName = param.Fontname
 		  g.FontUnit = param.FontUnit
 		  g.FontSize = param.FontSize
 		  
-		  If DayNameAreas.Count = 0 Or DayNumberAreas.Count = 0 Then
-		    
-		    // Die Wochentage Areas/Tage wurden nicht erstellt, dann erstellen
-		    CreateDayAreas
-		    
-		  End If
+		  // Falls nötig Positionen der Controls neu berechen
+		  If fReCalcControlPositions Then SetControlPositions(g)
 		  
-		  If ForceCalendarUpdate Then
-		    // Den Kalender mit aktuellen Daten befüllen
-		    UpdateCalendar
-		  End If
+		  // Die Wochentage Areas/Tage erstellen falls nötig
+		  If DayNameAreas.Count = 0 Or DayNumberAreas.Count = 0 Then CreateDayAreas
 		  
+		  // Den Kalender mit aktuellen Daten befüllen
+		  If ForceCalendarUpdate Then UpdateCalendar
+		  
+		  // Benötigte Texthöhe berechnen
 		  Var  textheight As Double = g.TextHeight("88",4)
 		  
+		  // Im Debug Mode Kalender einfärben
 		  #If WTEC_DateTimePicker.IsDebug
 		    g.DrawingColor = &cE2F00900
 		    g.FillRectangle(0,0,Me.Width,Me.Height)
 		  #EndIf
 		  
-		  // 2. Virtuelle "Unterlänge" berechnen für Vertikale Text Zentrierung
+		  // Virtuelle "Unterlänge" berechnen für Vertikale Text Zentrierung
 		  Var fontDescent As Double = g.TextHeight - g.FontAscent
 		  Var fontVCenter As Double = (g.FontAscent / 2) - (fontDescent / 2)
 		  
 		  Var b As WTEC_DayArea
 		  
 		  // =========================================================
-		  // Ausgabe der Wochentagsnamen
+		  //         Ausgabe der Wochentagsnamen in Bold
 		  // =========================================================
 		  g.Bold = True
 		  g.DrawingColor = AppColor.Text
@@ -1431,7 +1452,7 @@ End
 		  Next
 		  
 		  // =========================================================
-		  //             Ausgabe der Monats Tagen
+		  //             Ausgabe der Monats Tage
 		  // =========================================================
 		  For r As Integer = 0 To 41
 		    

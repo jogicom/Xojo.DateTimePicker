@@ -33,7 +33,7 @@ Inherits DesktopTextField
 
 	#tag Event
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
-		  // Stunden Up/Down mit Wheel
+		  // Zeit Up/Down mit Wheel
 		  
 		  //Die Prüfung auf gültige Werte erfolgt im setter! 
 		  
@@ -50,8 +50,10 @@ Inherits DesktopTextField
 
 	#tag Event
 		Sub Opening()
+		  // Modus holen
 		  myMode = RaiseEvent GetMode
 		  
+		  // Child Opening
 		  RaiseEvent Opening
 		  
 		  
@@ -60,7 +62,7 @@ Inherits DesktopTextField
 
 	#tag Event
 		Sub TextChanged()
-		  // Text wurde im Textfeld geändert, dann unformatierte Ausgabe
+		  // Text wurde im Textfeld geändert, dann unformatierte Ausgabe machen, damit Textfeld auch leer bleiben kann
 		  
 		  
 		  If AcceptINput Then
@@ -71,6 +73,7 @@ Inherits DesktopTextField
 		      t = Integer.FromString(Me.Text)
 		      
 		    Catch InvalidArgumentException
+		      // Leerer Text
 		      Return
 		    End Try
 		    
@@ -125,7 +128,7 @@ Inherits DesktopTextField
 
 
 	#tag Note, Name = Funktion
-		Ein Textfeld zum darstellen einer Uhrzeit, je nach konfiguration für ein Minuten oder Stunden Feld
+		Ein Textfeld zum darstellen einer Uhrzeit, je nach konfiguration für ein Minuten, Stunden oder Sekunden Feld
 		
 		Zum Scrollen der Uhrzeit kann das Mausrad verwendet werden
 		
@@ -144,7 +147,7 @@ Inherits DesktopTextField
 		AcceptInput As boolean = false
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5365747A7420646965205A65697420756E64207570646174657420646173205465787466656C642C206F686E652065696E6520546578744368616E676564204576656E74206175737A756CC3B673656E
 		#tag Getter
 			Get
 			  Return zTimeValue
@@ -167,11 +170,11 @@ Inherits DesktopTextField
 		ForceTime As Integer
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
+	#tag Property, Flags = &h21, Description = 426574726965627361727420646573205465787466656C64657320285374756E64656E2C204D696E7574656E2C2053656B756E64656E29
 		Private myMode As WTEC_TimeTextField.modes = WTEC_TimeTextField.Modes.Invalid
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5365747A7420646965205A65697420756E6420616B7475616C69736965727420646173205465787466656C642C2065696E20546578744368616E676564204576656E7420776972642061757367656CC3B673742C2077656E6E20416363657074496E707574203D2054525545
 		#tag Getter
 			Get
 			  Return zTimeValue
