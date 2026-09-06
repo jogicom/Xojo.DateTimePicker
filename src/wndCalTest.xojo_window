@@ -280,6 +280,7 @@ Begin DesktopWindow wndCalTest
          BackgroundColor =   &cFFFFFF
          Composited      =   False
          Enabled         =   True
+         EnableWheel     =   True
          FirstWeekday    =   1
          Fontname        =   "System"
          FontSize        =   20.0
@@ -383,6 +384,7 @@ Begin DesktopWindow wndCalTest
          BackgroundColor =   &cFFFFFF
          Composited      =   False
          Enabled         =   True
+         EnableWheel     =   True
          FirstWeekday    =   2
          Fontname        =   "System"
          FontSize        =   0.0
@@ -563,6 +565,7 @@ Begin DesktopWindow wndCalTest
          BackgroundColor =   &cFFFFFF
          Composited      =   False
          Enabled         =   True
+         EnableWheel     =   True
          FirstWeekday    =   2
          Fontname        =   "System"
          FontSize        =   0.0
@@ -622,48 +625,6 @@ Begin DesktopWindow wndCalTest
       Underline       =   False
       Visible         =   True
       Width           =   287
-      Begin WTEC_DateTimePicker Demo4
-         AllowAutoDeactivate=   True
-         AllowFocus      =   False
-         AllowFocusRing  =   False
-         AllowTabs       =   True
-         AutoCollapse    =   True
-         AutoCollapseOnMouseExit=   False
-         Backdrop        =   0
-         BackgroundColor =   &cFFFFFF
-         Composited      =   False
-         Enabled         =   True
-         FirstWeekday    =   1
-         Fontname        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         ForceLocale     =   ""
-         HasBackgroundColor=   False
-         Height          =   29
-         HMarginDayNumbers=   5
-         HMargin_CalendarWindow=   5
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         IsExpanded      =   False
-         Left            =   675
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   0
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Tooltip         =   ""
-         Top             =   129
-         Transparent     =   False
-         ViewMode        =   1
-         Visible         =   True
-         VMarginDayNumbers=   5
-         VMargin_CalendarWindow=   5
-         Width           =   188
-      End
       Begin DesktopLabel LBL_Demo4
          AllowAutoDeactivate=   True
          Bold            =   False
@@ -697,6 +658,49 @@ Begin DesktopWindow wndCalTest
          Visible         =   True
          Width           =   258
       End
+      Begin WTEC_DateTimePicker Demo4
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         AutoCollapse    =   True
+         AutoCollapseOnMouseExit=   False
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF
+         Composited      =   False
+         Enabled         =   True
+         EnableWheel     =   True
+         FirstWeekday    =   1
+         Fontname        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         ForceLocale     =   ""
+         HasBackgroundColor=   False
+         Height          =   29
+         HMarginDayNumbers=   5
+         HMargin_CalendarWindow=   5
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         IsExpanded      =   False
+         Left            =   675
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   129
+         Transparent     =   False
+         ViewMode        =   1
+         Visible         =   True
+         VMarginDayNumbers=   5
+         VMargin_CalendarWindow=   5
+         Width           =   188
+      End
    End
 End
 #tag EndDesktopWindow
@@ -718,7 +722,8 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub PopUpDemo_ReportsNewDate(d as datetime)
+		Sub PopUpDemo_ReportsNewDate(year as integer, month as integer, day as integer)
+		  var d as new DateTime(year,month,day)
 		  LB_Report.AddRowAt(0, _
 		  "[PopUpDemo] reports a new Date: " + WTEC_DateTimePicker.dtToString(d, locale.Current), _
 		  0)

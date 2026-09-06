@@ -475,6 +475,23 @@ End
 		Private Sub CalendarClose(date as Datetime, IsChanged as boolean)
 		  // Kalender meldet closed (callback)
 		  
+		  Var oldState As Boolean = AcceptInput
+		  AcceptInput = False
+		  actualDate = New DateTime(date.SecondsFrom1970)
+		  
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
+		  
+		  actualHour = date.Hour
+		  actualMinute = date.Minute
+		  actualSecond = date.Second
+		  
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
+		  TF_Hour.ForceTime = date.Hour
+		  TF_Minute.ForceTime = date.Minute
+		  TF_Second.ForceTime = date.Second
+		  TF_DateInput.SetFocus
+		  
+		  AcceptInput = oldState
 		  RaiseEvent CalendarClosed(date, IsChanged)
 		  
 		  CalendarContainer = Nil
@@ -488,7 +505,7 @@ End
 	#tag EndDelegateDeclaration
 
 	#tag DelegateDeclaration, Flags = &h0, Description = 43616C6C6261636B207A756D206D656C64656E2065696E657320446174756D73206175732064656D204B616C656E646572207A756D204461746554696D655069636B6572
-		Delegate Sub CallbackNewDate(d as datetime)
+		Delegate Sub CallbackNewDate(year as integer, month as integer, day as integer)
 	#tag EndDelegateDeclaration
 
 	#tag DelegateDeclaration, Flags = &h0, Description = 43616C6C6261636B207A756D206D656C64656E2065696E6572205568727A656974206175732064656D204B616C656E646572207A756D204461746554696D655069636B6572
@@ -517,28 +534,21 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5365747A742064617320616B7475656C6C65204B616C656E646572646174756D
-		Sub SetDate(d as Datetime)
-		  // Setzen eines bestimmten Datums und Uhrzeit im Kalender, durch die Hauptanwendung
+		Sub SetDate(year as integer, month as integer, day as integer)
+		  // Setzen eines bestimmten Datums im Kalender, durch die Hauptanwendung
 		  Var oldState As Boolean = AcceptInput
 		  AcceptInput = False
 		  
-		  actualDate = New DateTime(d.Year, d.Month, d.Day, d.Hour, d.Minute,d.Second)
+		  actualDate = New DateTime(year, month, day, actualHour, actualMinute,actualSecond)
 		  
-		  actualHour = d.Hour
-		  actualMinute = d.Minute
-		  actualSecond = d.Second
-		  
-		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
-		  TF_Hour.Text = actualHour.ToString("00")
-		  //TF_Hour.TimeValue = 
-		  
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
 		  TF_DateInput.SetFocus
 		  
 		  
 		  // An den Kalender Container weiter melden, wenn geöffnet
 		  
 		  If CalendarContainer <> Nil Then
-		    CalendarContainer.SetDate(d)
+		    CalendarContainer.SetDate(year, month, day)
 		  End If
 		  
 		  
@@ -546,9 +556,9 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21, Description = 457320777572646520766F6D204B616C656E64657220436F6E7461696E6572206F64657220646972656B7420766F6D204B616C656E64657220506F7075702065696E206E6575657320446174756D2067656D656C646574
-		Private Sub SetDateFromContainer(d as DateTime)
+		Private Sub SetDateFromContainer(year as integer, month as integer, day as integer)
 		  // Im Kalender Container wurde ein Datum ausgewählt ( Callback)
-		  
+		  Var d As New DateTime(year,month,day)
 		  actualDate = New DateTime(d.SecondsFrom1970)
 		  actualHour = d.Hour
 		  actualMinute = d.Minute
@@ -565,6 +575,36 @@ End
 		  RaiseEvent DateChanged(d.Year,d.Month,d.Day)
 		  
 		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 45696E2062657374696D6D74657320446174756D20756E6420646965205568727A65697420696D204B616C656E646572207365747A656E
+		Sub SetDateTime(d as Datetime)
+		  // Setzen eines bestimmten Datums und der Uhrzeit im Kalender, durch die Hauptanwendung
+		  Var oldState As Boolean = AcceptInput
+		  AcceptInput = False
+		  
+		  actualDate = New DateTime(d.SecondsFrom1970)
+		  
+		  actualHour = d.Hour
+		  actualMinute = d.Minute
+		  actualSecond = d.Second
+		  
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
+		  TF_Hour.ForceTime = d.Hour
+		  TF_Minute.ForceTime = d.Minute
+		  TF_Second.ForceTime = d.Second
+		  
+		  TF_DateInput.SetFocus
+		  
+		  
+		  // An den Kalender Container weiter melden, wenn geöffnet
+		  
+		  If CalendarContainer <> Nil Then
+		    CalendarContainer.SetDateTime(d)
+		  End If
 		  
 		  
 		End Sub
@@ -698,6 +738,10 @@ End
 		Private CalendarContainer As WTEC_Calendar = nil
 	#tag EndProperty
 
+	#tag Property, Flags = &h0, Description = 45726C61756274206469652046656C646572737465756572756E672070657220576865656C204D617573726164202854727565203D2044656661756C7429
+		EnableWheel As boolean = true
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		FirstWeekday As WTEC_DateTimePicker.FirstWeekDays = WTEC_DateTimePicker.FirstWeekDays.Monday
 	#tag EndProperty
@@ -756,12 +800,13 @@ End
 			        para.FirstWeekDay           = FirstWeekday
 			        para.SetNewDate             = WeakAddressOf Self.SetDateFromContainer  // Hierüber werden Änderungen des Kalenderdatums gemeldet
 			        para.CalendarClose          = WeakAddressOf Self.CalendarClose         // Meldung, wenn Kalender geschlossen wird zum aufräumen
-			        para.AutoCollapse           = AutoCollapse
 			        para.SetNewTime             = WeakAddressOf Self.SetTimeFromContainer  // Meldung wenn Uhrzeit im Kalender geändert wurde
+			        para.AutoCollapse           = AutoCollapse
 			        para.AutoCloseWhenMouseExit = AutoCollapseOnMouseExit
 			        para.MainControlWidth       = TF_DateInput.Width                  // Damit kann der Kalender seine Position variieren
 			        para.ForceLocale            = ForceLocale
 			        para.ViewMode               = ViewMode                            // Kalender Mode
+			        para.EnableWheel            = EnableWheel
 			        // Fontparameter
 			        para.Fontname               = Fontname
 			        para.FontUnit               = FontUnit
@@ -769,8 +814,8 @@ End
 			        
 			        CalendarContainer =  New WTEC_Calendar(para)
 			        
-			        // 2. In das Ziel-Control (z.B. eine GroupBox1) einbetten
-			        // Parameter: Ziel-Control, X-Position, Y-Position
+			        // In das Ziel-Control (z.B. eine GroupBox1) einbetten
+			        // Y-Position direkt unter dem Textfeld
 			        p.y = p.y + TF_DateInput.Height
 			        CalendarContainer.EmbedWithin(Self.Window, p.x, p.y)
 			      End If
@@ -898,7 +943,7 @@ End
 		    // Das neue Datum an den Kalender Container, an die Hauptanwendung melden und das neue Datum merken
 		    RaiseEvent DateChanged(d.Year,d.Month,d.Day)
 		    
-		    If Self.CalendarContainer <> Nil Then CalendarContainer.SetDate(d)   // Nur wenn expandiert
+		    If Self.CalendarContainer <> Nil Then CalendarContainer.SetDate(d.Year,d.Month,d.Day)   // Nur wenn expandiert
 		    
 		    actualDate = New DateTime(d.SecondsFrom1970)
 		    
@@ -925,20 +970,24 @@ End
 	#tag Event
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
 		  // Datum scrollen
-		  Var oneDay As New DateInterval
-		  oneday.Days = 1 ' 1 Tages intervall
 		  
-		  If deltay > 0 Then
-		    // Abwärts
-		    actualDate = actualDate - oneDay
-		    TF_DateInput.Text = dtToString(actualDate,loc)
+		  If EnableWheel Then
+		    Var oneDay As New DateInterval
+		    oneday.Days = 1 ' 1 Tages intervall
 		    
-		  ElseIf deltay < 0 Then
-		    // Aufwärts
-		    actualDate = actualDate + oneDay
-		    TF_DateInput.Text = dtToString(actualDate,loc)
+		    If deltay > 0 Then
+		      // Abwärts
+		      actualDate = actualDate - oneDay
+		      TF_DateInput.Text = dtToString(actualDate,loc)
+		      
+		    ElseIf deltay < 0 Then
+		      // Aufwärts
+		      actualDate = actualDate + oneDay
+		      TF_DateInput.Text = dtToString(actualDate,loc)
+		      
+		    End If
 		    
-		  End If
+		  end if
 		  
 		End Function
 	#tag EndEvent
@@ -1035,11 +1084,6 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events TF_Hour
-	#tag Event , Description = 5365747A656E206465732042657472696562736D6F647573
-		Function GetMode() As WTEC_TimeTextField.Modes
-		  Return WTEC_TimeTextField.Modes.Hour
-		End Function
-	#tag EndEvent
 	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
 		Sub TimeChanged(value as integer)
 		  If actualHour <> value Then
@@ -1052,13 +1096,13 @@ End
 		  End If
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  me.SetMode(WTEC_TimeTextField.Modes.Hour, EnableWheel)
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events TF_Minute
-	#tag Event , Description = 5365747A656E206465732042657472696562736D6F647573
-		Function GetMode() As WTEC_TimeTextField.Modes
-		  Return WTEC_TimeTextField.Modes.Minute
-		End Function
-	#tag EndEvent
 	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
 		Sub TimeChanged(value as integer)
 		  If actualMinute <> value Then
@@ -1069,13 +1113,13 @@ End
 		  End If
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  me.SetMode(WTEC_TimeTextField.Modes.Minute, EnableWheel)
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events TF_Second
-	#tag Event , Description = 5365747A656E206465732042657472696562736D6F647573
-		Function GetMode() As WTEC_TimeTextField.Modes
-		  Return WTEC_TimeTextField.Modes.Second
-		End Function
-	#tag EndEvent
 	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
 		Sub TimeChanged(value as integer)
 		  If actualSecond <> value Then
@@ -1084,6 +1128,11 @@ End
 		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond)
 		    RaiseEvent TimeChanged(actualHour,actualMinute,actualSecond)
 		  End If
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  me.SetMode(WTEC_TimeTextField.Modes.Second, EnableWheel)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1308,6 +1357,14 @@ End
 			"1 - DateAndTime"
 			"2 - DateAndSeconds"
 		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="EnableWheel"
+		Visible=true
+		Group="Calendar Behavor"
+		InitialValue="True"
+		Type="boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="ForceLocale"

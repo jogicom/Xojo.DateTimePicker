@@ -525,9 +525,7 @@ End
 		    
 		  End If
 		  
-		  
-		  
-		  
+		  AcceptInput = True
 		End Sub
 	#tag EndEvent
 
@@ -606,6 +604,8 @@ End
 		    loc = locale.Current
 		  End Try
 		  #Pragma BreakOnExceptions True
+		  
+		  AcceptInput=False    // Wird im Opening auf True gesetzt
 		End Sub
 	#tag EndMethod
 
@@ -901,13 +901,40 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496D204B616C656E6465722065696E206E6575657320446174756D207365747A656E2C2041434854554E47206E757220446174756D20776972642067657365747A742C206B65696E65205A656974
-		Sub SetDate(d as dateTime)
+		Sub SetDate(year as integer, month as integer, day as integer)
 		  // Setzen des Arbeitsdatums von aussen aus der Hauptanwendung
 		  
-		  workingDate = New DateTime(d.Year,d.Month, d.day, lastValidHour, lastValidMinute, lastValidSecond)
+		  workingDate = New DateTime(year,month, day, lastValidHour, lastValidMinute, lastValidSecond)
 		  startDateTime = New DateTime(workingDate.SecondsFrom1970)
 		  Self.ForceCalendarUpdate = True
 		  Can_CalendarPicker.Refresh
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 496D204B616C656E6465722065696E206E6575657320446174756D207365747A656E20756E64205568727A656974
+		Sub SetDateTime(d as datetime)
+		  // Setzen des Arbeitsdatums und der Uhrzeit von aussen aus der Hauptanwendung
+		  
+		  workingDate = New DateTime(d.SecondsFrom1970)
+		  startDateTime = New DateTime(workingDate.SecondsFrom1970)
+		  Self.ForceCalendarUpdate = True
+		  Can_CalendarPicker.Refresh
+		  
+		  lastValidHour   = d.hour
+		  lastValidMinute = d.minute
+		  lastValidSecond = d.second
+		  
+		  Var oldstate As Boolean = AcceptInput
+		  AcceptInput = False
+		  // Zeiten in die Textfelder eintragen
+		  TF_Hour.ForceTime = d.hour
+		  TF_Minute.ForceTime = d.minute
+		  TF_Second.ForceTime = d.second
+		  AcceptInput = oldstate
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -1284,13 +1311,31 @@ End
 #tag Events LBL_ActualMonthAndYear
 	#tag Event
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
-		  If x < Me.Width/2 Then
-		    // Monat scrollen
-		    break
-		  Else
-		    // Jahr scrollen
-		    Break
+		  If AcceptInput Then
+		    Var d As New DateTime(workingDate.SecondsFrom1970)
+		    
+		    
+		    If x < Me.Width/2 Then
+		      Var i As New DateInterval(0,1)
+		      If deltaY < 0 Then
+		        d = d + i
+		      Else
+		        d = d - i
+		      End If
+		    Else
+		      Var i As New DateInterval(1)
+		      If deltaY < 0 Then
+		        d = d + i
+		      Else
+		        d = d - i
+		      End If
+		      
+		    End If
+		    
+		    SetDate(d.Year,d.Month, d.Day)
+		    if param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.Year, d.Month, d.Day)
 		  End If
+		  
 		  
 		End Function
 	#tag EndEvent
@@ -1352,7 +1397,7 @@ End
 		  Case WTEC_DateTimePicker.ViewModes.DateOnly
 		    // Nur Datum melden, wenn unterschiedlich
 		    If Not IsSameDate(workingDate, startDateTime) Then
-		      If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d)
+		      If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.Year, d.Month, d.Day)
 		    End If
 		    
 		  Case WTEC_DateTimePicker.ViewModes.DateAndTime
@@ -1362,7 +1407,7 @@ End
 		    End If
 		    
 		    If Not IsSameDate(workingDate, startDateTime) Then
-		      If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d)
+		      If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.Year, d.Month, d.Day)
 		    End If
 		    
 		  Case WTEC_DateTimePicker.ViewModes.DateAndSeconds
@@ -1371,7 +1416,7 @@ End
 		    End If
 		    
 		    If Not IsSameDate(workingDate, startDateTime) Then
-		      If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d)
+		      If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.year, d.Month, d.Day)
 		    End If
 		    
 		  End Select
@@ -1563,7 +1608,7 @@ End
 		        // Datum nur senden, wenn geändert, beim Close wird das Datum geliefert
 		        If Not IsSameDate(workingDate,startDateTime) Then
 		          Var d As New DateTime(workingDate.SecondsFrom1970)
-		          param.SetNewDate.Invoke(d)
+		          param.SetNewDate.Invoke(d.year, d.Month, d.Day)
 		        End If
 		        
 		        If param.AutoCollapse Then
@@ -1602,15 +1647,13 @@ End
 		Sub Opening()
 		  // Beim beschreiben des Textfeldes verhindern, dass Event TextChanged verarbeitet wird
 		  
+		  Me.SetMode(WTEC_TimeTextField.Modes.Minute, param.EnableWheel)
+		  
 		  Me.ForceTime = workingDate.Minute
 		  lastValidMinute = workingDate.Minute
 		  
+		  
 		End Sub
-	#tag EndEvent
-	#tag Event , Description = 5365747A656E206465732042657472696562736D6F647573
-		Function GetMode() As WTEC_TimeTextField.Modes
-		  Return WTEC_TimeTextField.Modes.Minute
-		End Function
 	#tag EndEvent
 	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
 		Sub TimeChanged(value as integer)
@@ -1627,16 +1670,14 @@ End
 		Sub Opening()
 		  // Beim beschreiben des Textfeldes verhindern, dass Event TextChanged verarbeitet wird
 		  
+		  Me.setMode(WTEC_TimeTextField.Modes.Hour, param.EnableWheel)
 		  
 		  Me.ForceTime = workingDate.Hour
 		  lastValidHour = workingDate.Hour
 		  
+		  
+		  
 		End Sub
-	#tag EndEvent
-	#tag Event , Description = 5365747A656E206465732042657472696562736D6F647573
-		Function GetMode() As WTEC_TimeTextField.Modes
-		  Return WTEC_TimeTextField.Modes.Hour
-		End Function
 	#tag EndEvent
 	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
 		Sub TimeChanged(value as integer)
@@ -1648,41 +1689,30 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events UpDo_Hour
-	#tag Event , Description = 5A756D20466573746C6567656E20646573204265747269656273204D6F647573
-		Function GetMode() As WTEC_UpDownButton.Modes
-		  Return WTEC_UpDownButton.Modes.Hour
-		End Function
-	#tag EndEvent
-	#tag Event , Description = 57656C63686573205465787466656C6420736F6C6C2062656469656E742077657264656E
-		Function GetTextfield() As WTEC_TimeTextField
-		  Return TF_Hour
-		End Function
+	#tag Event
+		Sub Opening()
+		  me.SetParameter(TF_Hour, WTEC_UpDownButton.Modes.Hour, param.EnableWheel)
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events UpDo_Minute
-	#tag Event , Description = 5A756D20466573746C6567656E20646573204265747269656273204D6F647573
-		Function GetMode() As WTEC_UpDownButton.Modes
-		  Return WTEC_UpDownButton.Modes.Minute
-		End Function
-	#tag EndEvent
-	#tag Event , Description = 57656C63686573205465787466656C6420736F6C6C2062656469656E742077657264656E
-		Function GetTextfield() As WTEC_TimeTextField
-		  Return TF_Minute
-		End Function
+	#tag Event
+		Sub Opening()
+		  me.SetParameter(TF_Minute, WTEC_UpDownButton.Modes.Minute, param.EnableWheel)
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events TF_Second
-	#tag Event , Description = 5365747A656E206465732042657472696562736D6F647573
-		Function GetMode() As WTEC_TimeTextField.Modes
-		  Return WTEC_TimeTextField.Modes.Second
-		End Function
-	#tag EndEvent
 	#tag Event
 		Sub Opening()
 		  // Beim beschreiben des Textfeldes verhindern, dass Event TextChanged verarbeitet wird
 		  
+		  Me.SetMode(WTEC_TimeTextField.Modes.Second, param.EnableWheel)
+		  
 		  Me.ForceTime = workingDate.Second
 		  lastValidSecond = workingDate.Second
+		  
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -1697,15 +1727,10 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events UpDo_Second
-	#tag Event , Description = 5A756D20466573746C6567656E20646573204265747269656273204D6F647573
-		Function GetMode() As WTEC_UpDownButton.Modes
-		  Return WTEC_UpDownButton.Modes.Second
-		End Function
-	#tag EndEvent
-	#tag Event , Description = 57656C63686573205465787466656C6420736F6C6C2062656469656E742077657264656E
-		Function GetTextfield() As WTEC_TimeTextField
-		  Return TF_Second
-		End Function
+	#tag Event
+		Sub Opening()
+		  me.SetParameter(TF_Second, WTEC_UpDownButton.Modes.Second, param.EnableWheel)
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

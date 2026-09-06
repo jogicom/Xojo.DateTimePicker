@@ -7,11 +7,11 @@ Inherits DesktopUpDownArrows
 		  
 		  Var t As Integer
 		  
-		  If myTextfield = Nil Then Return
+		  If SourceTextfield = Nil Then Return
 		  
 		  #Pragma BreakOnExceptions False
 		  Try
-		    t  = myTextfield.TimeValue
+		    t  = SourceTextfield.TimeValue
 		  Catch InvalidArgumentException
 		    // Textfeld leer
 		    Return
@@ -20,7 +20,7 @@ Inherits DesktopUpDownArrows
 		  
 		  t = t - 1
 		  
-		  Select Case myMode
+		  Select Case SourceMode
 		    
 		  Case WTEC_UpDownButton.Modes.Hour
 		    If t< 0 Then t = 23
@@ -31,7 +31,7 @@ Inherits DesktopUpDownArrows
 		  End Select
 		  
 		  
-		  myTextfield.TimeValue = t
+		  SourceTextfield.TimeValue = t
 		End Sub
 	#tag EndEvent
 
@@ -39,50 +39,47 @@ Inherits DesktopUpDownArrows
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
 		  // UpDown Button Stunden Bedienung mit Wheel
 		  
-		  If myTextfield = Nil Then Return True
-		  
-		  Var t As Integer
-		  #Pragma BreakOnExceptions False
-		  Try
-		    t  = myTextfield.TimeValue
-		  Catch InvalidArgumentException
-		    t = 0
-		  End Try
-		  #Pragma BreakOnExceptions True
-		  
-		  If deltay < 0 Then
-		    t = t +1
-		  ElseIf deltay > 0 Then
-		    t = t-1
-		  End If
-		  
-		  
-		  Select Case myMode
+		  If WheelEnabled Then
+		    If SourceTextfield = Nil Then Return True
 		    
-		  Case Modes.Hour
-		    If t > 23 Then t = 0
-		    If t < 0 Then t = 23
-		  Case Modes.Minute, Modes.Second
-		    If t < 0 Then t = 59
-		    If t > 59 Then t = 0
-		  Else
+		    Var t As Integer
+		    #Pragma BreakOnExceptions False
+		    Try
+		      t  = SourceTextfield.TimeValue
+		    Catch InvalidArgumentException
+		      t = 0
+		    End Try
+		    #Pragma BreakOnExceptions True
+		    
+		    If deltay < 0 Then
+		      t = t +1
+		    ElseIf deltay > 0 Then
+		      t = t-1
+		    End If
+		    
+		    
+		    Select Case SourceMode
+		      
+		    Case Modes.Hour
+		      If t > 23 Then t = 0
+		      If t < 0 Then t = 23
+		    Case Modes.Minute, Modes.Second
+		      If t < 0 Then t = 59
+		      If t > 59 Then t = 0
+		    Else
+		      Return True
+		    End Select
+		    
+		    
+		    
+		    SourceTextfield.TimeValue = t
+		    
 		    Return True
-		  End Select
-		  
-		  
-		  
-		  myTextfield.TimeValue = t
-		  
-		  Return True
+		  Else
+		    Return False
+		  end if
 		  
 		End Function
-	#tag EndEvent
-
-	#tag Event
-		Sub Opening()
-		  myMode = RaiseEvent GetMode
-		  myTextfield = RaiseEvent GetTextfield
-		End Sub
 	#tag EndEvent
 
 	#tag Event
@@ -91,14 +88,14 @@ Inherits DesktopUpDownArrows
 		  
 		  Var t As Integer
 		  
-		  If myTextfield = Nil Then Return
+		  If SourceTextfield = Nil Then Return
 		  
-		  t  = myTextfield.TimeValue
+		  t  = SourceTextfield.TimeValue
 		  
 		  
 		  t = t + 1
 		  
-		  Select Case myMode
+		  Select Case SourceMode
 		  Case Modes.Hour
 		    If t > 23 Then t = 0
 		  Case Modes.Minute
@@ -107,18 +104,18 @@ Inherits DesktopUpDownArrows
 		    Return
 		  End Select
 		  
-		  myTextfield.TimeValue = t
+		  SourceTextfield.TimeValue = t
 		End Sub
 	#tag EndEvent
 
 
-	#tag Hook, Flags = &h0, Description = 5A756D20466573746C6567656E20646573204265747269656273204D6F647573
-		Event GetMode() As WTEC_UpDownButton.Modes
-	#tag EndHook
-
-	#tag Hook, Flags = &h0, Description = 57656C63686573205465787466656C6420736F6C6C2062656469656E742077657264656E
-		Event GetTextfield() As WTEC_TimeTextField
-	#tag EndHook
+	#tag Method, Flags = &h0, Description = 5365747A656E2064657220506172616D657465722066C3BC722064696573656E20576865656C20427574746F6E2C20616D2062657374656E20696D204F70656E696E67204576656E742061757366C3BC6872656E
+		Sub SetParameter(myTextfield as WTEC_TimeTextField, myMode as WTEC_UpDownButton.Modes, EnableWheel as boolean)
+		  SourceMode = myMode
+		  SourceTextfield = myTextfield
+		  WheelEnabled = EnableWheel
+		End Sub
+	#tag EndMethod
 
 
 	#tag Note, Name = Funktion
@@ -139,11 +136,15 @@ Inherits DesktopUpDownArrows
 
 
 	#tag Property, Flags = &h21
-		Private myMode As WTEC_UpDownButton.Modes = WTEC_UpDownButton.Modes.Invalid
+		Private SourceMode As WTEC_UpDownButton.Modes = WTEC_UpDownButton.Modes.Invalid
 	#tag EndProperty
 
 	#tag Property, Flags = &h21, Description = 5465787466656C64206461732062656469656E742077697264
-		Private myTextfield As WTEC_TimeTextField
+		Private SourceTextfield As WTEC_TimeTextField
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private WheelEnabled As boolean = true
 	#tag EndProperty
 
 

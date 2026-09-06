@@ -37,27 +37,17 @@ Inherits DesktopTextField
 		  
 		  //Die Prüfung auf gültige Werte erfolgt im setter! 
 		  
-		  If deltay < 0 Then
-		    TimeValue = TimeValue +1
-		  ElseIf deltay > 0 Then
-		    TimeValue = TimeValue -1
-		  End If
+		  If WheelEnabled Then
+		    If deltay < 0 Then
+		      TimeValue = TimeValue +1
+		    ElseIf deltay > 0 Then
+		      TimeValue = TimeValue -1
+		    End If
+		  end if
 		  
 		  
 		  
 		End Function
-	#tag EndEvent
-
-	#tag Event
-		Sub Opening()
-		  // Modus holen
-		  myMode = RaiseEvent GetMode
-		  
-		  // Child Opening
-		  RaiseEvent Opening
-		  
-		  
-		End Sub
 	#tag EndEvent
 
 	#tag Event
@@ -77,7 +67,7 @@ Inherits DesktopTextField
 		      Return
 		    End Try
 		    
-		    Select Case myMode
+		    Select Case SourceMode
 		      
 		    Case Modes.Hour
 		      
@@ -114,13 +104,13 @@ Inherits DesktopTextField
 	#tag EndEvent
 
 
-	#tag Hook, Flags = &h0, Description = 5365747A656E206465732042657472696562736D6F647573
-		Event GetMode() As WTEC_TimeTextField.Modes
-	#tag EndHook
+	#tag Method, Flags = &h0, Description = 5365747A742064656E204D6F6475732066C3BC7220646173205465787466656C642C20616D2062657374656E20696D204F62656E204576656E742061757366C3BC6872656E
+		Sub SetMode(myMode as WTEC_TimeTextField.Modes, EnableWheel as Boolean)
+		  Me.SourceMode = myMode
+		  WheelEnabled = EnableWheel
+		End Sub
+	#tag EndMethod
 
-	#tag Hook, Flags = &h0
-		Event Opening()
-	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
 		Event TimeChanged(value as integer)
@@ -171,7 +161,7 @@ Inherits DesktopTextField
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21, Description = 426574726965627361727420646573205465787466656C64657320285374756E64656E2C204D696E7574656E2C2053656B756E64656E29
-		Private myMode As WTEC_TimeTextField.modes = WTEC_TimeTextField.Modes.Invalid
+		Private SourceMode As WTEC_TimeTextField.modes = WTEC_TimeTextField.Modes.Invalid
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5365747A7420646965205A65697420756E6420616B7475616C69736965727420646173205465787466656C642C2065696E20546578744368616E676564204576656E7420776972642061757367656CC3B673742C2077656E6E20416363657074496E707574203D2054525545
@@ -185,7 +175,7 @@ Inherits DesktopTextField
 			  // Der Zeit wert, der im Textfeld angezeigt wird, prüfen ob gültig
 			  
 			  If zTimeValue <> value Then
-			    Select Case myMode
+			    Select Case SourceMode
 			      
 			    Case Modes.Hour
 			      If value > 23 Then value = 0
@@ -204,6 +194,10 @@ Inherits DesktopTextField
 		#tag EndSetter
 		TimeValue As Integer
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21, Description = 57656E6E20547275652C206973742064696520576865656C2046756E6B74696F6E20696D205465787466656C6420616B74697669657274
+		Private WheelEnabled As boolean = True
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private zTimeValue As Integer
