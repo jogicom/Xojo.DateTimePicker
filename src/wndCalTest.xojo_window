@@ -715,7 +715,8 @@ End
 
 	#tag Method, Flags = &h0
 		Sub PopUpDemo_ReportsClosed(d as datetime, IsChanged as boolean)
-		  LB_Report.AddRowAt(0,"[PopupDemo] reports CLOSED")
+		  LB_Report.AddRowAt(0, "[PopUpDemo->Event CalendarClosed] Closed with Date: " + WTEC_DateTimePicker.dtToString(d, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
+		  
 		  
 		  CalendarContainer = Nil
 		End Sub
@@ -723,18 +724,14 @@ End
 
 	#tag Method, Flags = &h0
 		Sub PopUpDemo_ReportsNewDate(year as integer, month as integer, day as integer)
-		  var d as new DateTime(year,month,day)
-		  LB_Report.AddRowAt(0, _
-		  "[PopUpDemo] reports a new Date: " + WTEC_DateTimePicker.dtToString(d, locale.Current), _
-		  0)
+		  Var d As New DateTime(year,month,day)
+		  LB_Report.AddRowAt(0), "[PopUpDemo->Event DateChanged] reports a new Date: " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub PopUpDemo_ReportsNewTime(hour as integer, minute as integer, Seconds as integer)
-		  LB_Report.AddRowAt(0, _
-		  "[PopUpDemo] reports a new time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, _
-		  0)
+		  LB_Report.AddRowAt(0, "[PopUpDemo->EventTimeChanged] reports a new Time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
 		End Sub
 	#tag EndMethod
 
@@ -820,7 +817,7 @@ End
 		Sub Pressed()
 		  // pure Calendar Popup without Textfield
 		  
-		  LB_Report.AddRowAt(0, "Open calendar PopUp Demo")
+		  LB_Report.AddRowAt(0, "PopUpDemo->Open")
 		  
 		  
 		  // Setup Calendar Parameters, Caution: This Array is destroyed by Calendar Close!

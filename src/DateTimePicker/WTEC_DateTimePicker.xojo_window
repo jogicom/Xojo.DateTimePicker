@@ -275,7 +275,7 @@ End
 		  Self.Can_ShowCalendar.Top = 0
 		  Self.Can_ShowCalendar.Height = Self.TF_DateInput.Height 
 		  
-		  Var rest As Integer             // Was bleibt für das Textfeld übrig
+		  // Var rest As Integer             // Was bleibt für das Textfeld übrig
 		  
 		  Select Case ViewMode
 		  Case ViewModes.DateOnly
@@ -543,6 +543,7 @@ End
 		  
 		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
 		  TF_DateInput.SetFocus
+		  AcceptInput = oldState
 		  
 		  
 		  // An den Kalender Container weiter melden, wenn geöffnet
@@ -568,8 +569,6 @@ End
 		  AcceptInput = False
 		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
 		  AcceptInput = True
-		  
-		  Var dNew As New DateTime(d.SecondsFrom1970)
 		  
 		  // Das neue Datum an die Hauptanwendung melden
 		  RaiseEvent DateChanged(d.Year,d.Month,d.Day)
@@ -599,6 +598,7 @@ End
 		  
 		  TF_DateInput.SetFocus
 		  
+		  AcceptInput = oldState
 		  
 		  // An den Kalender Container weiter melden, wenn geöffnet
 		  
@@ -633,8 +633,8 @@ End
 
 	#tag Method, Flags = &h0, Description = 5365747A742064696520616B7475656C6C65205A656974
 		Sub SetTime(hour as integer, minute as integer, second as integer)
-		  break
-		  // Setzen eines bestimmten Datums und Uhrzeit im Kalender, durch die Hauptanwendung
+		  Break
+		  // Setzen einer bestimmten Uhrzeit im Kalender, durch die Hauptanwendung
 		  
 		  //actualDate = d
 		  //actualHour = d.Hour
@@ -651,7 +651,7 @@ End
 		  //CalendarContainer.SetDate(d)
 		  //End If
 		  
-		  
+		  #pragma Warning "Hier fehlt noch was!!!!!"
 		End Sub
 	#tag EndMethod
 
@@ -976,6 +976,9 @@ End
 	#tag Event
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
 		  // Datum scrollen
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
 		  
 		  If EnableWheel Then
 		    Var oneDay As New DateInterval

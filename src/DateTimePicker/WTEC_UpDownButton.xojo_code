@@ -38,6 +38,9 @@ Inherits DesktopUpDownArrows
 	#tag Event
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
 		  // UpDown Button Stunden Bedienung mit Wheel
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
 		  
 		  If WheelEnabled Then
 		    If SourceTextfield = Nil Then Return True

@@ -1234,6 +1234,35 @@ End
 		  me.Tooltip = kHelp_PrevYear(loc.Identifier)
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // Jahr Up/Down mit Wheel
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  
+		  If Self.param.EnableWheel Then
+		    
+		    Var oneYear As New DateInterval
+		    oneYear.Years = 1 ' 1 Monats intervall
+		    Var d As New DateTime(workingDate.SecondsFrom1970)
+		    
+		    If deltay < 0 Then
+		      d = d + oneYear
+		    ElseIf deltay > 0 Then
+		      d = d - oneYear
+		    End If
+		    
+		    SetDate(d.Year,d.Month, d.Day)
+		    If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.Year, d.Month, d.Day)
+		    
+		  End If
+		  
+		  
+		  
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag Events PB_MonthDown
 	#tag Event
@@ -1259,6 +1288,35 @@ End
 		  me.Tooltip = kHelp_PrevMonth(loc.Identifier)
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // Monat Up/Down mit Wheel
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  
+		  If Self.param.EnableWheel Then
+		    
+		    Var oneMonth As New DateInterval
+		    oneMonth.Months = 1 ' 1 Monats intervall
+		    Var d As New DateTime(workingDate.SecondsFrom1970)
+		    
+		    If deltay < 0 Then
+		      d = d + oneMonth
+		    ElseIf deltay > 0 Then
+		      d = d - oneMonth
+		    End If
+		    
+		    
+		    SetDate(d.Year,d.Month, d.Day)
+		    If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.Year, d.Month, d.Day)
+		    
+		    
+		  End If
+		  
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag Events PB_MonthUp
 	#tag Event
@@ -1282,6 +1340,35 @@ End
 		Sub Opening()
 		  me.Tooltip = kHelp_NextMonth(loc.Identifier)
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // Monat Up/Down mit Wheel
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  
+		  
+		  If Self.param.EnableWheel Then
+		    
+		    Var oneMonth As New DateInterval
+		    oneMonth.Months = 1 ' 1 Monats intervall
+		    Var d As New DateTime(workingDate.SecondsFrom1970)
+		    
+		    If deltay < 0 Then
+		      d = d + oneMonth
+		    ElseIf deltay > 0 Then
+		      d = d - oneMonth
+		    End If
+		    
+		    SetDate(d.Year,d.Month, d.Day)
+		    If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.Year, d.Month, d.Day)
+		  End If
+		  
+		  
+		  
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events PB_YearUp
@@ -1307,10 +1394,42 @@ End
 		  me.Tooltip = kHelp_NextYear(loc.Identifier)
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // Jahr Up/Down mit Wheel
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  
+		  If Self.param.EnableWheel Then
+		    
+		    Var oneYear As New DateInterval
+		    oneYear.Years = 1 ' 1 Monats intervall
+		    Var d As New DateTime(workingDate.SecondsFrom1970)
+		    
+		    If deltay < 0 Then
+		      d = d + oneYear
+		    ElseIf deltay > 0 Then
+		      d = d - oneYear
+		    End If
+		    
+		    SetDate(d.Year,d.Month, d.Day)
+		    If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.Year, d.Month, d.Day)
+		    
+		  End If
+		  
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag Events LBL_ActualMonthAndYear
 	#tag Event
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  
 		  If AcceptInput Then
 		    Var d As New DateTime(workingDate.SecondsFrom1970)
 		    

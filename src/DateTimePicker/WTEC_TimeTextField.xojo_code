@@ -34,6 +34,9 @@ Inherits DesktopTextField
 	#tag Event
 		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
 		  // Zeit Up/Down mit Wheel
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
 		  
 		  //Die Prüfung auf gültige Werte erfolgt im setter! 
 		  
