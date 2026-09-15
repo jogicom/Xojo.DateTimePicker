@@ -1,5 +1,5 @@
 #tag Class
-Protected Class WTEC_TimeTextField
+ Attributes ( HideFromLibrary ) Protected Class WTEC_TimeTextField
 Inherits DesktopTextField
 	#tag Event
 		Function KeyDown(key As String) As Boolean

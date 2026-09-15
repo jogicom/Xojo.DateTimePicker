@@ -1,5 +1,5 @@
 #tag Class
-Protected Class WTEC_UpDownButton
+ Attributes ( HideFromLibrary ) Protected Class WTEC_UpDownButton
 Inherits DesktopUpDownArrows
 	#tag Event
 		Sub DownPressed()

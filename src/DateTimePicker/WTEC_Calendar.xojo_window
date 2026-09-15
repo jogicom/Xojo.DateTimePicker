@@ -1,5 +1,5 @@
 #tag DesktopWindow
-Begin DesktopContainer WTEC_Calendar
+Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary ) 
    AllowAutoDeactivate=   True
    AllowFocus      =   False
    AllowFocusRing  =   False

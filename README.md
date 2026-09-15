@@ -7,7 +7,7 @@ Getestet wurde das Tool unter LinuxMint und Windows 11 unter **Xojo 2025r1.1**.
 
 Im Prinzip funktioniert das Tool wie der DesktopDateTimePicker unter Windows, unterstützt zur Zeit aber keine Uhrzeit Funktion, da ich das selbst im Augenblick nicht benötigte. Dies wird aber vielleicht in einer zukünftigen Version noch nachgerüstet.
 
-Im geschlossenen Zustand sieht der Picker genauso aus wie unter Windows:<br>
+Im geschlossenen Zustand sieht der Picker genauso aus wie unter Windows (Abhängig von den Settings):<br>
 ![Collapsed Calendar](Pictures/PickerCollapsed.png)
 
 Im geöffneten Zustand sieht der Picker wie folgt aus:<br>
@@ -43,7 +43,7 @@ The tool was tested on Linux Mint and Windows 11 using **Xojo 2025r.1.1**.
 
 In principle, the tool works like the DesktopDateTimePicker in Windows, but it does not currently support a time function, as I do not need that myself at the moment. However, this might be added in a future version.
 
-When closed, the picker looks exactly the same as it does in Windows:<br>
+When closed, the picker looks exactly the same as it does in Windows (Depending on the settings):<br>
 ![Collapsed Calendar](Pictures/PickerCollapsed.png)
 
 When open, the Picker looks like this:<br>
