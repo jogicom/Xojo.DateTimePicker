@@ -909,6 +909,9 @@ End
 		  Self.ForceCalendarUpdate = True
 		  Can_CalendarPicker.Refresh
 		  
+		  // Callback
+		  If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(year,month,day)
+		  
 		  
 		  
 		End Sub
@@ -934,6 +937,10 @@ End
 		  TF_Minute.ForceTime = d.minute
 		  TF_Second.ForceTime = d.second
 		  AcceptInput = oldstate
+		  
+		  // Callback
+		  If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.year,d.Month,d.Day)
+		  If param.SetNewTime <> Nil Then param.SetNewTime.Invoke(d.Hour,d.Minute,d.Second)
 		  
 		  
 		End Sub
@@ -984,6 +991,8 @@ End
 		  TF_Minute.ForceTime = minute
 		  TF_Second.ForceTime = second
 		  
+		  // Callback
+		  if param.SetNewTime <> Nil Then param.SetNewTime.Invoke(hour, minute, second)
 		End Sub
 	#tag EndMethod
 

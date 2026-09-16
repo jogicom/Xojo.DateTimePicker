@@ -29,7 +29,7 @@ Begin DesktopWindow wndCalTest
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
-      Caption         =   "Setze Datum auf 5.1.2024"
+      Caption         =   "Setze Demo 3 auf 5.1.2024"
       Default         =   False
       Enabled         =   True
       FontName        =   "System"
@@ -38,7 +38,7 @@ Begin DesktopWindow wndCalTest
       Height          =   26
       Index           =   -2147483648
       Italic          =   False
-      Left            =   397
+      Left            =   655
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -50,11 +50,11 @@ Begin DesktopWindow wndCalTest
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   482
+      Top             =   259
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   231
+      Width           =   287
    End
    Begin DesktopSeparator Separator1
       Active          =   False
@@ -702,6 +702,68 @@ Begin DesktopWindow wndCalTest
          Width           =   188
       End
    End
+   Begin DesktopButton Button1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Setze Demo 3 auf 28.09.2021 11:52:24"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   26
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   655
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   0
+      TabIndex        =   16
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   297
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   287
+   End
+   Begin DesktopButton Button2
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Setze Demo 3 auf 23:12:11"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   26
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   655
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   0
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   335
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   287
+   End
 End
 #tag EndDesktopWindow
 
@@ -732,26 +794,6 @@ End
 	#tag Method, Flags = &h0
 		Sub PopUpDemo_ReportsNewTime(hour as integer, minute as integer, Seconds as integer)
 		  LB_Report.AddRowAt(0, "[PopUpDemo->EventTimeChanged] reports a new Time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub ReportsClosed(d as datetime, IsChanged as boolean)
-		  MessageBox("Caldendar reports: Is Closed")
-		  
-		  CalendarContainer = Nil
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub ReportsNewDate(d as datetime)
-		  MessageBox("Calendar send a new date: " + WTEC_DateTimePicker.dtToString(d, locale.Current, true))
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub ReportsNewTime(hour as integer, minute as integer)
-		  
 		End Sub
 	#tag EndMethod
 
@@ -809,6 +851,8 @@ End
 		Sub Pressed()
 		  //Var d As New DateTime(2024,1,5)
 		  //WTEC_DateTimePicker1.SetDate(d)
+		  
+		  Demo3.SetDate(2024,1,5)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -943,6 +987,27 @@ End
 		Function InitialDate() As Datetime
 		  
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events Button1
+	#tag Event
+		Sub Pressed()
+		  Demo3.SetDateTime(New DateTime(2021,09,28,11,52,34))
+		  
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Button2
+	#tag Event
+		Sub Pressed()
+		  Demo3.SetTime(23,12,11)
+		  
+		  
+		  
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

@@ -549,7 +549,11 @@ End
 		  // An den Kalender Container weiter melden, wenn geöffnet
 		  
 		  If CalendarContainer <> Nil Then
+		    // Callback wird durch Kalender ausgelöst
 		    CalendarContainer.SetDate(year, month, day)
+		  Else
+		    // Callback
+		    RaiseEvent DateChanged(year, month, day)
 		  End If
 		  
 		  
@@ -603,7 +607,12 @@ End
 		  // An den Kalender Container weiter melden, wenn geöffnet
 		  
 		  If CalendarContainer <> Nil Then
+		    // Callback wird durch Kalender ausgelöst
 		    CalendarContainer.SetDateTime(d)
+		  Else
+		    // Callbacks
+		    RaiseEvent DateChanged(d.Year, d.Month, d.day)
+		    RaiseEvent TimeChanged(d.Hour, d.Minute, d.Second)
 		  End If
 		  
 		  
@@ -633,25 +642,32 @@ End
 
 	#tag Method, Flags = &h0, Description = 5365747A742064696520616B7475656C6C65205A656974
 		Sub SetTime(hour as integer, minute as integer, second as integer)
-		  Break
 		  // Setzen einer bestimmten Uhrzeit im Kalender, durch die Hauptanwendung
+		  Var oldState As Boolean = AcceptInput
+		  AcceptInput = False
 		  
-		  //actualDate = d
-		  //actualHour = d.Hour
-		  //actualMinute = d.Minute
-		  //
-		  //TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
-		  //
-		  //TF_DateInput.SetFocus
-		  //
-		  //
-		  //// An den Kalender Container weiter melden, wenn geöffnet
-		  //
-		  //If CalendarContainer <> Nil Then
-		  //CalendarContainer.SetDate(d)
-		  //End If
+		  actualHour = hour
+		  actualMinute = minute
+		  actualSecond = second
 		  
-		  #pragma Warning "Hier fehlt noch was!!!!!"
+		  TF_Hour.ForceTime = Hour
+		  TF_Minute.ForceTime = Minute
+		  TF_Second.ForceTime = Second
+		  
+		  TF_DateInput.SetFocus
+		  
+		  AcceptInput = oldState
+		  
+		  // An den Kalender Container weiter melden, wenn geöffnet
+		  
+		  If CalendarContainer <> Nil Then
+		    // Callback wird durch Kalender ausgelöst
+		    CalendarContainer.SetTime(hour,minute,second)
+		  Else
+		    // Callback
+		    RaiseEvent TimeChanged(hour, minute, second)
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
