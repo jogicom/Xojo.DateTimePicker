@@ -431,7 +431,7 @@ Begin DesktopWindow wndCalTest
       Left            =   20
       LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   False
+      LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
       Scope           =   2
@@ -477,7 +477,7 @@ Begin DesktopWindow wndCalTest
          LockedInPosition=   False
          LockLeft        =   True
          LockRight       =   True
-         LockTop         =   False
+         LockTop         =   True
          RequiresSelection=   False
          RowSelectionType=   0
          Scope           =   2

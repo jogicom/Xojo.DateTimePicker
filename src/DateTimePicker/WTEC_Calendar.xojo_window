@@ -1037,6 +1037,36 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21, Description = 55706461746520646572205568727A65697420756E642064657320446174756D7320696D2050757368427574746F6E204A45545A54
+		Private Sub UpdateCurrentTimeButton()
+		  // Text des Today Buttons setzen
+		  
+		  Var d As New DateTime(DateTime.Now)
+		  
+		  Select Case param.ViewMode
+		    
+		  Case WTEC_DateTimePicker.ViewModes.DateOnly
+		    PB_SelectToday.Caption = kTodayOnly +" : "+ WTEC_DateTimePicker.dtToString(d, loc)
+		    Timer.CallLater(60000, AddressOf UpdateCurrentTimeButton)    // Jede Minute Datum und Uhrzeit aktualisieren
+		    
+		  Case WTEC_DateTimePicker.ViewModes.DateAndTime
+		    PB_SelectToday.Caption = kTodayNow +" : "+ WTEC_DateTimePicker.dtToString(d, loc, True)
+		    Timer.CallLater(60000, AddressOf UpdateCurrentTimeButton)    // Jede Minute
+		    
+		  Case WTEC_DateTimePicker.ViewModes.DateAndSeconds
+		    PB_SelectToday.Caption = kTodayNow +" : "+ WTEC_DateTimePicker.dtToString(d, loc, True, True)
+		    Timer.CallLater(1000, AddressOf UpdateCurrentTimeButton)     // Jede Sekunde
+		  Else
+		    
+		    PB_SelectToday.Caption = "Unknown ViewMode"
+		    
+		  End Select
+		  
+		  
+		  // Cancel Call Later wird im CloseEvent des Buttons durchgeführt
+		End Sub
+	#tag EndMethod
+
 
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
@@ -1470,26 +1500,7 @@ End
 #tag Events PB_SelectToday
 	#tag Event
 		Sub Opening()
-		  // Text des Today Buttons setzen
-		  
-		  Var d As New DateTime(DateTime.Now)
-		  
-		  Select Case param.ViewMode
-		    
-		  Case WTEC_DateTimePicker.ViewModes.DateOnly
-		    Me.Caption = kTodayOnly +" : "+ WTEC_DateTimePicker.dtToString(d, loc)
-		    
-		  Case WTEC_DateTimePicker.ViewModes.DateAndTime
-		    Me.Caption = kTodayNow +" : "+ WTEC_DateTimePicker.dtToString(d, loc, True)
-		    
-		  Case WTEC_DateTimePicker.ViewModes.DateAndSeconds
-		    Me.Caption = kTodayNow +" : "+ WTEC_DateTimePicker.dtToString(d, loc, True, true)
-		  Else
-		    
-		    Me.Caption = "Unknown ViewMode"
-		    
-		  End Select
-		  
+		  Self.UpdateCurrentTimeButton
 		  
 		  
 		  
@@ -1563,6 +1574,11 @@ End
 		  
 		  
 		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Closing()
+		  Timer.CancelCallLater( AddressOf Self.UpdateCurrentTimeButton)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
