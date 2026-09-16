@@ -54,6 +54,16 @@ Inherits DesktopTextField
 	#tag EndEvent
 
 	#tag Event
+		Sub Opening()
+		  // Textausrichtung setzen auf zentriert
+		  
+		  RaiseEvent Opening
+		  
+		  me.TextAlignment = TextAlignments.Center
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub TextChanged()
 		  // Text wurde im Textfeld geändert, dann unformatierte Ausgabe machen, damit Textfeld auch leer bleiben kann
 		  
@@ -114,6 +124,10 @@ Inherits DesktopTextField
 		End Sub
 	#tag EndMethod
 
+
+	#tag Hook, Flags = &h0, Description = 4F70656E696E67205465787454696D654669656C642C206573207769726420766F6D2053757065722064696520546578746175737269636874756E672067657365747A74
+		Event Opening()
+	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
 		Event TimeChanged(value as integer)

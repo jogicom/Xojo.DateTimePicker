@@ -793,17 +793,16 @@ End
 		  //UpDo_Minute.Height = TF_Minute.Height
 		  
 		  // Die Breite der Buttons anpassen
-		  fw = g.TextWidth ( PB_YearDown.Caption )+ 16
+		  fw = g.TextWidth ( PB_YearDown.Caption )+ WTEC_DateTimePicker.TextFieldBuffer
 		  PB_YearDown.Width = fw
 		  PB_YearUp.Width   = fw
 		  PB_MonthDown.Width = fw
 		  PB_MonthUp.Width = fw
 		  
 		  // Die Breite der Uhrzeit Textfelder anpassen
-		  TF_Hour.Width = g.TextWidth("00") + 8
+		  TF_Hour.Width = g.TextWidth("88") + WTEC_DateTimePicker.TextFieldBuffer
 		  TF_Minute.Width = TF_Hour.Width
-		  
-		  
+		  TF_Second.Width = TF_Hour.Width
 		  
 		  // Die breite und linke Position des Kalender Canvas anpassen
 		  Can_CalendarPicker.Left = param.HMargin_CalendarWindow
@@ -836,10 +835,10 @@ End
 		  PB_SelectToday.Width =  Can_CalendarPicker.Width 
 		  PB_SelectToday.top = Self.Height - param.VMargin_CalendarWindow - PB_SelectToday.Height
 		  
-		  Var b As Integer = g.TextWidth("8888")   // Benötigte Breite für Stunde/ Minute Sekunde berechnen und setzen
-		  TF_Hour.Width = b
-		  TF_Minute.Width = b
-		  TF_Second.Width = b
+		  //Var b As Integer = g.TextWidth("8888")   // Benötigte Breite für Stunde/ Minute Sekunde berechnen und setzen
+		  //TF_Hour.Width = b
+		  //TF_Minute.Width = b
+		  //TF_Second.Width = b
 		  
 		  Select Case param.ViewMode
 		    

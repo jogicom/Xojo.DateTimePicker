@@ -263,11 +263,11 @@ End
 		  Self.TF_Minute.Height = Self.Height
 		  Self.TF_Second.Height = Self.Height
 		  
-		  // Breite der Zeitfelder berechnen
+		  // Breite der Zeitfelder berechnen mit Puffer
 		  p.Graphics.FontName = Fontname
 		  p.Graphics.FontUnit = FontUnit
 		  p.Graphics.FontSize = FontSize
-		  Var tfw As Integer = p.Graphics.TextWidth("888")
+		  Var tfw As Integer = p.Graphics.TextWidth("88") + TextFieldBuffer
 		  Self.TF_Hour.Width   = tfw
 		  Self.TF_Minute.Width = tfw
 		  Self.TF_Second.Width = tfw
@@ -910,6 +910,12 @@ End
 	#tag EndConstant
 
 	#tag Constant, Name = NavigatorIcon, Type = String, Dynamic = False, Default = \"iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACl0lE\nQVR4nO2WsUtVURzHP09By0Xw8pYgN9EaS0u09B8Iu7g09S8Iu7g0u7g0uDglNLg0uDglNLg0uDg0\nRBS4NKRg4S0hk97g9Xv3vXffu8fDe8/vA99w7u+ee973fM8933PO7wU86gKWAZtK61fADvByZCc8\nfO6Kbe0Z8A7YyVwX8BTYA6aT+uMiwDtgN/O+wAnwEngKfALmI3p6LgL2gK9Z7NqI3gV6N3p9bL06\nYmXF90XfAXsZzW1P7gBv86oCHBZZ9V0fW++WvN7v+74D9mOq6D25C6yrK8C3SIs8wCHwZUKfK8bW\nE4HnInu77/sOOMz1/gXmG+wCcF39N+b2L6M7xNbXgXfA36zXpXkX6K6wD7zZfBc4S+zreRZb77Ie\nfB5b70esP+xI+hCg38wA8CO2XgRcCen8DngY0f1D4K36m3Y66fMAnX6OIsAXYDGi+xN4BexP6H/R\nR/I6wDfgfULbU4XbU8AtZbeE3vAKeBPW75M9U/bWbWAn/vOAyw36vgv4pGwPeKn0bKzN08z7wKsh\n7T6P7MhYm3pMdfN17D0pAnzLPNgEwMeIn9b+b2N8wF2e/62fG8m6Wj8B6yq7WqfRorIHzfW6U6df\nNco+g2aZisUq0C7GfQasA/uK3NbeAKeY3eM6ZfdN6w/Asfpu6Z6L/xV6BbyisgdtPZpWf2Y9vAtM\nXFz1l9X3wL6NfS0vY6q2XmU682VlU33bX5/vQvS36e/E/NfU99u1YfIiwIdAofPAb8b/M9M8+oB9\n/f3X6r7WdfpDve8jYFfN3xV/fE2eBqfV98I+D763gZfE6/4b4F3gZabveb1Zfe2gP93GjM9r66/U\nX/8A6A2w9wA3/bIAAAAASUVORK5CYII\x3D\n", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = TextFieldBuffer, Type = Double, Dynamic = False, Default = \"16", Scope = Public, Description = 42656920546578746272656974656E204265726563686E756E67656E2C20736F6C6C746520646965736572205765727420616C73205369636865726865697420616464696572742077657264656E
+		#Tag Instance, Platform = Any, Language = Default, Definition  = \"16"
+		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"12"
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"16"
 	#tag EndConstant
 
 
