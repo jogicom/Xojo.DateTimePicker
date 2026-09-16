@@ -1237,7 +1237,7 @@ End
 		#Tag Instance, Platform = Any, Language = Default, Definition  = \"Today"
 	#tag EndConstant
 
-	#tag Constant, Name = kVersion, Type = String, Dynamic = False, Default = \"V 1.0.1", Scope = Private
+	#tag Constant, Name = kVersion, Type = String, Dynamic = False, Default = \"V 1.0.4", Scope = Private
 	#tag EndConstant
 
 	#tag Constant, Name = kWeekDays, Type = String, Dynamic = True, Default = \"", Scope = Public
