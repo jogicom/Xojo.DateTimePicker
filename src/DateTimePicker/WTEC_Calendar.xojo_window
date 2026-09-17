@@ -462,6 +462,7 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Closing()
+		  
 		  // Kalender wird geschlossen, Nachricht über callback senden
 		  
 		  Var d As New DateTime(workingDate.Year, workingDate.Month, workingDate.Day, lastValidHour,lastValidMinute, lastValidSecond)
@@ -469,6 +470,12 @@ End
 		  If param.CalendarClose <> Nil Then param.CalendarClose.Invoke(d, IsDateDifferent(d,startDateTime))
 		  
 		  param = Nil
+		  
+		  UnRegister(Self)
+		  
+		  
+		  
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -478,6 +485,12 @@ End
 		  // Kalender schliessen, wenn Maus die Kalender Area verlässt und AutoCollapse aktiv ist
 		  
 		  If param.AutoCollapse And param.AutoCloseWhenMouseExit Then Self.close
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub MouseMove(x As Integer, y As Integer)
+		  System.DebugLog("MouseMove ID: " + self.CalendarID.ToString + " X = " + x.ToString + " Y = " + y.ToString)
 		End Sub
 	#tag EndEvent
 
@@ -525,7 +538,7 @@ End
 		    
 		  End If
 		  
-		  AcceptInput = True
+		  
 		End Sub
 	#tag EndEvent
 
@@ -559,8 +572,8 @@ End
 
 	#tag Method, Flags = &h0
 		Sub Constructor(p as WTEC_PickerParameter)
-		  // Calling the overridden superclass constructor.
-		  Super.Constructor
+		  Self.CalendarID = GetID
+		  
 		  
 		  // Parameter wie Sprungsziele und Einstellungen laden, die Liste wird beim close Event zerstört (NIL)
 		  param = p
@@ -605,7 +618,10 @@ End
 		  End Try
 		  #Pragma BreakOnExceptions True
 		  
-		  AcceptInput=False    // Wird im Opening auf True gesetzt
+		  // Calling the overridden superclass constructor. (Process Open Events)
+		  Super.Constructor
+		  
+		  AcceptInput = True      // Dieses Flag ist per default False, ab jetzt werden eingaben verarbeitet
 		End Sub
 	#tag EndMethod
 
@@ -766,6 +782,33 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 45696E62657474656E206465732043616C64657220506F7075707320696E206461732057696E646F7720756E642052656769737472696572756E67207A756D206E616368766572666F6C67656E20646572205A2D4F726465722C2077656E6E206D6568726572652043616C656E646572506F70557073206765C3B666666E65742073696E64
+		Shared Sub Register(mySelf As WTEC_Calendar, containingControl As DesktopWindow, left As Integer = 0, top As Integer = 0, width As Integer = -1, height As Integer = -1)
+		  mySelf.EmbedWithin(containingControl, Left, top, width,height)
+		  
+		  Var cal As WTEC_Calendar
+		  If zOrder.Count <> 0 Then
+		    // Wenn in dem Parent Window bereits ein Kalender geöffnet ist, diesen automatisch schliessen
+		    
+		    For r As Integer = zOrder.LastIndex DownTo 0
+		      If zOrder(r).Value <> Nil Then
+		        cal = WTEC_Calendar(zOrder(r).Value)
+		        If mySelf.Window = cal.Window Then 
+		          cal.Close
+		          // Wird beim Close durch unregister aus der Liste gelöscht
+		          //zOrder.RemoveAt(r)
+		        End If
+		      End If
+		      
+		    Next
+		    
+		    
+		  End If
+		  
+		  zOrder.Add(New WeakRef(myself))
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21, Description = 5365747A742064696520506F736974696F6E20616C6C657220436F6E74726F6C7320756E64206175636820646572656E204772C3B6C39F652061756620646572204B616C656E64657220416E77656E64756E67
 		Private Sub SetControlPositions(g as graphics)
 		  // ==========================================================================
@@ -917,8 +960,8 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496D204B616C656E6465722065696E206E6575657320446174756D207365747A656E20756E64205568727A656974
-		Sub SetDateTime(d as datetime)
-		  // Setzen des Arbeitsdatums und der Uhrzeit von aussen aus der Hauptanwendung
+		Sub SetDateTime(d as datetime, force as boolean = false)
+		  // Setzen des Arbeitsdatums und der Uhrzeit von aussen aus der Hauptanwendung oder vom DateTimePicker
 		  
 		  workingDate = New DateTime(d.SecondsFrom1970)
 		  startDateTime = New DateTime(workingDate.SecondsFrom1970)
@@ -938,8 +981,10 @@ End
 		  AcceptInput = oldstate
 		  
 		  // Callback
-		  If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.year,d.Month,d.Day)
-		  If param.SetNewTime <> Nil Then param.SetNewTime.Invoke(d.Hour,d.Minute,d.Second)
+		  If Not force Then
+		    If param.SetNewDate <> Nil Then param.SetNewDate.Invoke(d.year,d.Month,d.Day)
+		    If param.SetNewTime <> Nil Then param.SetNewTime.Invoke(d.Hour,d.Minute,d.Second)
+		  end if
 		  
 		  
 		End Sub
@@ -976,7 +1021,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5365747A7420696D204B616C656E6465722065696E65204E657565205568727A6569742C204E5552205568727A6569742C206B65696E20446174756D
-		Sub SetTime(hour as integer, minute as integer, second as integer)
+		Sub SetTime(hour as integer, minute as integer, second as integer, force as boolean = false)
 		  // Setzen der Zeit von aussen aus der Hauptanwendung
 		  
 		  workingDate = New DateTime(workingDate.Year,workingDate.Month, workingDate.day, hour, minute, second)
@@ -991,7 +1036,28 @@ End
 		  TF_Second.ForceTime = second
 		  
 		  // Callback
-		  if param.SetNewTime <> Nil Then param.SetNewTime.Invoke(hour, minute, second)
+		  If Not force Then
+		    If param.SetNewTime <> Nil Then param.SetNewTime.Invoke(hour, minute, second)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, Description = 456E746665726E742065696E656E204B616C656E6465722061757320646572205A2D4F7264657220C3BC62657277616368756E67
+		Private Shared Sub UnRegister(control as WTEC_Calendar)
+		  If zOrder.Count <> 0 Then
+		    Var cal As WTEC_Calendar
+		    For r As Integer = 0 To zOrder.LastIndex
+		      If zOrder(r).Value <> Nil Then
+		        cal = WTEC_Calendar(zOrder(r).Value)
+		        If cal.CalendarID = control.CalendarID Then
+		          zOrder(r) = Nil
+		          zOrder.RemoveAt(r)
+		          Return
+		        End If
+		      End If
+		    Next
+		    
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -1088,6 +1154,10 @@ End
 		Private AcceptInput As boolean
 	#tag EndComputedProperty
 
+	#tag Property, Flags = &h21
+		Private CalendarID As Integer = 0
+	#tag EndProperty
+
 	#tag Property, Flags = &h21, Description = 4461732041727261792064657220576F6368656E7461676520646965736573204B616C656E64657273
 		Private DayNameAreas() As WTEC_DayArea
 	#tag EndProperty
@@ -1103,6 +1173,19 @@ End
 	#tag Property, Flags = &h21, Description = 57656E6E20547275652C2077657264656E206265692065696E656D205061696E74204576656E74207A75657273742064696520436F6E74726F6C7320506F736974696F6E69657274
 		Private fReCalcControlPositions As boolean = TRUE
 	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h21
+		#tag Getter
+			Get
+			  static zID as integer = 0
+			  
+			  zId = zId + 1
+			  
+			  Return zId
+			End Get
+		#tag EndGetter
+		Private Shared GetID As Integer
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21, Description = 446965205A756C65747A2067C3BC6C74696765205374756E64652C2064696520766F6D205374756E64656E205465787466656C642065726661737374207775726465
 		Private lastValidHour As Integer = 0
@@ -1177,11 +1260,15 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private zAcceptInput As boolean = true
+		Private zAcceptInput As boolean = false
 	#tag EndProperty
 
 	#tag Property, Flags = &h21, Description = 496E7465726E65722053706569636865722064657320496E64657865732C206E6963687420646972656B742062656E75747A656E21
 		Private zLiteHighLightIndex As Integer = -1
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 456E7468C3A46C74206469652052656968656E666F6C676520285A2D4F726465722920646572206765C3B666666E6574656E204B616C656E64657220506F70557073
+		Private Shared zOrder() As WeakRef
 	#tag EndProperty
 
 

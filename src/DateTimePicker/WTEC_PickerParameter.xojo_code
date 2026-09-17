@@ -241,6 +241,14 @@ Protected Class WTEC_PickerParameter
 				"4 - Millimeter"
 			#tag EndEnumValues
 		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EnableWheel"
+			Visible=false
+			Group="Behavior"
+			InitialValue="True"
+			Type="boolean"
+			EditorType=""
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass

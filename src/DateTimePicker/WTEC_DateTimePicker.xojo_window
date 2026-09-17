@@ -677,9 +677,10 @@ End
 		  actualMinute = minute
 		  actualSecond = second
 		  
+		  TF_Hour.ForceTime = hour
+		  TF_Minute.ForceTime = minute
+		  TF_Second.ForceTime = second
 		  
-		  
-		  #Pragma Warning "Setzen der entsprechenden Textfelder fehlt noch"
 		  
 		  RaiseEvent TimeChanged(actualHour, actualMinute, actualSecond)
 		  
@@ -833,7 +834,8 @@ End
 			        // In das Ziel-Control (z.B. eine GroupBox1) einbetten
 			        // Y-Position direkt unter dem Textfeld
 			        p.y = p.y + TF_DateInput.Height
-			        CalendarContainer.EmbedWithin(Self.Window, p.x, p.y)
+			        WTEC_Calendar.Register(CalendarContainer,Self.Window, p.x, p.y)
+			        //CalendarContainer.EmbedWithin(Self.Window, p.x, p.y)
 			      End If
 			      zIsExpanded = True
 			      Refresh
@@ -1120,7 +1122,9 @@ End
 		  If actualHour <> value Then
 		    actualHour = value
 		    actualDate = New DateTime(actualDate.Year, actualDate.Month, actualDate.Day, actualHour, actualMinute, actualSecond)
-		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond)
+		    
+		    // An geöffneten Kalender melden, CallBack unterdrückt
+		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond, True)
 		    
 		    RaiseEvent TimeChanged(actualHour,actualMinute,actualSecond)
 		    
@@ -1139,7 +1143,9 @@ End
 		  If actualMinute <> value Then
 		    actualMinute = value
 		    actualDate = New DateTime(actualDate.Year, actualDate.Month, actualDate.Day, actualHour, actualMinute, actualSecond)
-		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond)
+		    
+		    // An geöffneten Kalender melden, CallBack unterdrückt
+		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond, true)
 		    RaiseEvent TimeChanged(actualHour,actualMinute,actualSecond)
 		  End If
 		End Sub
@@ -1156,7 +1162,9 @@ End
 		  If actualSecond <> value Then
 		    actualSecond = value
 		    actualDate = New DateTime(actualDate.Year, actualDate.Month, actualDate.Day, actualHour, actualMinute, actualSecond)
-		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond)
+		    
+		    // An geöffneten Kalender melden, CallBack unterdrückt
+		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond,True)
 		    RaiseEvent TimeChanged(actualHour,actualMinute,actualSecond)
 		  End If
 		End Sub
