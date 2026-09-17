@@ -523,16 +523,27 @@ End
 		  
 		  // Prüfen ob der Kalender komplett sichtbar ist
 		  
-		  Var wo As Object = Self.Parent
-		  
-		  If wo IsA DesktopWindow Then
-		    Var w As DesktopWindow = DesktopWindow(wo)
-		    If Self.Left + Self.Width > w.Width Then
-		      // Kalender passt nicht in das Fenster versuchen nach links zu verschieben
-		      Var zuviel As Integer = ( Self.Left + Self.Width) - w.Width
-		      Var newleft As Integer =  Self.Left - zuviel
+		  If param.EnableAutoPosition Then
+		    Var wo As Object = Self.Parent
+		    
+		    If wo IsA DesktopWindow Then
+		      Var w As DesktopWindow = DesktopWindow(wo)
+		      If Self.Left + Self.Width > w.Width Then
+		        // Kalender passt nicht in das Fenster, wird rechts abgeschnitten versuchen nach links zu verschieben
+		        Var zuviel As Integer = ( Self.Left + Self.Width) - w.Width
+		        Var newleft As Integer =  Self.Left - zuviel
+		        
+		        If newleft >= 0 Then Self.Left = newleft       // Kalender kann verschoben werden, er passt in das Window, ansonsten PECH gehabt, einfach zu wenig Platz!
+		        
+		      End If
 		      
-		      If newleft >= 0 Then Self.Left = newleft       // Kalender kann verschoben werden, er passt in das Window, ansonsten PECH gehabt, einfach zu wenig Platz!
+		      If Self.top + Self.Height > w.Height Then
+		        // Kalender passt nicht in das Fenster, wird unten abgeschnitten versuchen nach oben zu verschieben
+		        Var zuviel As Integer = (Self.Top + Self.Height) - w.Height
+		        Var newtop As Integer = Self.top - zuviel
+		        If newtop >= 0 Then Self.Top = newtop        // Kalender kann verschoben werden, er passt in das Window, ansonsten PECH gehabt, einfach zu wenig Platz!
+		        
+		      End If
 		      
 		    End If
 		    
@@ -1174,7 +1185,7 @@ End
 		Private fReCalcControlPositions As boolean = TRUE
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h21
+	#tag ComputedProperty, Flags = &h21, Description = 466F726C617566656E64652052756E54696D65204B616C656E646572204944
 		#tag Getter
 			Get
 			  static zID as integer = 0

@@ -279,6 +279,7 @@ Begin DesktopWindow wndCalTest
          Backdrop        =   0
          BackgroundColor =   &cFFFFFF
          Composited      =   False
+         EnableAutoPosition=   False
          Enabled         =   True
          EnableWheel     =   True
          FirstWeekday    =   1
@@ -383,6 +384,7 @@ Begin DesktopWindow wndCalTest
          Backdrop        =   0
          BackgroundColor =   &cFFFFFF
          Composited      =   False
+         EnableAutoPosition=   False
          Enabled         =   True
          EnableWheel     =   True
          FirstWeekday    =   2
@@ -564,6 +566,7 @@ Begin DesktopWindow wndCalTest
          Backdrop        =   0
          BackgroundColor =   &cFFFFFF
          Composited      =   False
+         EnableAutoPosition=   False
          Enabled         =   True
          EnableWheel     =   True
          FirstWeekday    =   2
@@ -668,6 +671,7 @@ Begin DesktopWindow wndCalTest
          Backdrop        =   0
          BackgroundColor =   &cFFFFFF
          Composited      =   False
+         EnableAutoPosition=   True
          Enabled         =   True
          EnableWheel     =   True
          FirstWeekday    =   1
@@ -777,23 +781,24 @@ End
 
 	#tag Method, Flags = &h0
 		Sub PopUpDemo_ReportsClosed(d as datetime, IsChanged as boolean)
-		  LB_Report.AddRowAt(0, "[PopUpDemo->Event CalendarClosed] Closed with Date: " + WTEC_DateTimePicker.dtToString(d, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"[PopUpDemo->Event CalendarClosed] Closed with Date: " + WTEC_DateTimePicker.dtToString(d, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
 		  
 		  
 		  CalendarContainer = Nil
+		  PB_Popup.Enabled = true
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub PopUpDemo_ReportsNewDate(year as integer, month as integer, day as integer)
 		  Var d As New DateTime(year,month,day)
-		  LB_Report.AddRowAt(0), "[PopUpDemo->Event DateChanged] reports a new Date: " + WTEC_DateTimePicker.dtToString(d , locale.Current)
+		  LB_Report.AddRowAt(0),  LB_Report.RowCount.ToString("000") + ". " +"[PopUpDemo->Event DateChanged] reports a new Date: " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub PopUpDemo_ReportsNewTime(hour as integer, minute as integer, Seconds as integer)
-		  LB_Report.AddRowAt(0, "[PopUpDemo->EventTimeChanged] reports a new Time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
+		  LB_Report.AddRowAt(0, LB_Report.RowCount.ToString("000") + ". " + "[PopUpDemo->EventTimeChanged] reports a new Time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
 		End Sub
 	#tag EndMethod
 
@@ -861,7 +866,9 @@ End
 		Sub Pressed()
 		  // pure Calendar Popup without Textfield
 		  
-		  LB_Report.AddRowAt(0, "PopUpDemo->Open")
+		  me.Enabled = False
+		  
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"PopUpDemo->Open")
 		  
 		  
 		  // Setup Calendar Parameters, Caution: This Array is destroyed by Calendar Close!
@@ -893,19 +900,19 @@ End
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C74
 		Sub DateChanged(year as integer, month as integer, day as integer)
 		  Var d As New DateTime(year,month,day)
-		  LB_Report.AddRowAt(0), "[Demo2->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(d , locale.Current)
+		  LB_Report.AddRowAt(0),  LB_Report.RowCount.ToString("000") + ". " +"[Demo2->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 57656E6E207369636820646572204B616C656E6465722067657363686C6F7373656E206861742C207769726420C3BC6265722064696573656E204576656E7420696E666F726D696572742E2064617465203D205568727A6569742F446174756D2C2049734368616E67656420545255452077656E6E20446174656E206765C3A46E6465727420777572646520736569742064656D204F70656E
 		Sub CalendarClosed(date as DateTime, IsChanged as boolean)
-		  LB_Report.AddRowAt(0, "[Demo2->Event CalendarClosed] Reports closed  with Date: " _
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"[Demo2->Event CalendarClosed] Reports closed  with Date: " _
 		  + WTEC_DateTimePicker.dtToString(date, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 496D204B616C656E646572207775726420646569205568727A656974206765C3A46E646572742C20446174756D20697374206175662064656D206C65747A74656E205374616E64
 		Sub TimeChanged(hour as integer, minute as integer, seconds as integer)
-		  LB_Report.AddRowAt(0, "[Demo2->Event TimeChanged] reports a new Time : " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"[Demo2->Event TimeChanged] reports a new Time : " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4D69742077656C6368656D20446174756D20736F6C6C20646572204B616C656E646572206265696D20537461727420696E6974616C6973696572742077657264656E
@@ -944,7 +951,7 @@ End
 	#tag Event , Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C742C20646965204D656C64756E672069737420696E636C7573697665205A656974
 		Sub DateChanged(year as integer, month as integer, day as integer)
 		  Var d As New DateTime(year,month,day)
-		  LB_Report.AddRowAt(0), "[Demo1->Event DateChanged] reports a new Date: " + WTEC_DateTimePicker.dtToString(d , locale.Current)
+		  LB_Report.AddRowAt(0),  LB_Report.RowCount.ToString("000") + ". " +"[Demo1->Event DateChanged] reports a new Date: " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4D69742077656C6368656D20446174756D20736F6C6C20646572204B616C656E646572206265696D20537461727420696E6974616C6973696572742077657264656E
@@ -954,12 +961,12 @@ End
 	#tag EndEvent
 	#tag Event , Description = 496D204B616C656E646572207775726420646569205568727A656974206765C3A46E646572742C20446174756D20697374206175662064656D206C65747A74656E205374616E64
 		Sub TimeChanged(hour as integer, minute as integer, seconds as integer)
-		  LB_Report.AddRowAt(0, "[Demo1->EventTimeChanged] reports a new Time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"[Demo1->EventTimeChanged] reports a new Time: " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 57656E6E207369636820646572204B616C656E6465722067657363686C6F7373656E206861742C207769726420C3BC6265722064696573656E204576656E7420696E666F726D696572742E2064617465203D205568727A6569742F446174756D2C2049734368616E67656420545255452077656E6E20446174656E206765C3A46E6465727420777572646520736569742064656D204F70656E
 		Sub CalendarClosed(date as DateTime, IsChanged as boolean)
-		  LB_Report.AddRowAt(0, "[Demo1->Event CalendarClosed] Closed with Date: " + WTEC_DateTimePicker.dtToString(date, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"[Demo1->Event CalendarClosed] Closed with Date: " + WTEC_DateTimePicker.dtToString(date, locale.Current) + " IsChanged=" + IsChanged.ToString, 0)
 		  
 		End Sub
 	#tag EndEvent
@@ -968,19 +975,19 @@ End
 	#tag Event
 		Sub DateChanged(year as integer, month as integer, day as integer)
 		  Var d As New DateTime(year,month,day)
-		  LB_Report.AddRowAt(0), "[Demo4->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(d , locale.Current)
+		  LB_Report.AddRowAt(0),  LB_Report.RowCount.ToString("000") + ". " +"[Demo4->Event DateChanged] reports a new Date : " + WTEC_DateTimePicker.dtToString(d , locale.Current)
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub CalendarClosed(date as DateTime, IsChanged as boolean)
-		  LB_Report.AddRowAt(0, "[Demo4->Event CalendarClosed] Reports closed  with Date: " _
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"[Demo4->Event CalendarClosed] Reports closed  with Date: " _
 		  + WTEC_DateTimePicker.dtToString(date, locale.Current,true) + " IsChanged=" + IsChanged.ToString, 0)
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub TimeChanged(hour as integer, minute as integer, seconds as integer)
-		  LB_Report.AddRowAt(0, "[Demo4->Event TimeChanged] reports a new Time : " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
+		  LB_Report.AddRowAt(0,  LB_Report.RowCount.ToString("000") + ". " +"[Demo4->Event TimeChanged] reports a new Time : " + hour.ToString + ":" + minute.ToString + "::" + seconds.ToString, 0)
 		End Sub
 	#tag EndEvent
 	#tag Event

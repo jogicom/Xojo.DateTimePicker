@@ -755,6 +755,10 @@ End
 		Private CalendarContainer As WTEC_Calendar = nil
 	#tag EndProperty
 
+	#tag Property, Flags = &h0, Description = 57656E6E20547275653A2046616C6C73204B616C656E64657220766F6D2057696E646F7720616267657363686E697474656E20776972642C206D616368746520646572204B616C656E6465722065696E656E20506F736974696F6E73C3A46E646572756E6720756D20736963686572207A75207374656C6C656E2C2064617373206572206E696368742062657363686E697474656E2077697264
+		EnableAutoPosition As boolean = false
+	#tag EndProperty
+
 	#tag Property, Flags = &h0, Description = 45726C61756274206469652046656C646572737465756572756E672070657220576865656C204D617573726164202854727565203D2044656661756C7429
 		EnableWheel As boolean = true
 	#tag EndProperty
@@ -824,6 +828,7 @@ End
 			        para.ForceLocale            = ForceLocale
 			        para.ViewMode               = ViewMode                            // Kalender Mode
 			        para.EnableWheel            = EnableWheel
+			        para.EnableAutoPosition     = EnableAutoPosition
 			        // Fontparameter
 			        para.Fontname               = Fontname
 			        para.FontUnit               = FontUnit
@@ -1396,6 +1401,14 @@ End
 			"1 - DateAndTime"
 			"2 - DateAndSeconds"
 		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="EnableAutoPosition"
+		Visible=true
+		Group="Calendar Behavor"
+		InitialValue="False"
+		Type="boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="EnableWheel"
