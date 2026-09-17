@@ -5,6 +5,7 @@
 | **AutoCollapse**            | True              | True = nach Anwahl eines Datums wird der Kalender automatisch geschlossen |
 | **AutoCollapseOnMouseExit** | False             | True = sobald der Mauszeiger den Kalender verlässt, wird er automatisch geschlossen |
 | **EnableWheel**             | True              | True = Datumsfelder können auch mit dem Mausrad geändert werden    |
+| **EnableAutoPosition**      | false             | True = wenn der Kalender durch das Parent Window beschnitten wird, versucht der Kalender automatisch durch neu Positionieren das auszugleichen |
 | **FirstWeekDay**            | Monday            | Hier kann über die Aufzählung WTEC_DateTimePicker.FirstWeekDays der Wochenbeginn festgelegt werden |
 | **Fontname**                | System            | Im Kalender verwendeter Font |
 | **FontSize**                | 0                 | Im Kalender verwendete Fontgrösse |
