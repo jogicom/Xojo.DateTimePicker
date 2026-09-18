@@ -834,12 +834,12 @@ End
 			        para.FontUnit               = FontUnit
 			        para.FontSize               = FontSize
 			        
-			        CalendarContainer =  New WTEC_Calendar(para)
+			        CalendarContainer =  New WTEC_Calendar(Self.Window, self.Left, self.Top + self.Height,para)
 			        
 			        // In das Ziel-Control (z.B. eine GroupBox1) einbetten
 			        // Y-Position direkt unter dem Textfeld
-			        p.y = p.y + TF_DateInput.Height
-			        WTEC_Calendar.Register(CalendarContainer,Self.Window, p.x, p.y)
+			        //p.y = p.y + TF_DateInput.Height
+			        //WTEC_Calendar.Register(CalendarContainer,Self.Window, p.x, p.y)
 			        //CalendarContainer.EmbedWithin(Self.Window, p.x, p.y)
 			      End If
 			      zIsExpanded = True

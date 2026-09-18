@@ -888,10 +888,10 @@ End
 		  para.AutoCloseWhenMouseExit = True                               // If True, calendar is closed by MousExit
 		  
 		  
-		  CalendarContainer =  New WTEC_Calendar(para)      // Create a Calendar instance
+		  CalendarContainer =  New WTEC_Calendar(self, 20,20, para)      // Create a Calendar instance
 		  
 		  //  note that the calendar position is absolute, you can calc absolute position with methode WTEC_DateTimePicker.clcAbsPosition 
-		  CalendarContainer.EmbedWithin(wndCalTest, 20, 20)
+		  //CalendarContainer.EmbedWithin(wndCalTest, 20, 20)
 		  
 		End Sub
 	#tag EndEvent

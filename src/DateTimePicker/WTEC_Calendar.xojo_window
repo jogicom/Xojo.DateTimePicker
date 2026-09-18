@@ -1,30 +1,30 @@
 #tag DesktopWindow
-Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary ) 
-   AllowAutoDeactivate=   True
-   AllowFocus      =   False
-   AllowFocusRing  =   False
-   AllowTabs       =   True
+Begin DesktopWindow WTEC_Calendar
    Backdrop        =   0
    BackgroundColor =   &cFFFFFF
-   Composited      =   False
-   Enabled         =   True
+   Composite       =   False
+   DefaultLocation =   2
+   FullScreen      =   False
    HasBackgroundColor=   False
-   Height          =   328
-   Index           =   -2147483648
-   InitialParent   =   ""
-   Left            =   0
-   LockBottom      =   False
-   LockLeft        =   True
-   LockRight       =   False
-   LockTop         =   True
-   TabIndex        =   0
-   TabPanelIndex   =   0
-   TabStop         =   True
-   Tooltip         =   ""
-   Top             =   0
-   Transparent     =   False
+   HasCloseButton  =   False
+   HasFullScreenButton=   False
+   HasMaximizeButton=   False
+   HasMinimizeButton=   False
+   HasTitleBar     =   False
+   Height          =   400
+   ImplicitInstance=   False
+   MacProcID       =   0
+   MaximumHeight   =   32000
+   MaximumWidth    =   32000
+   MenuBar         =   ""
+   MenuBarVisible  =   False
+   MinimumHeight   =   64
+   MinimumWidth    =   64
+   Resizeable      =   False
+   Title           =   "Untitled"
+   Type            =   3
    Visible         =   True
-   Width           =   307
+   Width           =   600
    Begin DesktopButton PB_YearDown
       AllowAutoDeactivate=   True
       Bold            =   False
@@ -38,7 +38,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Height          =   26
       Index           =   -2147483648
       Italic          =   False
-      Left            =   11
+      Left            =   31
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -50,7 +50,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   20
+      Top             =   40
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -69,7 +69,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Height          =   26
       Index           =   -2147483648
       Italic          =   False
-      Left            =   51
+      Left            =   71
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -81,7 +81,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   20
+      Top             =   40
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -100,7 +100,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Height          =   26
       Index           =   -2147483648
       Italic          =   False
-      Left            =   212
+      Left            =   232
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -112,7 +112,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   20
+      Top             =   40
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -131,7 +131,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Height          =   26
       Index           =   -2147483648
       Italic          =   False
-      Left            =   252
+      Left            =   272
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -143,7 +143,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   20
+      Top             =   40
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -159,7 +159,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Height          =   20
       Index           =   -2147483648
       Italic          =   False
-      Left            =   71
+      Left            =   91
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -175,7 +175,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TextAlignment   =   2
       TextColor       =   &c000000
       Tooltip         =   ""
-      Top             =   26
+      Top             =   46
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -194,7 +194,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Height          =   26
       Index           =   -2147483648
       Italic          =   False
-      Left            =   83
+      Left            =   103
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -206,7 +206,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   282
+      Top             =   302
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -221,7 +221,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Enabled         =   True
       Height          =   177
       Index           =   -2147483648
-      Left            =   11
+      Left            =   31
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -232,7 +232,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   58
+      Top             =   78
       Transparent     =   False
       Visible         =   True
       Width           =   276
@@ -256,7 +256,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   91
+      Left            =   111
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -266,7 +266,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   11
+      TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -274,7 +274,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TextColor       =   &c000000
       TimeValue       =   0
       Tooltip         =   ""
-      Top             =   247
+      Top             =   267
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
@@ -300,7 +300,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   39
+      Left            =   59
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -310,7 +310,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   12
+      TabIndex        =   8
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -318,7 +318,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TextColor       =   &c000000
       TimeValue       =   0
       Tooltip         =   ""
-      Top             =   248
+      Top             =   268
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
@@ -329,11 +329,12 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   False
+      AllowTabStop    =   True
       Enabled         =   True
       Height          =   23
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   20
+      Left            =   40
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -341,11 +342,10 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       LockTop         =   True
       PanelIndex      =   0
       Scope           =   2
-      TabIndex        =   13
+      TabIndex        =   9
       TabPanelIndex   =   0
-      TabStop         =   True
       Tooltip         =   ""
-      Top             =   247
+      Top             =   267
       Transparent     =   False
       Visible         =   True
       Width           =   14
@@ -358,11 +358,12 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   False
+      AllowTabStop    =   True
       Enabled         =   True
       Height          =   23
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   134
+      Left            =   154
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -370,11 +371,10 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       LockTop         =   True
       PanelIndex      =   0
       Scope           =   2
-      TabIndex        =   14
+      TabIndex        =   10
       TabPanelIndex   =   0
-      TabStop         =   True
       Tooltip         =   ""
-      Top             =   247
+      Top             =   267
       Transparent     =   False
       Visible         =   True
       Width           =   14
@@ -402,7 +402,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   160
+      Left            =   180
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -412,7 +412,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   15
+      TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -420,7 +420,7 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       TextColor       =   &c000000
       TimeValue       =   0
       Tooltip         =   ""
-      Top             =   247
+      Top             =   267
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
@@ -431,11 +431,12 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       Active          =   False
       AllowAutoDeactivate=   True
       AllowFocus      =   False
+      AllowTabStop    =   True
       Enabled         =   True
       Height          =   23
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   212
+      Left            =   232
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -443,11 +444,10 @@ Begin DesktopContainer WTEC_Calendar Attributes ( HideFromLibrary )
       LockTop         =   True
       PanelIndex      =   0
       Scope           =   2
-      TabIndex        =   16
+      TabIndex        =   12
       TabPanelIndex   =   0
-      TabStop         =   True
       Tooltip         =   ""
-      Top             =   248
+      Top             =   268
       Transparent     =   False
       Visible         =   True
       Width           =   14
@@ -471,12 +471,32 @@ End
 		  
 		  param = Nil
 		  
-		  UnRegister(Self)
+		  UnRegister(Self.CalendarID)
 		  
 		  
 		  
 		  
 		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Function KeyDown(key As String) As Boolean
+		  If key = String.Chr(27) Then
+		    // ESC wurde gedrückt! 
+		    
+		    Self.Close
+		    
+		    // Wichtig: Return True signalisiert Xojo, dass das Event verarbeitet wurde
+		    // und verhindert, dass das OS das Standard-Aktion (z.B. Piepton) ausführt.
+		    Return True
+		  End If
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub MouseEnter()
+		  self.Show
 		End Sub
 	#tag EndEvent
 
@@ -489,13 +509,9 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub MouseMove(x As Integer, y As Integer)
-		  System.DebugLog("MouseMove ID: " + self.CalendarID.ToString + " X = " + x.ToString + " Y = " + y.ToString)
-		End Sub
-	#tag EndEvent
-
-	#tag Event
 		Sub Opening()
+		  
+		  
 		  // Berechnen der nötigen Breite und Höhe des Kalenders dazu wird temporär ein Picture erzeugt
 		  
 		  Var p As New Picture(100,100)
@@ -523,32 +539,32 @@ End
 		  
 		  // Prüfen ob der Kalender komplett sichtbar ist
 		  
-		  If param.EnableAutoPosition Then
-		    Var wo As Object = Self.Parent
-		    
-		    If wo IsA DesktopWindow Then
-		      Var w As DesktopWindow = DesktopWindow(wo)
-		      If Self.Left + Self.Width > w.Width Then
-		        // Kalender passt nicht in das Fenster, wird rechts abgeschnitten versuchen nach links zu verschieben
-		        Var zuviel As Integer = ( Self.Left + Self.Width) - w.Width
-		        Var newleft As Integer =  Self.Left - zuviel
-		        
-		        If newleft >= 0 Then Self.Left = newleft       // Kalender kann verschoben werden, er passt in das Window, ansonsten PECH gehabt, einfach zu wenig Platz!
-		        
-		      End If
-		      
-		      If Self.top + Self.Height > w.Height Then
-		        // Kalender passt nicht in das Fenster, wird unten abgeschnitten versuchen nach oben zu verschieben
-		        Var zuviel As Integer = (Self.Top + Self.Height) - w.Height
-		        Var newtop As Integer = Self.top - zuviel
-		        If newtop >= 0 Then Self.Top = newtop        // Kalender kann verschoben werden, er passt in das Window, ansonsten PECH gehabt, einfach zu wenig Platz!
-		        
-		      End If
-		      
-		    End If
-		    
-		  End If
-		  
+		  //If param.EnableAutoPosition Then
+		  //Var wo As Object = Self.Parent
+		  //
+		  //If wo IsA DesktopWindow Then
+		  //Var w As DesktopWindow = DesktopWindow(wo)
+		  //If Self.Left + Self.Width > w.Width Then
+		  //// Kalender passt nicht in das Fenster, wird rechts abgeschnitten versuchen nach links zu verschieben
+		  //Var zuviel As Integer = ( Self.Left + Self.Width) - w.Width
+		  //Var newleft As Integer =  Self.Left - zuviel
+		  //
+		  //If newleft >= 0 Then Self.Left = newleft       // Kalender kann verschoben werden, er passt in das Window, ansonsten PECH gehabt, einfach zu wenig Platz!
+		  //
+		  //End If
+		  //
+		  //If Self.top + Self.Height > w.Height Then
+		  //// Kalender passt nicht in das Fenster, wird unten abgeschnitten versuchen nach oben zu verschieben
+		  //Var zuviel As Integer = (Self.Top + Self.Height) - w.Height
+		  //Var newtop As Integer = Self.top - zuviel
+		  //If newtop >= 0 Then Self.Top = newtop        // Kalender kann verschoben werden, er passt in das Window, ansonsten PECH gehabt, einfach zu wenig Platz!
+		  //
+		  //End If
+		  //
+		  //End If
+		  //
+		  //End If
+		  #pragma Warning "Autopos deaktiviert"
 		  
 		End Sub
 	#tag EndEvent
@@ -582,7 +598,7 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub Constructor(p as WTEC_PickerParameter)
+		Sub Constructor(parent as DesktopWindow, left as integer, top as integer, p as WTEC_PickerParameter)
 		  Self.CalendarID = GetID
 		  
 		  
@@ -629,8 +645,20 @@ End
 		  End Try
 		  #Pragma BreakOnExceptions True
 		  
+		  // Parent merken & relaive Position im Parent merken
+		  myParent = New WeakRef(parent)
+		  myRelPos = New Point(Left, top)
+		  
 		  // Calling the overridden superclass constructor. (Process Open Events)
 		  Super.Constructor
+		  
+		  // Position neu berechnen und setzen
+		  Self.Left = Left + parent.Left
+		  Self.Top = top + parent.Top
+		  
+		  
+		  
+		  Register(self)
 		  
 		  AcceptInput = True      // Dieses Flag ist per default False, ab jetzt werden eingaben verarbeitet
 		End Sub
@@ -783,6 +811,30 @@ End
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Shared Sub ParentMoved(sender as DesktopWindow)
+		  // Alle Registrierten Kalender mit moven
+		  
+		  If calList.Count <> 0 Then
+		    Var parent As DesktopWindow
+		    Var cal As WTEC_Calendar
+		    For r As Integer = 0 To calList.LastIndex
+		      cal = WTEC_Calendar(calList(r).Value)
+		      If cal <> Nil Then
+		        If DesktopWindow(cal.myParent.Value) = sender Then
+		          cal.Left = cal.myRelPos.x + sender.Left
+		          cal.Top  = cal.myRelPos.y + sender.top
+		          
+		        End If
+		        
+		      End If
+		    Next
+		    
+		    
+		  End If
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21, Description = 526566726573682065696E6572204172656120696E2043616E5F43616C656E6461725069636B6572
 		Private Sub RefreshArea(Area as Rect)
 		  // Refresh einer Area im Canvas des Kalenders
@@ -793,30 +845,93 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 45696E62657474656E206465732043616C64657220506F7075707320696E206461732057696E646F7720756E642052656769737472696572756E67207A756D206E616368766572666F6C67656E20646572205A2D4F726465722C2077656E6E206D6568726572652043616C656E646572506F70557073206765C3B666666E65742073696E64
-		Shared Sub Register(mySelf As WTEC_Calendar, containingControl As DesktopWindow, left As Integer = 0, top As Integer = 0, width As Integer = -1, height As Integer = -1)
-		  mySelf.EmbedWithin(containingControl, Left, top, width,height)
+	#tag Method, Flags = &h21, Description = 52656769737472696572756E672065696E6573204B616C656E6465722057696E646F777320287769726420696D20436F6E7374727563746F72206175666765727566656E29
+		Private Shared Sub Register(mySelf as WTEC_Calendar)
+		  // Registrieren eines Calendar Windows  (wird im Constructor ausgelöst)
 		  
-		  Var cal As WTEC_Calendar
-		  If zOrder.Count <> 0 Then
-		    // Wenn in dem Parent Window bereits ein Kalender geöffnet ist, diesen automatisch schliessen
+		  Var winToHandle As DesktopWindow = DesktopWindow(mySelf.myParent.Value)
+		  
+		  If winToHandle = Nil Then Return
+		  
+		  #Pragma BreakOnExceptions False
+		  Try
 		    
-		    For r As Integer = zOrder.LastIndex DownTo 0
-		      If zOrder(r).Value <> Nil Then
-		        cal = WTEC_Calendar(zOrder(r).Value)
-		        If mySelf.Window = cal.Window Then 
-		          cal.Close
-		          // Wird beim Close durch unregister aus der Liste gelöscht
-		          //zOrder.RemoveAt(r)
+		    AddHandler winToHandle.Moved, AddressOf ParentMoved
+		    
+		  Catch e As RuntimeException
+		    // War wohl schon im Parent registriert
+		    
+		  End Try
+		  #Pragma BreakOnExceptions True
+		  
+		  calList.add(New WeakRef(myself))
+		  
+		  // Timer initalisieren falls nötig
+		  If watchTimer = Nil Then
+		    watchTimer = New Timer
+		    watchTimer.Period = 200
+		    watchTimer.RunMode = Timer.RunModes.Multiple
+		    
+		    AddHandler watchTimer.Action, AddressOf ScanParents
+		  End If
+		  
+		  // Timer Enablen falls nötig
+		  If calList.Count <> 0 And watchTimer.Enabled = False Then watchTimer.Enabled = True
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, Description = 54696D6572726F7574696E6520616C6C65203230306D732C20736368616C746574204B616C656E646572206E616368207374617475732064657320486175707466656E73746572732065696E2F617573
+		Private Shared Sub ScanParents(sender as Timer)
+		  // Überprüft die Parents auf Sichtbarkeits Status und blendet die entsprechenden Kalender ein/aus
+		  // dieser Timer wird alle 200ms aufgerufen
+		  // Leider muss man in Xojo so eine Krücke bauen, da es keine Events gibt
+		  // Windows und Linux geprüft, MacOS ungeprüft
+		  
+		  If calList.Count <> 0 Then
+		    Var cal As WTEC_Calendar 
+		    Var par As DesktopWindow
+		    Var parentIsVisible As Boolean
+		    
+		    For r As Integer = 0 To calList.LastIndex
+		      cal = WTEC_Calendar(calList(r).Value)
+		      par = DesktopWindow(cal.myParent.Value)
+		      
+		      #If TargetWindows Then
+		        // Windows API: Prüft das Icon-Flag
+		        Declare Function IsIconic Lib "User32" (hwnd As Ptr) As Boolean
+		        parentIsVisible = Not IsIconic(par.Handle)
+		        
+		      #ElseIf TargetMacOS Then
+		        // macOS API (AppKit): Prüft das Miniaturized-Flag
+		        Declare Function isMiniaturized Lib "AppKit" Selector "isMiniaturized" (windowHandle As Ptr) As Boolean
+		        parentIsVisible = Not isMiniaturized(par.Handle)
+		        
+		      #ElseIf TargetLinux Then
+		        // Linux API (GTK): Wir holen uns den aktuellen Window-State
+		        // Unter GTK3 ist es gdk_window_get_state, wir benötigen dafür das GdkWindow
+		        // Da Xojo den GtkWindow-Pointer liefert, holen wir uns das zugehörige GdkWindow:
+		        Declare Function gtk_widget_get_window Lib "libgtk-3.so.0" (widget As Ptr) As Ptr
+		        Var gdkWin As Ptr = gtk_widget_get_window(par.Handle)
+		        
+		        If gdkWin <> Nil Then
+		          Declare Function gdk_window_get_state Lib "libgdk-3.so.0" (Window As Ptr) As Integer
+		          Var stateFlags As Integer = gdk_window_get_state(gdkWin)
+		          
+		          // Das GTK-Flag für GDK_WINDOW_STATE_ICONIFIED ist numerisch der Wert 2
+		          Const GDK_WINDOW_STATE_ICONIFIED = 2
+		          
+		          // Bitweise Prüfung (BitwiseAnd), da stateFlags mehrere Stati (z.B. Maximiert + Fokussiert) enthalten kann
+		          parentIsVisible = Not (BitwiseAnd(stateFlags, GDK_WINDOW_STATE_ICONIFIED) <> 0)
 		        End If
-		      End If
+		      #EndIf
+		      
+		      // Kalender anzeigen/verstecken
+		      If parentIsVisible <>  cal.Visible Then cal.Visible = parentIsVisible
 		      
 		    Next
 		    
-		    
 		  End If
-		  
-		  zOrder.Add(New WeakRef(myself))
 		End Sub
 	#tag EndMethod
 
@@ -909,6 +1024,7 @@ End
 		    UpDo_Minute.Left = TF_Minute.Left + TF_Minute.Width
 		    UpDo_Minute.top = UpDo_Hour.top
 		    TF_Second.Visible = False
+		    UpDo_Second.Visible = False
 		    
 		  Case WTEC_DateTimePicker.ViewModes.DateAndSeconds
 		    // Berechnen der Uhrzeit Controls für ViewMode DateAndSeconds
@@ -1053,22 +1169,65 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21, Description = 456E746665726E742065696E656E204B616C656E6465722061757320646572205A2D4F7264657220C3BC62657277616368756E67
-		Private Shared Sub UnRegister(control as WTEC_Calendar)
-		  If zOrder.Count <> 0 Then
-		    Var cal As WTEC_Calendar
-		    For r As Integer = 0 To zOrder.LastIndex
-		      If zOrder(r).Value <> Nil Then
-		        cal = WTEC_Calendar(zOrder(r).Value)
-		        If cal.CalendarID = control.CalendarID Then
-		          zOrder(r) = Nil
-		          zOrder.RemoveAt(r)
-		          Return
+	#tag Method, Flags = &h21, Description = 456E746665726E742065696E656E204B616C656E646572206175732043616C656E6465722057696E646F772052656769737472696572756E67
+		Private Shared Sub UnRegister(calID as integer)
+		  // Einen Kalender aus der Kalender Tabelle entfernen
+		  
+		  Var calWin As WTEC_Calendar
+		  Var calParent As DesktopWindow
+		  Var idxCalWin As Integer = -1
+		  
+		  If calList.Count <> 0 Then
+		    
+		    // Suchen des Calenders in der Kalenderliste
+		    For r As Integer = 0 To calList.LastIndex
+		      calWin = WTEC_Calendar(calList(r).Value)
+		      If calWin <> Nil Then
+		        If calWin.CalendarID = calID Then
+		          // Kalender gefunden
+		          calParent = DesktopWindow(calWin.myParent.Value)
+		          idxCalWin = r
+		          Exit For r
 		        End If
 		      End If
 		    Next
+		  Else
+		    Return    // Leere Liste, dann tschuess
+		  End If
+		  
+		  If idxCalWin <> -1 Then
+		    calList.RemoveAt(idxCalWin)
+		    
+		    // Prüfen ob noch andere Calender bei dem Parent registriert sind, wenn nicht, dann für diesen Parent remove Handler
+		    Var registered As Integer = 0
+		    
+		    If calList.Count <> 0 Then
+		      Var p As DesktopWindow
+		      
+		      For r As Integer = 0 To calList.LastIndex
+		        calWin = WTEC_Calendar(calList(r).Value)
+		        If calWin <> Nil Then
+		          p = DesktopWindow(calWin.myParent.Value)
+		          If DesktopWindow(calwin.myParent.Value) = calParent Then registered = registered +1
+		        End If
+		      Next
+		      
+		    End If
+		    
+		    If registered = 0 Then
+		      // für diesen Parent gibt es keine registrierten Kalender
+		      Try
+		        RemoveHandler calParent.Moved, AddressOf ParentMoved
+		        
+		      Catch RuntimeException
+		        // War wohl nicht registriert, sollte nicht vorkommen
+		      End Try
+		      
+		    End If
 		    
 		  End If
+		  
+		  If calList.Count = 0 Then watchTimer.Enabled = False
 		End Sub
 	#tag EndMethod
 
@@ -1169,6 +1328,10 @@ End
 		Private CalendarID As Integer = 0
 	#tag EndProperty
 
+	#tag Property, Flags = &h21, Description = 4C6973746520646572207265676973747269657274656E2043616C656E6465722057696E646F7773
+		Private Shared calList() As WeakRef
+	#tag EndProperty
+
 	#tag Property, Flags = &h21, Description = 4461732041727261792064657220576F6368656E7461676520646965736573204B616C656E64657273
 		Private DayNameAreas() As WTEC_DayArea
 	#tag EndProperty
@@ -1258,12 +1421,28 @@ End
 		Private loc As locale
 	#tag EndProperty
 
+	#tag Property, Flags = &h21, Description = 44657220506172656E7420646573204B616C656E646572732C207769726420696D20436F6E7374727563746F722067657365747A74
+		Private myParent As Weakref
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 48696572207769726420696D204F70656E204576656E74206469652072656C617469766520506F736974696F6E2067657370656963686572742064616D6974206469652048616E646C6572206E6575206265726563686E656E206BC3B66E6E656E
+		Private myRelPos As Point
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private param As WTEC_PickerParameter
 	#tag EndProperty
 
+	#tag Property, Flags = &h21, Description = 4C697374652064657220506172656E7457696E646F77732C206265692064656E656E207363686F6E2065696E2048616E646C657220696E7374616C6C69657274207775726465
+		Private Shared parentList() As Weakref
+	#tag EndProperty
+
 	#tag Property, Flags = &h21, Description = 48696572207769726420696D20436F6E7374727563746F722064617320446174756D20756E6420646965205568727A656974206765736963686572742C20736F6D6974206B616E6E206A656465727A656974206665737467657374656C6C742077657264656E2C206F62207369636820616E20646572205A656974206F6465722064656D20446174756D206574776173206765C3A46E6465727420686174
 		Private startDateTime As dateTime
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 44657220576174636854696D65722073636861757420616C6C65203230306D732C206F622073696368206469652073696368746261726B65697420646573205072656E7473206765C3A46E646572742068617420756E642073746575657274206469652073696368746261726B65697420646572204B6C656E6465722E2045722077697264206265696D2065727374656E20526567697374657220696E6974616C69736965727420756E642067657374617274657420756E64206265696D206C65747A74656E20556E726567697374657220616E676568616C74656E
+		Private Shared watchTimer As Timer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1276,10 +1455,6 @@ End
 
 	#tag Property, Flags = &h21, Description = 496E7465726E65722053706569636865722064657320496E64657865732C206E6963687420646972656B742062656E75747A656E21
 		Private zLiteHighLightIndex As Integer = -1
-	#tag EndProperty
-
-	#tag Property, Flags = &h21, Description = 456E7468C3A46C74206469652052656968656E666F6C676520285A2D4F726465722920646572206765C3B666666E6574656E204B616C656E64657220506F70557073
-		Private Shared zOrder() As WeakRef
 	#tag EndProperty
 
 
@@ -1335,7 +1510,7 @@ End
 		#Tag Instance, Platform = Any, Language = Default, Definition  = \"Today"
 	#tag EndConstant
 
-	#tag Constant, Name = kVersion, Type = String, Dynamic = False, Default = \"V 1.0.4", Scope = Private
+	#tag Constant, Name = kVersion, Type = String, Dynamic = False, Default = \"V 1.0.6", Scope = Private
 	#tag EndConstant
 
 	#tag Constant, Name = kWeekDays, Type = String, Dynamic = True, Default = \"", Scope = Public
@@ -1896,7 +2071,7 @@ End
 		  
 		End Sub
 	#tag EndEvent
-	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
+	#tag Event
 		Sub TimeChanged(value as integer)
 		  lastValidMinute = value
 		  
@@ -1920,7 +2095,7 @@ End
 		  
 		End Sub
 	#tag EndEvent
-	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
+	#tag Event
 		Sub TimeChanged(value as integer)
 		  lastValidHour = value
 		  workingDate = New DateTime(workingDate.Year, workingDate.Month, workingDate.Day,lastValidHour, lastValidMinute, lastValidSecond)
@@ -1957,7 +2132,7 @@ End
 		  
 		End Sub
 	#tag EndEvent
-	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
+	#tag Event
 		Sub TimeChanged(value as integer)
 		  lastValidSecond = value
 		  
@@ -1984,6 +2159,14 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
@@ -1992,18 +2175,10 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Index"
-		Visible=true
-		Group="ID"
-		InitialValue="-2147483648"
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Width"
 		Visible=true
 		Group="Size"
-		InitialValue="300"
+		InitialValue="600"
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
@@ -2011,127 +2186,178 @@ End
 		Name="Height"
 		Visible=true
 		Group="Size"
-		InitialValue="300"
+		InitialValue="400"
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="InitialParent"
-		Visible=false
-		Group="Position"
-		InitialValue=""
+		Name="MinimumWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Type"
+		Visible=true
+		Group="Frame"
+		InitialValue="0"
+		Type="Types"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Document"
+			"1 - Movable Modal"
+			"2 - Modal Dialog"
+			"3 - Floating Window"
+			"4 - Plain Box"
+			"5 - Shadowed Box"
+			"6 - Rounded Window"
+			"7 - Global Floating Window"
+			"8 - Sheet Window"
+			"9 - Modeless Dialog"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Title"
+		Visible=true
+		Group="Frame"
+		InitialValue="Untitled"
 		Type="String"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Left"
+		Name="HasCloseButton"
 		Visible=true
-		Group="Position"
-		InitialValue="0"
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Top"
-		Visible=true
-		Group="Position"
-		InitialValue="0"
-		Type="Integer"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LockLeft"
-		Visible=true
-		Group="Position"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="LockTop"
+		Name="HasMaximizeButton"
 		Visible=true
-		Group="Position"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="LockRight"
+		Name="HasMinimizeButton"
 		Visible=true
-		Group="Position"
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasFullScreenButton"
+		Visible=true
+		Group="Frame"
 		InitialValue="False"
 		Type="Boolean"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="LockBottom"
+		Name="HasTitleBar"
 		Visible=true
-		Group="Position"
-		InitialValue="False"
+		Group="Frame"
+		InitialValue="True"
 		Type="Boolean"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="TabIndex"
+		Name="Resizeable"
 		Visible=true
-		Group="Position"
-		InitialValue="0"
-		Type="Integer"
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="TabPanelIndex"
+		Name="Composite"
 		Visible=false
-		Group="Position"
+		Group="OS X (Carbon)"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Visible=false
+		Group="OS X (Carbon)"
 		InitialValue="0"
 		Type="Integer"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="TabStop"
+		Name="FullScreen"
 		Visible=true
-		Group="Position"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AllowAutoDeactivate"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Enabled"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Tooltip"
-		Visible=true
-		Group="Appearance"
-		InitialValue=""
-		Type="String"
-		EditorType="MultiLineEditor"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AllowFocusRing"
-		Visible=true
-		Group="Appearance"
+		Group="Behavior"
 		InitialValue="False"
 		Type="Boolean"
 		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="DefaultLocation"
+		Visible=true
+		Group="Behavior"
+		InitialValue="2"
+		Type="Locations"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Default"
+			"1 - Parent Window"
+			"2 - Main Screen"
+			"3 - Parent Window Screen"
+			"4 - Stagger"
+		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
 		Visible=true
-		Group="Appearance"
+		Group="Behavior"
 		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Window Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
 		Type="Boolean"
 		EditorType=""
 	#tag EndViewProperty
@@ -2139,7 +2365,7 @@ End
 		Name="BackgroundColor"
 		Visible=true
 		Group="Background"
-		InitialValue="&hFFFFFF"
+		InitialValue="&cFFFFFF"
 		Type="ColorGroup"
 		EditorType="ColorGroup"
 	#tag EndViewProperty
@@ -2152,41 +2378,17 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="HasBackgroundColor"
+		Name="MenuBar"
 		Visible=true
-		Group="Background"
-		InitialValue="False"
-		Type="Boolean"
+		Group="Menus"
+		InitialValue=""
+		Type="DesktopMenuBar"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AllowFocus"
+		Name="MenuBarVisible"
 		Visible=true
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AllowTabs"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Transparent"
-		Visible=true
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Composited"
-		Visible=true
-		Group="Window Behavior"
+		Group="Deprecated"
 		InitialValue="False"
 		Type="Boolean"
 		EditorType=""
