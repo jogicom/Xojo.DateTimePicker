@@ -2,7 +2,7 @@
 			Begin BuildStepList Linux
 				Begin BuildProjectStep Build
 				End
-				Begin ExternalIDEScriptStep SetBranchLinux
+				Begin ExternalIDEScriptStep SetBranchLinus
 					AppliesTo = 1
 					Architecture = 0
 					Target = 0
