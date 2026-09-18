@@ -13,9 +13,9 @@ Begin DesktopContainer WTEC_DateTimePicker
    Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
-   LockBottom      =   False
+   LockBottom      =   True
    LockLeft        =   True
-   LockRight       =   False
+   LockRight       =   True
    LockTop         =   True
    TabIndex        =   0
    TabPanelIndex   =   0
@@ -24,7 +24,7 @@ Begin DesktopContainer WTEC_DateTimePicker
    Top             =   0
    Transparent     =   False
    Visible         =   True
-   Width           =   157
+   Width           =   200
    Begin DesktopTextField TF_DateInput
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
@@ -51,11 +51,11 @@ Begin DesktopContainer WTEC_DateTimePicker
       MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "29.08.2026"
       TextAlignment   =   0
       TextColor       =   &c000000
       Tooltip         =   ""
@@ -64,7 +64,7 @@ Begin DesktopContainer WTEC_DateTimePicker
       Underline       =   False
       ValidationMask  =   ""
       Visible         =   True
-      Width           =   123
+      Width           =   98
    End
    Begin DesktopCanvas Can_ShowCalendar
       AllowAutoDeactivate=   True
@@ -75,11 +75,11 @@ Begin DesktopContainer WTEC_DateTimePicker
       Enabled         =   True
       Height          =   27
       Index           =   -2147483648
-      Left            =   127
+      Left            =   182
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       Scope           =   0
       TabIndex        =   1
@@ -91,12 +91,147 @@ Begin DesktopContainer WTEC_DateTimePicker
       Visible         =   True
       Width           =   15
    End
+   Begin WTEC_TimeTextField TF_Hour
+      AcceptInput     =   False
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      ForceTime       =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   26
+      Hint            =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   99
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "23"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      TimeValue       =   0
+      Tooltip         =   ""
+      Top             =   0
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Visible         =   True
+      Width           =   28
+   End
+   Begin WTEC_TimeTextField TF_Minute
+      AcceptInput     =   False
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      ForceTime       =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   26
+      Hint            =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   127
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "10"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      TimeValue       =   0
+      Tooltip         =   ""
+      Top             =   0
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Visible         =   True
+      Width           =   28
+   End
+   Begin WTEC_TimeTextField TF_Second
+      AcceptInput     =   False
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      ForceTime       =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   26
+      Hint            =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   155
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "33"
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      TimeValue       =   0
+      Tooltip         =   ""
+      Top             =   0
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Visible         =   True
+      Width           =   28
+   End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
 		Sub Opening()
+		  // Temporäre Graphics für Fontberechnungen
+		  Var p As New Picture(100,100)
+		  
 		  // Locale übernehmen, falls vorhanden
 		  #Pragma BreakOnExceptions False
 		  Try
@@ -110,6 +245,12 @@ End
 		  End Try
 		  #Pragma BreakOnExceptions True
 		  
+		  // Die Fontparameter der Textfelder setzen
+		  SetFontparameter(TF_DateInput)
+		  SetFontparameter(TF_Hour)
+		  SetFontparameter(TF_Minute)
+		  SetFontparameter(TF_Second)
+		  
 		  // Die Elemente Positionieren
 		  
 		  // Textfeld oben Links
@@ -117,14 +258,65 @@ End
 		  Self.TF_DateInput.Top = 0
 		  Self.TF_DateInput.Height = Self.Height
 		  
+		  // Höhe der Zeit Felder
+		  Self.TF_Hour.Height   = Self.Height
+		  Self.TF_Minute.Height = Self.Height
+		  Self.TF_Second.Height = Self.Height
+		  
+		  // Breite der Zeitfelder berechnen mit Puffer
+		  p.Graphics.FontName = Fontname
+		  p.Graphics.FontUnit = FontUnit
+		  p.Graphics.FontSize = FontSize
+		  Var tfw As Integer = p.Graphics.TextWidth("88") + TextFieldBuffer
+		  Self.TF_Hour.Width   = tfw
+		  Self.TF_Minute.Width = tfw
+		  Self.TF_Second.Width = tfw
+		  
 		  Self.Can_ShowCalendar.Top = 0
-		  
-		  Var rest As Integer = Self.Width - Can_ShowCalendar.Width
-		  
-		  Self.TF_DateInput.Width = rest
-		  
-		  Self.Can_ShowCalendar.Left = Self.TF_DateInput.Width-1
 		  Self.Can_ShowCalendar.Height = Self.TF_DateInput.Height 
+		  
+		  // Var rest As Integer             // Was bleibt für das Textfeld übrig
+		  
+		  Select Case ViewMode
+		  Case ViewModes.DateOnly
+		    Self.TF_DateInput.Width = Self.Width - Can_ShowCalendar.Width
+		    TF_Minute.Visible = False
+		    TF_Hour.Visible = False
+		    TF_Second.Visible = False
+		    
+		  Case ViewModes.DateAndTime
+		    Self.TF_DateInput.Width  = Self.Width - Can_ShowCalendar.Width - 2 * tfw
+		    TF_Second.Visible = False
+		    
+		  Case Viewmodes.DateAndSeconds
+		    Self.TF_DateInput.Width  = Self.Width - Can_ShowCalendar.Width - 3 * tfw
+		    
+		  End Select
+		  
+		  // Nun alle Felder ankoppeln an das Datumsfeld
+		  Var pos As Integer = TF_DateInput.Width -1
+		  
+		  If TF_Hour.Visible Then
+		    TF_Hour.Left = pos
+		    pos = pos + TF_Hour.Width
+		  End If
+		  
+		  If TF_Minute.Visible Then
+		    TF_Minute.Left = pos
+		    pos = pos + TF_Minute.Width
+		  End If
+		  
+		  If TF_Second.Visible Then
+		    TF_Second.Left = pos
+		    pos = pos + TF_Second.Width
+		  End If
+		  
+		  self.Can_ShowCalendar.Left = pos
+		  
+		  // Self.TF_DateInput.Width = rest
+		  
+		  // Self.Can_ShowCalendar.Left = Self.Width - Self.TF_DateInput.Width-1
+		  
 		  
 		  
 		  // Datum holen, mit dem der Kalender initalisiert werden soll
@@ -135,11 +327,21 @@ End
 		    actualDate = New DateTime(DateTime.Now)
 		  End If
 		  
+		  // Uhrzeit getrennt aufbewahren
+		  actualHour   = actualDate.Hour
+		  actualMinute = actualDate.minute
+		  actualSecond = actualDate.Second
+		  
+		  // Zeit eintragen und initalisieren
+		  TF_Hour.ForceTime   = actualHour
+		  TF_Minute.ForceTime = actualMinute
+		  TF_Second.ForceTime = actualSecond
+		  
 		  // Das aktuelle Datum in das Eingabe Feld speichern und den Focus für sofortige Eingabe auf das Textfeld setzen
 		  TF_DateInput.Text = dtToString(actualDate, loc)
 		  TF_DateInput.SetFocus
 		  
-		  AceptInput = True          // Eingaben werden ab jetzt akzeptiert und verarbeitet
+		  AcceptInput = True          // Eingaben werden ab jetzt akzeptiert und verarbeitet
 		  
 		End Sub
 	#tag EndEvent
@@ -270,8 +472,27 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21, Description = 5769726420766F6D204B616C656E646572206175666765727566656E2C2077656E6E2065722073696368207363686C69657373742C2064616D697420617566676572C3A4756D742077657264656E206B616E6E
-		Private Sub CalendarClose()
+		Private Sub CalendarClose(date as Datetime, IsChanged as boolean)
 		  // Kalender meldet closed (callback)
+		  
+		  Var oldState As Boolean = AcceptInput
+		  AcceptInput = False
+		  actualDate = New DateTime(date.SecondsFrom1970)
+		  
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
+		  
+		  actualHour = date.Hour
+		  actualMinute = date.Minute
+		  actualSecond = date.Second
+		  
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
+		  TF_Hour.ForceTime = date.Hour
+		  TF_Minute.ForceTime = date.Minute
+		  TF_Second.ForceTime = date.Second
+		  TF_DateInput.SetFocus
+		  
+		  AcceptInput = oldState
+		  RaiseEvent CalendarClosed(date, IsChanged)
 		  
 		  CalendarContainer = Nil
 		  IsExpanded = False
@@ -279,20 +500,33 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag DelegateDeclaration, Flags = &h0, Description = 52C3BC636B6D656C64756E672077656E6E204B616C656E6465722067657363686C6F7373656E2077697264
-		Delegate Sub CallbackCalendarClose()
+	#tag DelegateDeclaration, Flags = &h0, Description = 52C3BC636B6D656C64756E672077656E6E204B616C656E6465722067657363686C6F7373656E20776972642C206573207769726420646173207A756C65747A7420696D204B616C656E64657220657266617373746520446174756D20756E64205568727A6569742067656D656C6465742C207A7573C3A4747A6C6963682065696E20466C61672C2064617320616E7A656967742C206461737320446174656E206765C3A46E646572742077757264656E207365697420646572204B616C656E646572206175666765727566656E207775726465
+		Delegate Sub CallbackCalendarClose(date as Datetime, isChanged as boolean)
 	#tag EndDelegateDeclaration
 
 	#tag DelegateDeclaration, Flags = &h0, Description = 43616C6C6261636B207A756D206D656C64656E2065696E657320446174756D73206175732064656D204B616C656E646572207A756D204461746554696D655069636B6572
-		Delegate Sub CallbackNewDate(d as datetime)
+		Delegate Sub CallbackNewDate(year as integer, month as integer, day as integer)
 	#tag EndDelegateDeclaration
 
-	#tag Method, Flags = &h0, Description = 417573676162652065696E6573204461746554696D657320616C7320537472696E672C206469657365204D6574686F6465207374616E646172697369657274206461732041757367616265666F726D6174204B616C656E6465722057656974
-		Shared Function dtToString(d as DateTime, loc as Locale) As string
+	#tag DelegateDeclaration, Flags = &h0, Description = 43616C6C6261636B207A756D206D656C64656E2065696E6572205568727A656974206175732064656D204B616C656E646572207A756D204461746554696D655069636B6572
+		Delegate Sub CallbackNewTime(hour as integer, minute as integer, seconds as integer)
+	#tag EndDelegateDeclaration
+
+	#tag Method, Flags = &h0, Description = 417573676162652065696E6573204461746554696D657320616C7320537472696E672C206469657365204D6574686F6465207374616E646172697369657274206461732041757367616265666F726D6174204B616C656E64657220576569742C2077656E6E20227769746854696D6522203D20545255452064616E6E2077697264206175636820646965205568727A65697420696D206C6F6B616C656D20466F726D6174206175736765676562656E
+		Shared Function dtToString(d as DateTime, loc as Locale, withTime as boolean = false, withSeconds as boolean = false) As string
 		  If d <> Nil Then
 		    
-		    Return d.ToString( loc, DateTime.FormatStyles.Short, DateTime.FormatStyles.None)
-		    
+		    If withTime Then
+		      // Ausgabe mit Uhrzeit
+		      If withSeconds Then
+		        Return d.ToString( loc, DateTime.FormatStyles.Short, DateTime.FormatStyles.Medium)
+		      Else
+		        Return d.ToString( loc, DateTime.FormatStyles.Short, DateTime.FormatStyles.Short)
+		      End If
+		    Else
+		      // Ausgabe ohne Uhrzeit
+		      Return d.ToString( loc, DateTime.FormatStyles.Short, DateTime.FormatStyles.None)
+		    End If
 		  End If
 		  
 		  Return ""    // Bei ungültiger DateTime
@@ -300,51 +534,213 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5365747A742064617320616B7475656C6C65204B616C656E646572646174756D
-		Sub SetDate(d as Datetime)
-		  // Setzen eines bestimmten Datums im Kalender
+		Sub SetDate(year as integer, month as integer, day as integer)
+		  // Setzen eines bestimmten Datums im Kalender, durch die Hauptanwendung
+		  Var oldState As Boolean = AcceptInput
+		  AcceptInput = False
 		  
-		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
+		  actualDate = New DateTime(year, month, day, actualHour, actualMinute,actualSecond)
 		  
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
 		  TF_DateInput.SetFocus
+		  AcceptInput = oldState
 		  
-		  actualDate = d
 		  
-		  // An den Kalender weiter melden, wenn geöffnet
+		  // An den Kalender Container weiter melden, wenn geöffnet
 		  
 		  If CalendarContainer <> Nil Then
-		    CalendarContainer.SetDate(d)
+		    // Callback wird durch Kalender ausgelöst
+		    CalendarContainer.SetDate(year, month, day)
+		  Else
+		    // Callback
+		    RaiseEvent DateChanged(year, month, day)
 		  End If
 		  
 		  
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21, Description = 457320777572646520766F6D204B616C656E64657220436F6E7461696E65722065696E206E6575657320446174756D2067656D656C646574
-		Private Sub SetDateFromCalendar(d as DateTime)
-		  // Im Kalender wurde ein Datum ausgewählt ( Callback)
-		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
+	#tag Method, Flags = &h21, Description = 457320777572646520766F6D204B616C656E64657220436F6E7461696E6572206F64657220646972656B7420766F6D204B616C656E64657220506F7075702065696E206E6575657320446174756D2067656D656C646574
+		Private Sub SetDateFromContainer(year as integer, month as integer, day as integer)
+		  // Im Kalender Container wurde ein Datum ausgewählt ( Callback)
+		  Var d As New DateTime(year,month,day)
+		  actualDate = New DateTime(d.SecondsFrom1970)
+		  actualHour = d.Hour
+		  actualMinute = d.Minute
 		  
-		  actualDate = d
+		  // Unter Linux wird kein TextChanged Event ausgelöst, wenn hier das gleiche Datum gesetzt wird das sich schon im Textfeld befindet (evt. auch unter Windows?)
+		  // Deshalb wird hier generell der TextChanged Event blockiert und das Datum von hier aus weiter gemeldet
+		  AcceptInput = False
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(d,loc)
+		  AcceptInput = True
+		  
+		  // Das neue Datum an die Hauptanwendung melden
+		  RaiseEvent DateChanged(d.Year,d.Month,d.Day)
+		  
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 45696E2062657374696D6D74657320446174756D20756E6420646965205568727A65697420696D204B616C656E646572207365747A656E
+		Sub SetDateTime(d as Datetime)
+		  // Setzen eines bestimmten Datums und der Uhrzeit im Kalender, durch die Hauptanwendung
+		  Var oldState As Boolean = AcceptInput
+		  AcceptInput = False
+		  
+		  actualDate = New DateTime(d.SecondsFrom1970)
+		  
+		  actualHour = d.Hour
+		  actualMinute = d.Minute
+		  actualSecond = d.Second
+		  
+		  TF_DateInput.Text = WTEC_DateTimePicker.dtToString(actualDate,loc)
+		  TF_Hour.ForceTime = d.Hour
+		  TF_Minute.ForceTime = d.Minute
+		  TF_Second.ForceTime = d.Second
+		  
+		  TF_DateInput.SetFocus
+		  
+		  AcceptInput = oldState
+		  
+		  // An den Kalender Container weiter melden, wenn geöffnet
+		  
+		  If CalendarContainer <> Nil Then
+		    // Callback wird durch Kalender ausgelöst
+		    CalendarContainer.SetDateTime(d)
+		  Else
+		    // Callbacks
+		    RaiseEvent DateChanged(d.Year, d.Month, d.day)
+		    RaiseEvent TimeChanged(d.Hour, d.Minute, d.Second)
+		  End If
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, Description = 5365747A7420696E2065696E656D20575445435F5465787454696D654669656C642064696520466F6E74706172616D65746572
+		Private Sub SetFontparameter(t as variant)
+		  // Setzen der Fontparameter in einem Textfield
+		  If t<> Nil Then
+		    
+		    If t IsA WTEC_TimeTextField Then
+		      Var w As WTEC_TimeTextField = t
+		      w.FontName = Fontname
+		      w.FontSize = FontSize
+		      w.FontUnit = FontUnit
+		    ElseIf t IsA DesktopTextField Then
+		      Var w As DesktopTextField = t
+		      w.FontName = Fontname
+		      w.FontSize = FontSize
+		      w.FontUnit = FontUnit
+		    End If
+		    
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5365747A742064696520616B7475656C6C65205A656974
+		Sub SetTime(hour as integer, minute as integer, second as integer)
+		  // Setzen einer bestimmten Uhrzeit im Kalender, durch die Hauptanwendung
+		  Var oldState As Boolean = AcceptInput
+		  AcceptInput = False
+		  
+		  actualHour = hour
+		  actualMinute = minute
+		  actualSecond = second
+		  
+		  TF_Hour.ForceTime = Hour
+		  TF_Minute.ForceTime = Minute
+		  TF_Second.ForceTime = Second
+		  
+		  TF_DateInput.SetFocus
+		  
+		  AcceptInput = oldState
+		  
+		  // An den Kalender Container weiter melden, wenn geöffnet
+		  
+		  If CalendarContainer <> Nil Then
+		    // Callback wird durch Kalender ausgelöst
+		    CalendarContainer.SetTime(hour,minute,second)
+		  Else
+		    // Callback
+		    RaiseEvent TimeChanged(hour, minute, second)
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub SetTimeFromContainer(hour as integer, minute as integer, second as integer)
+		  actualHour = hour
+		  actualMinute = minute
+		  actualSecond = second
+		  
+		  TF_Hour.ForceTime = hour
+		  TF_Minute.ForceTime = minute
+		  TF_Second.ForceTime = second
+		  
+		  
+		  RaiseEvent TimeChanged(actualHour, actualMinute, actualSecond)
 		  
 		End Sub
 	#tag EndMethod
 
 
-	#tag Hook, Flags = &h0, Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C74
-		Event DateChanged(value as Datetime)
+	#tag Hook, Flags = &h0, Description = 57656E6E207369636820646572204B616C656E6465722067657363686C6F7373656E206861742C207769726420C3BC6265722064696573656E204576656E7420696E666F726D696572742E2064617465203D205568727A6569742F446174756D2C2049734368616E67656420545255452077656E6E20446174656E206765C3A46E6465727420777572646520736569742064656D204F70656E
+		Event CalendarClosed(date as DateTime, IsChanged as boolean)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 496D204B616C656E6465722077757264652064617320C3BC626572676562656E6520446174756D20617573676577C3A4686C742C20646965204D656C64756E672069737420696E636C7573697665205A656974
+		Event DateChanged(year as integer, month as integer, day as integer)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4D69742077656C6368656D20446174756D20736F6C6C20646572204B616C656E646572206265696D20537461727420696E6974616C6973696572742077657264656E
 		Event InitialDate() As Datetime
 	#tag EndHook
 
+	#tag Hook, Flags = &h0, Description = 496D204B616C656E646572207775726420646569205568727A656974206765C3A46E646572742C20446174756D20697374206175662064656D206C65747A74656E205374616E64
+		Event TimeChanged(hour as integer, minute as integer, seconds as integer)
+	#tag EndHook
 
-	#tag Property, Flags = &h21, Description = 536F6C616E67652064696573657320466C6167206175662046616C73652073746568742C2077657264656E206B65696E652045696E676162656E2076657261726265697465742C207769726420696D204F70656E204576656E74206E6163682062657374C3BC636B656E2064657220446174656E20667265696765676562656E
-		Private AceptInput As boolean = false
-	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h21
+		#tag Getter
+			Get
+			  Return zAcceptInput
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If value <> zAcceptInput Then
+			    zAcceptInput = value
+			    TF_Hour.AcceptInput   = value
+			    TF_Minute.AcceptInput = value
+			    TF_Second.AcceptInput = value
+			    
+			  End If
+			  
+			  
+			End Set
+		#tag EndSetter
+		Private AcceptInput As boolean
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21, Description = 44617320616B7475656C6C20696D205465787466656C642065696E676574726167656E6520446174756D
 		Private actualDate As DateTime
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 48696572207769726420646965205374756E64652064657220616B7475656C6C2076657277656E646574656E205A6569742066657374676568616C74656E2C20657273746D616C696720696D204F70656E204576656E74
+		Private actualHour As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 48696572207769726420646965204D696E7574652064657220616B7475656C6C2076657277656E646574656E205A6569742066657374676568616C74656E2C20657273746D616C696720696D204F70656E204576656E74
+		Private actualMinute As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 486965722077697264206469652053656B756E64652064657220616B7475656C6C2076657277656E646574656E205A6569742066657374676568616C74656E2C20657273746D616C696720696D204F70656E204576656E74
+		Private actualSecond As Integer = 0
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 57656E6E20547275652C2077697264204B616C656E646572206E616368204175737761686C2065696E657320446174756D73206D696E696D69657274
@@ -359,8 +755,28 @@ End
 		Private CalendarContainer As WTEC_Calendar = nil
 	#tag EndProperty
 
+	#tag Property, Flags = &h0, Description = 57656E6E20547275653A2046616C6C73204B616C656E64657220766F6D2057696E646F7720616267657363686E697474656E20776972642C206D616368746520646572204B616C656E6465722065696E656E20506F736974696F6E73C3A46E646572756E6720756D20736963686572207A75207374656C6C656E2C2064617373206572206E696368742062657363686E697474656E2077697264
+		EnableAutoPosition As boolean = false
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 45726C61756274206469652046656C646572737465756572756E672070657220576865656C204D617573726164202854727565203D2044656661756C7429
+		EnableWheel As boolean = true
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		FirstWeekday As WTEC_DateTimePicker.FirstWeekDays = WTEC_DateTimePicker.FirstWeekDays.Monday
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E742064657220696D204B616C656E6465722076657277656E6465742077657264656E20736F6C6C2C2044656661756C74203D2053797374656D
+		Fontname As string = "System"
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E746772C3B67373652064696520696D204B616C656E6465722076657277656E64657420776972642C2077656E6E203020776972642053797374656D666F6E74204772C3B67373652076657277656E646574
+		FontSize As Single = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E74556E69742064696520696D204B616C656E6465722076657277656E6465742077657264656E20736F6C6C
+		FontUnit As FontUnits = FontUnits.Default
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 486965726D6974206B616E6E2067657A69656C7420696E2065696E6520616E64657265205370726163686520C3BC6265727365747A742077657264656E2C206C656572206C617373656E2077656E6E205370726163686520617566206175746F6D6174697363682067657374656C6C7420776572646520736F6C6C2E20426569737069656C3A202028656E2D555329
@@ -403,19 +819,28 @@ End
 			        para.HMarginDayNumbers      = VMarginDayNumbers
 			        para.actualDate             = actualDate
 			        para.FirstWeekDay           = FirstWeekday
-			        para.SetNewDate             = WeakAddressOf SetDateFromCalendar   // Hierüber werden Änderungen des Kalenderdatums gemeldet
-			        para.CalendarClose          = WeakAddressOf CalendarClose         // Meldung, wenn Kalender geschlossen wird zum aufräumen
+			        para.SetNewDate             = WeakAddressOf Self.SetDateFromContainer  // Hierüber werden Änderungen des Kalenderdatums gemeldet
+			        para.CalendarClose          = WeakAddressOf Self.CalendarClose         // Meldung, wenn Kalender geschlossen wird zum aufräumen
+			        para.SetNewTime             = WeakAddressOf Self.SetTimeFromContainer  // Meldung wenn Uhrzeit im Kalender geändert wurde
 			        para.AutoCollapse           = AutoCollapse
 			        para.AutoCloseWhenMouseExit = AutoCollapseOnMouseExit
 			        para.MainControlWidth       = TF_DateInput.Width                  // Damit kann der Kalender seine Position variieren
 			        para.ForceLocale            = ForceLocale
+			        para.ViewMode               = ViewMode                            // Kalender Mode
+			        para.EnableWheel            = EnableWheel
+			        para.EnableAutoPosition     = EnableAutoPosition
+			        // Fontparameter
+			        para.Fontname               = Fontname
+			        para.FontUnit               = FontUnit
+			        para.FontSize               = FontSize
 			        
-			        CalendarContainer =  New WTEC_Calendar(para)
+			        CalendarContainer =  New WTEC_Calendar(Self.Window, self.Left, self.Top + self.Height,para)
 			        
-			        // 2. In das Ziel-Control (z.B. eine GroupBox1) einbetten
-			        // Parameter: Ziel-Control, X-Position, Y-Position
-			        p.y = p.y + TF_DateInput.Height
-			        CalendarContainer.EmbedWithin(Self.Window, p.x, p.y)
+			        // In das Ziel-Control (z.B. eine GroupBox1) einbetten
+			        // Y-Position direkt unter dem Textfeld
+			        //p.y = p.y + TF_DateInput.Height
+			        //WTEC_Calendar.Register(CalendarContainer,Self.Window, p.x, p.y)
+			        //CalendarContainer.EmbedWithin(Self.Window, p.x, p.y)
 			      End If
 			      zIsExpanded = True
 			      Refresh
@@ -460,12 +885,20 @@ End
 		Private MouseOverShowCalendar As boolean
 	#tag EndComputedProperty
 
+	#tag Property, Flags = &h0, Description = 566965774D6F646520646573204B616C656E646572732C20446174654F6E6C79206F6465722044617465416E6454696D65
+		ViewMode As WTEC_DateTimePicker.ViewModes = WTEC_DateTimePicker.ViewModes.DateOnly
+	#tag EndProperty
+
 	#tag Property, Flags = &h0, Description = 4465722076657274696B616C652041627374616E64207A7769736368656E2064656E2054616765736E756D6D65726E20696D204B616C656E646572
 		VMarginDayNumbers As Integer = 5
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 4465722056657274696B616C652041627374616E6420646572204B616C656E6465722042656469656E656C656D656E74652061757373657268616C62206465732043616E766173
 		VMargin_CalendarWindow As Integer = 5
+	#tag EndProperty
+
+	#tag Property, Flags = &h21, Description = 536F6C616E67652064696573657320466C6167206175662046616C73652073746568742C2077657264656E206B65696E652045696E676162656E2076657261726265697465742C207769726420696D204F70656E204576656E74206E6163682062657374C3BC636B656E2064657220446174656E20667265696765676562656E
+		Private zAcceptInput As boolean = false
 	#tag EndProperty
 
 	#tag Property, Flags = &h21, Description = 547275652C2077656E6E204B616C656E64657220657870616E646965727420697374
@@ -478,6 +911,18 @@ End
 
 
 	#tag Constant, Name = IsDebug, Type = Boolean, Dynamic = False, Default = \"false", Scope = Public, Description = 57656E6E20747275652C2077657264656E2044656275674D656C64756E67656E206175736765676562656E
+	#tag EndConstant
+
+	#tag Constant, Name = LibraryIcon, Type = String, Dynamic = False, Default = \"iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACl0lE\nQVR4nO2WsUtVURzHP09By0Xw8pYgN9EaS0u09B8Iu7g09S8Iu7g0u7g0uDglNLg0uDglNLg0uDg0\nRBS4NKRg4S0hk97g9Xv3vXffu8fDe8/vA99w7u+ee973fM8933PO7wU86gKWAZtK61fADvByZCc8\nfO6Kbe0Z8A7YyVwX8BTYA6aT+uMiwDtgN/O+wAnwEngKfALmI3p6LgL2gK9Z7NqI3gV6N3p9bL06\nYmXF90XfAXsZzW1P7gBv86oCHBZZ9V0fW++WvN7v+74D9mOq6D25C6yrK8C3SIs8wCHwZUKfK8bW\nE4HnInu77/sOOMz1/gXmG+wCcF39N+b2L6M7xNbXgXfA36zXpXkX6K6wD7zZfBc4S+zreRZb77Ie\nfB5b70esP+xI+hCg38wA8CO2XgRcCen8DngY0f1D4K36m3Y66fMAnX6OIsAXYDGi+xN4BexP6H/R\nR/I6wDfgfULbU4XbU8AtZbeE3vAKeBPW75M9U/bWbWAn/vOAyw36vgv4pGwPeKn0bKzN08z7wKsh\n7T6P7MhYm3pMdfN17D0pAnzLPNgEwMeIn9b+b2N8wF2e/62fG8m6Wj8B6yq7WqfRorIHzfW6U6df\nNco+g2aZisUq0C7GfQasA/uK3NbeAKeY3eM6ZfdN6w/Asfpu6Z6L/xV6BbyisgdtPZpWf2Y9vAtM\nXFz1l9X3wL6NfS0vY6q2XmU682VlU33bX5/vQvS36e/E/NfU99u1YfIiwIdAofPAb8b/M9M8+oB9\n/f3X6r7WdfpDve8jYFfN3xV/fE2eBqfV98I+D763gZfE6/4b4F3gZabveb1Zfe2gP93GjM9r66/U\nX/8A6A2w9wA3/bIAAAAASUVORK5CYII\x3D\n", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = NavigatorIcon, Type = String, Dynamic = False, Default = \"iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACl0lE\nQVR4nO2WsUtVURzHP09By0Xw8pYgN9EaS0u09B8Iu7g09S8Iu7g0u7g0uDglNLg0uDglNLg0uDg0\nRBS4NKRg4S0hk97g9Xv3vXffu8fDe8/vA99w7u+ee973fM8933PO7wU86gKWAZtK61fADvByZCc8\nfO6Kbe0Z8A7YyVwX8BTYA6aT+uMiwDtgN/O+wAnwEngKfALmI3p6LgL2gK9Z7NqI3gV6N3p9bL06\nYmXF90XfAXsZzW1P7gBv86oCHBZZ9V0fW++WvN7v+74D9mOq6D25C6yrK8C3SIs8wCHwZUKfK8bW\nE4HnInu77/sOOMz1/gXmG+wCcF39N+b2L6M7xNbXgXfA36zXpXkX6K6wD7zZfBc4S+zreRZb77Ie\nfB5b70esP+xI+hCg38wA8CO2XgRcCen8DngY0f1D4K36m3Y66fMAnX6OIsAXYDGi+xN4BexP6H/R\nR/I6wDfgfULbU4XbU8AtZbeE3vAKeBPW75M9U/bWbWAn/vOAyw36vgv4pGwPeKn0bKzN08z7wKsh\n7T6P7MhYm3pMdfN17D0pAnzLPNgEwMeIn9b+b2N8wF2e/62fG8m6Wj8B6yq7WqfRorIHzfW6U6df\nNco+g2aZisUq0C7GfQasA/uK3NbeAKeY3eM6ZfdN6w/Asfpu6Z6L/xV6BbyisgdtPZpWf2Y9vAtM\nXFz1l9X3wL6NfS0vY6q2XmU682VlU33bX5/vQvS36e/E/NfU99u1YfIiwIdAofPAb8b/M9M8+oB9\n/f3X6r7WdfpDve8jYFfN3xV/fE2eBqfV98I+D763gZfE6/4b4F3gZabveb1Zfe2gP93GjM9r66/U\nX/8A6A2w9wA3/bIAAAAASUVORK5CYII\x3D\n", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = TextFieldBuffer, Type = Double, Dynamic = False, Default = \"16", Scope = Public, Description = 42656920546578746272656974656E204265726563686E756E67656E2C20736F6C6C746520646965736572205765727420616C73205369636865726865697420616464696572742077657264656E
+		#Tag Instance, Platform = Any, Language = Default, Definition  = \"16"
+		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"12"
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"16"
 	#tag EndConstant
 
 
@@ -493,6 +938,12 @@ End
 		LastIndex
 	#tag EndEnum
 
+	#tag Enum, Name = ViewModes, Type = Integer, Flags = &h0, Description = 446566696E696572742064696520416E7A6569676520617566206E757220446174756D206F64657220446174756D206D6974205568727A656974
+		DateOnly
+		  DateAndTime
+		DateAndSeconds
+	#tag EndEnum
+
 
 #tag EndWindowCode
 
@@ -500,13 +951,13 @@ End
 	#tag Event
 		Sub TextChanged()
 		  // Im Datumsfeld wurde etwas geändert, Datum prüfen
-		  If AceptInput Then
+		  If AcceptInput Then
 		    Var d As DateTime
 		    
 		    #Pragma BreakOnExceptions False
 		    Try
 		      
-		      d = DateTime.FromString(Me.Text, loc)
+		      d = DateTime.FromString(Me.Text, loc)  // Datetime aus reinem Datum bilden, ohne gültige Uhrzeit
 		    Catch InvalidArgumentException
 		      // Leerer String = kein gültiges Datum
 		      Me.TextColor = AppColor.TextError
@@ -517,14 +968,17 @@ End
 		      Return
 		    End Try
 		    
+		    // Nun neue Datetime mit Uhrzeit generieren
+		    d = New DateTime(d.Year, d.Month, d.Day, actualHour, actualMinute,actualSecond)
+		    
 		    Me.TextColor = AppColor.Text
 		    #Pragma BreakOnExceptions True
 		    
 		    
 		    // Das neue Datum an den Kalender Container, an die Hauptanwendung melden und das neue Datum merken
-		    RaiseEvent DateChanged(d)
+		    RaiseEvent DateChanged(d.Year,d.Month,d.Day)
 		    
-		    If Self.CalendarContainer <> Nil Then CalendarContainer.SetDate(d)   // Nur wenn expandiert
+		    If Self.CalendarContainer <> Nil Then CalendarContainer.SetDate(d.Year,d.Month,d.Day)   // Nur wenn expandiert
 		    
 		    actualDate = New DateTime(d.SecondsFrom1970)
 		    
@@ -545,6 +999,33 @@ End
 		  End If
 		  
 		  Return False    // Kein Return erkannt, weiter zum System
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
+		  // Datum scrollen
+		  #Pragma Unused deltaX
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  If EnableWheel Then
+		    Var oneDay As New DateInterval
+		    oneday.Days = 1 ' 1 Tages intervall
+		    
+		    If deltay > 0 Then
+		      // Abwärts
+		      actualDate = actualDate - oneDay
+		      TF_DateInput.Text = dtToString(actualDate,loc)
+		      
+		    ElseIf deltay < 0 Then
+		      // Aufwärts
+		      actualDate = actualDate + oneDay
+		      TF_DateInput.Text = dtToString(actualDate,loc)
+		      
+		    End If
+		    
+		  end if
 		  
 		End Function
 	#tag EndEvent
@@ -637,6 +1118,65 @@ End
 		  Self.MouseOverShowCalendar = False      // löst Refresh aus im setter
 		  
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events TF_Hour
+	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
+		Sub TimeChanged(value as integer)
+		  If actualHour <> value Then
+		    actualHour = value
+		    actualDate = New DateTime(actualDate.Year, actualDate.Month, actualDate.Day, actualHour, actualMinute, actualSecond)
+		    
+		    // An geöffneten Kalender melden, CallBack unterdrückt
+		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond, True)
+		    
+		    RaiseEvent TimeChanged(actualHour,actualMinute,actualSecond)
+		    
+		  End If
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  me.SetMode(WTEC_TimeTextField.Modes.Hour, EnableWheel)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events TF_Minute
+	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
+		Sub TimeChanged(value as integer)
+		  If actualMinute <> value Then
+		    actualMinute = value
+		    actualDate = New DateTime(actualDate.Year, actualDate.Month, actualDate.Day, actualHour, actualMinute, actualSecond)
+		    
+		    // An geöffneten Kalender melden, CallBack unterdrückt
+		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond, true)
+		    RaiseEvent TimeChanged(actualHour,actualMinute,actualSecond)
+		  End If
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  me.SetMode(WTEC_TimeTextField.Modes.Minute, EnableWheel)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events TF_Second
+	#tag Event , Description = 446965205A65697420646965736573205465787466656C64207775726465206765C3A46E64657274
+		Sub TimeChanged(value as integer)
+		  If actualSecond <> value Then
+		    actualSecond = value
+		    actualDate = New DateTime(actualDate.Year, actualDate.Month, actualDate.Day, actualHour, actualMinute, actualSecond)
+		    
+		    // An geöffneten Kalender melden, CallBack unterdrückt
+		    If CalendarContainer <> Nil Then CalendarContainer.SetTime(actualHour, actualMinute, actualSecond,True)
+		    RaiseEvent TimeChanged(actualHour,actualMinute,actualSecond)
+		  End If
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  me.SetMode(WTEC_TimeTextField.Modes.Second, EnableWheel)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -850,6 +1390,35 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="ViewMode"
+		Visible=true
+		Group="Calendar Behavor"
+		InitialValue="0"
+		Type="WTEC_DateTimePicker.ViewModes"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - DateOnly"
+			"1 - DateAndTime"
+			"2 - DateAndSeconds"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="EnableAutoPosition"
+		Visible=true
+		Group="Calendar Behavor"
+		InitialValue="False"
+		Type="boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="EnableWheel"
+		Visible=true
+		Group="Calendar Behavor"
+		InitialValue="True"
+		Type="boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="ForceLocale"
 		Visible=true
 		Group="Calendar Behavor"
@@ -893,7 +1462,7 @@ End
 		Name="FirstWeekday"
 		Visible=true
 		Group="Calendar Behavor"
-		InitialValue="WTEC_DateTimePicker.FirstWeekDays.Monday"
+		InitialValue="2"
 		Type="WTEC_DateTimePicker.FirstWeekDays"
 		EditorType="Enum"
 		#tag EnumValues
@@ -922,6 +1491,37 @@ End
 		Group="Calendar Behavor"
 		InitialValue="false"
 		Type="boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Fontname"
+		Visible=true
+		Group="Font Settings"
+		InitialValue="System"
+		Type="string"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FontUnit"
+		Visible=true
+		Group="Font Settings"
+		InitialValue="0"
+		Type="FontUnits"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Default"
+			"1 - Pixel"
+			"2 - Point"
+			"3 - Inches"
+			"4 - Millimeter"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FontSize"
+		Visible=true
+		Group="Font Settings"
+		InitialValue="0"
+		Type="Single"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
