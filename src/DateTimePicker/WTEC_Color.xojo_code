@@ -1,5 +1,5 @@
 #tag Class
-Protected Class AppColor
+Protected Class WTEC_Color
 	#tag Method, Flags = &h21, Description = 4B6F70696572742064696520436F6C6F7247726F757020696E20646173205A69656C2050726F7065727479
 		Private Shared Sub PushGroupTo(cGroup as colorgroup, dest as Colorgroup)
 		  // Es werden nur Dual Farben akzeptiert

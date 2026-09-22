@@ -4,10 +4,6 @@ Protected Class WTEC_PickerParameter
 		actualDate As Datetime
 	#tag EndProperty
 
-	#tag Property, Flags = &h0, Description = 57656E6E204175746F436C6F73652026206469657365722057657274206175662054727565206973742C207363686C6965737374207369636820646572204B616C656E6465722C2077656E6E20646965204D6175732064656E204B616C656E646572207665726CC3A4737374
-		AutoCloseWhenMouseExit As boolean = false
-	#tag EndProperty
-
 	#tag Property, Flags = &h0, Description = 57656E6E20547275652C2077697264204B616C656E646572206E616368204175737761686C2065696E657320446174756D73206D696E696D69657274
 		AutoCollapse As boolean = true
 	#tag EndProperty
@@ -16,8 +12,24 @@ Protected Class WTEC_PickerParameter
 		CalendarClose As WTEC_DateTimePicker.CallbackCalendarClose
 	#tag EndProperty
 
+	#tag Property, Flags = &h0, Description = 57656E6E2054727565202844656661756C7429206BC3B66E6E656E2064696520446174656E66656C64657220706572204D6F757365576865656C206765737465756572742077657264656E
+		EnableWheel As boolean = True
+	#tag EndProperty
+
 	#tag Property, Flags = &h0, Description = 48696572206973742064657220657273746520576F6368656E7461672C20616C736F2064657220546167206D69742064656D2064696520576F63686520696D204B616C656E64657220626567696E6E656E20736F6C6C2C20646566696E69657274
 		FirstWeekDay As WTEC_DateTimePicker.FirstWeekDays
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E74206D69742064656D2064657220496E68616C7420646573204B616C656E646572732064617267657374656C6C742077657264656E20736F6C6C
+		Fontname As string = "System"
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E74204772C3B67373652C2064696520696D204B616C656E6465722076657277656E6465742077697264
+		FontSize As Single = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 466F6E74556E6974732C2064696520696D204B616C656E6465722076657277656E6465742077657264656E
+		FontUnit As FontUnits = FontUnits.Default
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -38,6 +50,14 @@ Protected Class WTEC_PickerParameter
 
 	#tag Property, Flags = &h0, Description = C39C6265722064696573656E2043616C6C6261636B206D656C64657420646572204B616C656E6465722C2077656E6E2065696E2054616720617573676577C3A4686C74207775726465
 		SetNewDate As WTEC_DateTimePicker.CallbackNewDate
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = C39C6265722064696573656E2043616C6C6261636B206D656C64657420646572204B616C656E6465722C2077656E6E207369636820646965205568727A656974206765C3A46E6465727420686174
+		SetNewTime As WTEC_DateTimePicker.CallbackNewTime
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 4D6F64757320646572204B616C656E646572616E7A656967652C206D6974206F646572206F686E65205568727A656974
+		ViewMode As WTEC_DateTimePicker.ViewModes = WTEC_DateTimePicker.ViewModes.DateOnly
 	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 4465722076657274696B616C652041627374616E64207A7769736368656E2064656E2054616765736E756D6D65726E20696D204B616C656E646572
@@ -158,10 +178,62 @@ Protected Class WTEC_PickerParameter
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="AutoCloseWhenMouseExit"
+			Name="ForceLocale"
 			Visible=false
 			Group="Behavior"
-			InitialValue="false"
+			InitialValue=""
+			Type="string"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ViewMode"
+			Visible=false
+			Group="Behavior"
+			InitialValue="WTEC_DateTimePicker.ViewModes.DateOnly"
+			Type="WTEC_DateTimePicker.ViewModes"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - DateOnly"
+				"1 - DateAndTime"
+				"2 - DateAndSeconds"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Fontname"
+			Visible=false
+			Group="Behavior"
+			InitialValue="System"
+			Type="string"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontSize"
+			Visible=false
+			Group="Behavior"
+			InitialValue="0"
+			Type="Single"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontUnit"
+			Visible=false
+			Group="Behavior"
+			InitialValue="FontUnits.Default"
+			Type="FontUnits"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - Pixel"
+				"2 - Point"
+				"3 - Inches"
+				"4 - Millimeter"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EnableWheel"
+			Visible=false
+			Group="Behavior"
+			InitialValue="True"
 			Type="boolean"
 			EditorType=""
 		#tag EndViewProperty

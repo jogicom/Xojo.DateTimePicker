@@ -3,7 +3,7 @@
 
 Entwickelt nachdem ich feststellen musste, dass die Xojo DesktopDateTimePicker unter Linux und Windows sehr unterschiedliches aussehen haben und DesktopDateTimePicker für Cross Plattform Entwicklung ungeeignet ist.
 
-Getestet wurde das Tool unter LinuxMint und Windows 11 unter **Xojo 2025r1.1**.
+Getestet wurde das Tool unter LinuxMint und Windows 11 unter **Xojo 2025r1.1** .
 
 Im Prinzip funktioniert das Tool wie der DesktopDateTimePicker unter Windows, unterstützt zur Zeit aber keine Uhrzeit Funktion, da ich das selbst im Augenblick nicht benötigte. Dies wird aber vielleicht in einer zukünftigen Version noch nachgerüstet.
 
@@ -11,7 +11,7 @@ Im geschlossenen Zustand sieht der Picker genauso aus wie unter Windows:<br>
 ![Collapsed Calendar](Pictures/PickerCollapsed.png)
 
 Im geöffneten Zustand sieht der Picker wie folgt aus:<br>
-![Collapsed Calendar](Pictures/PickerExpanded.png)
+![Expanded Calendar](Pictures/PickerExpanded.png)
 
 - Beim Start des Pickers wird über den Event `InitalDate` das Datum bei der Hauptanwendung abgefragt, mit dem der Kalender initialisiert werden soll.
 - Das Datum kann aber zu jederzeit über die Methode `SetDate` zu jederzeit aktualisiert werden.
@@ -47,7 +47,7 @@ When closed, the picker looks exactly the same as it does in Windows:<br>
 ![Collapsed Calendar](Pictures/PickerCollapsed.png)
 
 When open, the Picker looks like this:<br>
-![Collapsed Calendar](Pictures/PickerExpanded.png)
+![Expanded Calendar](Pictures/PickerExpanded.png)
 
 - When the picker starts, the date used to initialize the calendar is requested from the main application via the `InitialDate` event.
 - However, the date can be updated at any time using the `SetDate` method.
