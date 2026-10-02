@@ -89,6 +89,9 @@ Inherits DesktopApplication
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Ctrl+Q"
 	#tag EndConstant
 
+	#tag Constant, Name = test, Type = String, Dynamic = False, Default = \"wfdmnmnd", Scope = Private
+	#tag EndConstant
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
